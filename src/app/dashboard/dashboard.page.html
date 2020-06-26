@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dashboard 2</ion-title>
+    <ion-title>COVID-19 Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+<ion-card>
+  <ion-card-header id="c1">
+    <ion-card-subtitle>TotalConfirmed : </ion-card-subtitle>
+    <ion-card-title>  {{data2.TotalConfirmed }}</ion-card-title>
 
+  </ion-card-header>
+</ion-card>
+<ion-card>
+  <ion-card-header id='c2'>
+    <ion-card-subtitle>TotalDeaths:  </ion-card-subtitle>
+      <ion-card-title> {{data2.TotalDeaths }}</ion-card-title>
+  </ion-card-header>
+</ion-card>
+<ion-card >
+  <ion-card-header id='c3'>
+    <ion-card-subtitle>TotalRecovered: </ion-card-subtitle>
+    <ion-card-title>{{data2.TotalRecovered }}</ion-card-title>
+  </ion-card-header>
+</ion-card>
 </ion-content>
