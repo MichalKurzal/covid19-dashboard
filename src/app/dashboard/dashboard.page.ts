@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
-import * as d3 from "d3";
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -19,7 +18,7 @@ data2= []
 
   ngOnInit() {
 this.loadGlobal();
-console.log(d3);
+
 let b1 = document.getElementById('c1');
 b1.addEventListener('pointerdown', this.goforward);
 
@@ -40,10 +39,6 @@ b1.addEventListener('pointerdown', this.goforward);
     
       this.router.navigateByUrl('tabs-nav/graphs1');
   
-   
-  
-      
-    
     console.log('goforward');
   }
 }

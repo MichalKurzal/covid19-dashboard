@@ -9,7 +9,6 @@ const routes: Routes = [
   },
   {
     path: 'graphs1',
-    //loadChildren: './graphs1/graphs1.module#Graphs1PageModule'
     loadChildren: () => import('./graphs1/graphs1.module').then( m => m.Graphs1PageModule)
   },
 ];
