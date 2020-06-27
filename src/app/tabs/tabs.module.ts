@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'graphs2',
         loadChildren: '../graphs2/graphs2.module#Graphs2PageModule'
+      },
+      {
+        path: 'countryD',
+        loadChildren: '../country-d/country-d.module#CountryDPageModule'
       }
     ]
   },

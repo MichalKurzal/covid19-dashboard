@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +13,13 @@ data ;
 arr = [];
 arr2 = [];
 global;
+
 countries;
-  constructor(private appservice: AppserviceService) {}
+  constructor(private appservice: AppserviceService, public nav:NavController) {}
   ngOnInit() {
   
     this.loadGlobal();
-    
+
   }
 loadGlobal(){
   this.appservice.getGlobal().subscribe(res =>{
@@ -27,5 +30,17 @@ loadGlobal(){
    
   })
 
+}
+goforward = (param)=>{
+  let ele = document.getElementById('it');
+
+ let navigationExtras: NavigationExtras = {
+    queryParams: {
+        country: param
+    }
+    
+};
+console.log('it');
+this.nav.navigateForward('tabs-nav/countryD', navigationExtras);
 }
 }

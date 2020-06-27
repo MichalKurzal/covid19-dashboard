@@ -4,8 +4,8 @@
 
   <ion-list id="container"   >
 
-    <ion-item *ngFor="let c of countries || async">
-    <img src='https://www.countryflags.io/{{c.CountryCode}}/flat/64.png'>  <p>{{c.Country}}</p>   <ion-badge>{{c.TotalConfirmed}}</ion-badge> <ion-badge>{{c.TotalDeaths}}</ion-badge> <ion-badge>{{c.TotalRecovered}}</ion-badge> 
+    <ion-item *ngFor="let c of countries || async" (click)='goforward(c)' >
+    <img  src='https://www.countryflags.io/{{c.CountryCode}}/flat/64.png'>  <p id='it'>{{c.Country}}</p>   <ion-badge>{{c.TotalConfirmed}}</ion-badge> <ion-badge>{{c.TotalDeaths}}</ion-badge> <ion-badge>{{c.TotalRecovered}}</ion-badge> 
     </ion-item>
   </ion-list>
 

@@ -8,12 +8,20 @@ ion-card-subtitle{
     text-align: center;
     font-size: 22px;
 }
+ion-content{
+    background-image:linear-gradient(to right, blue,#1A9CCC);
+}
 #c2{
-    background-image:linear-gradient(to right,red, #EC0832) ;
+  //  background-image:linear-gradient(to right,red, #EC0832) ;
+    background-image:linear-gradient(to right, blue,#1A9CCC);
+   
 }
 #c1{
     background-image:linear-gradient(to right, blue,#1A9CCC);
+  
 }
 #c3{
-    background-image:linear-gradient(to right,green, chartreuse);
+   // background-image:linear-gradient(to right,green, chartreuse);
+ 
+    background-image:linear-gradient(to right, blue,#1A9CCC);
 }

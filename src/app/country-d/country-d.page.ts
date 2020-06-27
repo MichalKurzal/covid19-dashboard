@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-country-d',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountryDPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+    let r = params["country"];
+      console.log(r);
+  });
   }
 
 }
