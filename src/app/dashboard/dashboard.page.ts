@@ -21,6 +21,8 @@ this.loadGlobal();
 
 let b1 = document.getElementById('c1');
 b1.addEventListener('pointerdown', this.goforward);
+let b2 = document.getElementById('c2');
+b2.addEventListener('pointerdown', this.goforward2);
 
   }
   loadGlobal = async()=>{
@@ -41,4 +43,10 @@ b1.addEventListener('pointerdown', this.goforward);
   
     console.log('goforward');
   }
+  goforward2 = () =>{
+    
+    this.router.navigateByUrl('tabs-nav/graphs2');
+
+  console.log('goforward');
+}
 }

@@ -3,21 +3,18 @@ import * as d3 from "d3";
 import { AppserviceService } from '../services/appservice.service';
 
 @Component({
-  selector: 'app-graphs1',
-  templateUrl: './graphs1.page.html',
-  styleUrls: ['./graphs1.page.scss'],
+  selector: 'app-graphs2',
+  templateUrl: './graphs2.page.html',
+  styleUrls: ['./graphs2.page.scss'],
 })
-export class Graphs1Page implements OnInit {
-
+export class Graphs2Page implements OnInit {
 
   constructor(public appservice : AppserviceService) { }
 
   ngOnInit() {
-    console.log(d3);
     this.chart();
-   
+
   }
-  
   chart (){
     let dataC;
     let dataL = [];
@@ -27,7 +24,7 @@ dataC = res;
 dataL = dataC.Countries;
 for(let d of dataL)
 {
-  if (d.TotalConfirmed > 100000)
+  if (d.TotalDeaths > 10000)
   {
     dataM.push(d)
   }
@@ -36,9 +33,9 @@ console.log('dataL', dataL);
 console.log('dataM', dataM);
 
 const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).rangeRound([0,600]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,3000000]).range([600,0]);
+  const yScale = d3.scaleLinear().domain([0,300000]).range([600,0]);
 
-    const svg = d3.select("#s1")
+    const svg = d3.select("#s2")
         .attr("viewBox", [0, 0, 600, 900]);
   
     svg.append("g")
@@ -47,8 +44,8 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
       .data(dataM)
       .join("rect")
        .attr("x", (dataM) => xScale(dataM.Country))
-      .attr("y", dataM => yScale(dataM.TotalConfirmed))
-        .attr("height", (dataM) =>600 - yScale(dataM.TotalConfirmed))
+      .attr("y", dataM => yScale(dataM.TotalDeaths))
+        .attr("height", (dataM) =>600 - yScale(dataM.TotalDeaths))
         .attr("width", xScale.bandwidth());
 
         svg
@@ -66,7 +63,7 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
         .attr("dy", 30)
         .attr("dx", 30)
         .attr("font-size", 18)
-        .text('Countries with more than 100 000 confirmed cases')
+        .text('Countries with more than 10 000 deaths')
 
     });
 

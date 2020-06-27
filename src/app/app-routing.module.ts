@@ -11,6 +11,14 @@ const routes: Routes = [
     path: 'graphs1',
     loadChildren: () => import('./graphs1/graphs1.module').then( m => m.Graphs1PageModule)
   },
+  {
+    path: 'graphs2',
+    loadChildren: () => import('./graphs2/graphs2.module').then( m => m.Graphs2PageModule)
+  },
+  {
+    path: 'country-d',
+    loadChildren: () => import('./country-d/country-d.module').then( m => m.CountryDPageModule)
+  },
 ];
 
 @NgModule({
