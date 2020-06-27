@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
+import * as d3 from "d3";
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +15,14 @@ global : any;
 
 data= [];
 data2= []
-  constructor(public appservice:AppserviceService) { }
+  constructor(public appservice:AppserviceService, public nav: NavController, public router : Router) { }
 
   ngOnInit() {
 this.loadGlobal();
+console.log(d3);
+let b1 = document.getElementById('c1');
+b1.addEventListener('pointerdown', this.goforward);
+
   }
   loadGlobal = async()=>{
     this.appservice.getGlobal().subscribe(res =>{
@@ -27,5 +35,15 @@ this.loadGlobal();
      
     })
   
+  }
+  goforward = () =>{
+    
+      this.router.navigateByUrl('tabs-nav/graphs1');
+  
+   
+  
+      
+    
+    console.log('goforward');
   }
 }

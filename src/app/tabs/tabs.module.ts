@@ -21,6 +21,10 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: '../home/home.module#HomePageModule'
+      },
+      {
+        path: 'graphs1',
+        loadChildren: '../graphs1/graphs1.module#Graphs1PageModule'
       }
     ]
   },
