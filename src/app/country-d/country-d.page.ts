@@ -7,14 +7,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-
-  constructor(private route: ActivatedRoute) { }
+cc : any;
+cn :any;
+  constructor(private route: ActivatedRoute) {
+   
+   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-    let r = params["country"];
-      console.log(r);
-  });
-  }
+ 
+ this.code();
 
+
+
+  }
+code =  () =>{
+  this.route.queryParams.subscribe(async params => {
+let c = params["country"];
+ this.cc = c.CountryCode;
+ this.cn = c.Country;
+ console.log(this.cc);
+ console.log(this.cn);
+ return await this.cc;
+  })
+}
 }
