@@ -4,3 +4,19 @@ img{
 p{
     margin-left: 10px;
 }
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+ion-card{
+ 
+ width: 100%;
+    background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
+}
+ion-title{
+    color:black;
+}
