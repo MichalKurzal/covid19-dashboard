@@ -16,7 +16,9 @@ export class AppserviceService {
 return this.http.get(`${this.Url}/countries?offset=0`)
   }
   getGlobal(){
-  
     return this.http.get(`${this.Url}/summary?offset=0`)
+      }
+      getDayOne(country){
+        return this.http.get(`${this.Url}/dayone/country/${country}/status/confirmed?offset=0`)
       }
 }

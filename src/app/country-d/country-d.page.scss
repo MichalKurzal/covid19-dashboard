@@ -3,6 +3,9 @@ img{
 }
 p{
     margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 12px;
 }
 div{
     display: flex;
@@ -13,10 +16,17 @@ div{
     padding-right: 20px;
 }
 ion-card{
- 
+ margin: 0px;
  width: 100%;
     background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
 }
 ion-title{
     color:black;
+}
+svg{
+    margin-top:10px;
+}
+#svg2{
+   width: 300px;
+   height: 300px;
 }
