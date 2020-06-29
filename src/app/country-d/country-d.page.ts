@@ -77,7 +77,7 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
  
     this.svg = d3.select('#svg2')
 
-.attr("viewBox", [50, 0, 300, 300])
+.attr("viewBox", [0, 0, 300, 300])
 //.attr("transform", "rotate(90)");
 
 
