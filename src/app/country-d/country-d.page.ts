@@ -57,7 +57,7 @@ console.log(this.dayone);
 this.dayL = this.dayone.length;
 console.log(this.dayL);
 
- let dayone102 = this.dayone.slice(this.dayL -10);
+ let dayone102 = this.dayone.slice(this.dayL -20);
  let dayone10= [];
 for  (let d of dayone102){
 
@@ -69,17 +69,17 @@ for  (let d of dayone102){
 var a = new Boolean;
 a = false;
 console.log(dayone10);
-let domain = dayone10[9].Cases + 0.5 * dayone10[9].Cases;
+let domain = dayone10[19].Cases + 0.4 * dayone10[9].Cases;
 
-const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).rangeRound([0,300]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,domain]).range([300,0]);
+const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).rangeRound([0,350]).padding(0.1);
+  const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
 
   const y_axis = d3.axisRight().scale(yScale)
 
  
     this.svg = d3.select('#svg2')
 
-.attr("viewBox", [0, 0, 300, 300])
+.attr("viewBox", [0, 0, 350, 300])
 //.attr("transform", "rotate(90)");
 
 
@@ -90,7 +90,7 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
       .join("rect")
        .attr("x", (dayone10) => xScale(dayone10.Date))
       .attr("y", dayone10 => yScale(dayone10.Cases))
-        .attr("height", (dayone10) =>300 - yScale(dayone10.Cases))
+        .attr("height", (dayone10) =>350 - yScale(dayone10.Cases))
         .attr("width", xScale.bandwidth())
 
         this.svg.select(".y")
@@ -98,7 +98,7 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
    
         this.svg.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(-20, 20)")
+        .attr("transform", "translate(0, 0)")
         .call(y_axis);
    
        
@@ -113,7 +113,7 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
  console.log(this.cc);
  console.log(this.cn);
 
-  })
+  }) 
 }
 ionViewWillLeave(){
   console.log('wiil leave');
