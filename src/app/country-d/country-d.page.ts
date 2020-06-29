@@ -66,13 +66,15 @@ for  (let d of dayone102){
   i++
 }
 
-
+var a = new Boolean;
+a = false;
 console.log(dayone10);
-let domain = dayone10[9].Cases;
+let domain = dayone10[9].Cases + 0.5 * dayone10[9].Cases;
 
 const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).rangeRound([0,300]).padding(0.1);
   const yScale = d3.scaleLinear().domain([0,domain]).range([300,0]);
 
+  const y_axis = d3.axisRight().scale(yScale)
 
  
     this.svg = d3.select('#svg2')
@@ -90,8 +92,18 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
       .attr("y", dayone10 => yScale(dayone10.Cases))
         .attr("height", (dayone10) =>300 - yScale(dayone10.Cases))
         .attr("width", xScale.bandwidth())
-     
 
+        this.svg.select(".y")
+      .remove()
+   
+        this.svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(-20, 20)")
+        .call(y_axis);
+   
+       
+
+     
         //this.svg.attr("transform", "rotate(90)");
       
      console.log(this.svg)
@@ -108,5 +120,6 @@ ionViewWillLeave(){
   this.svg.selectAll("rect")
   .attr("height", 0)
   .attr("width", 0)
+ 
 }	
 }
