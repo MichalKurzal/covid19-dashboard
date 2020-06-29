@@ -1,12 +1,14 @@
 ion-card-title{
     color: black;
-    font-size: 38px;
+    font-size: 28px;
     text-align: center;
+    margin: 0px;
 }
 ion-card-subtitle{
     color: black;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
+    margin: 0px;;
 }
 ion-content{
     background-image:linear-gradient(to right, blue,#1A9CCC);
@@ -25,3 +27,13 @@ ion-content{
  
     background-image:linear-gradient(to right, blue,#1A9CCC);
 }
+ion-card{margin: 0px;}
+ion-card-header{
+    margin: 0px;
+    padding: 0px;
+}
+#svg3{
+    width: 350px;
+    height: 300px;
+    margin-bottom: 10px;
+ }

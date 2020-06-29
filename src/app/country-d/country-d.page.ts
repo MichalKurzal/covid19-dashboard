@@ -61,13 +61,12 @@ console.log(this.dayL);
  let dayone10= [];
 for  (let d of dayone102){
 
-  let i = 0;
+ 
   dayone10.push(d[1]);
-  i++
+ 
 }
 
-var a = new Boolean;
-a = false;
+
 console.log(dayone10);
 let domain = dayone10[19].Cases + 0.4 * dayone10[9].Cases;
 
