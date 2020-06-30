@@ -32,11 +32,19 @@ for(let d of dataL)
     dataM.push(d)
   }
 }
+
+dataM.sort(function(a, b) {
+  return a.TotalConfirmed - b.TotalConfirmed;
+});
 console.log('dataL', dataL);
 console.log('dataM', dataM);
+let Length = dataM.length;
+let domain = dataM[Length -1].TotalConfirmed + 0.4 * dataM[Length -1].TotalConfirmed;
 
 const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).rangeRound([0,600]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,3000000]).range([600,0]);
+  const yScale = d3.scaleLinear().domain([0,domain]).range([600,0]);
+
+  const y_axis = d3.axisRight().scale(yScale)
 
     const svg = d3.select("#s1")
         .attr("viewBox", [0, 0, 600, 900]);
@@ -68,6 +76,10 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
         .attr("font-size", 18)
         .text('Countries with more than 100 000 confirmed cases')
 
+        svg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(0, 0)")
+        .call(y_axis);
     });
 
    let data = [

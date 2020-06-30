@@ -66,7 +66,6 @@ for  (let d of dayone102){
  
 }
 
-
 console.log(dayone10);
 let domain = dayone10[19].Cases + 0.4 * dayone10[9].Cases;
 

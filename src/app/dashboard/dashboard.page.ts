@@ -30,10 +30,9 @@ b2.addEventListener('pointerdown', this.goforward2);
     this.appservice.getGlobal().subscribe(res =>{
       this.global = res;
       this.data2 = this.global.Global;
-       this.data = Object.entries(this.global.Global);
-       console.log(this.data);
-       console.log(this.data2);
-      console.log('Result: ', this.global);
+  
+       console.log('data2', this.data2);
+  
      
     })
   
@@ -42,17 +41,17 @@ b2.addEventListener('pointerdown', this.goforward2);
     this.appservice.WorldTotal().subscribe(res =>{
       console.log('worldTotal ', res)
       let data = [];
-      data = Object.entries(res);
       let WorldL = [];
       let data2 = [];
+      data = Object.entries(res);
+     
       for (let d of data){
         data2.push(d[1].TotalConfirmed)
       }
       data2.sort((a,b)=> a-b);
       console.log('data2', data2)
      for (let d of data2){
-       let n = 1;
-       n = n+1;
+ 
      WorldL.push({day :d, nr: d.toString()});
  
      }
@@ -60,8 +59,9 @@ b2.addEventListener('pointerdown', this.goforward2);
      let WL = WorldL.length;
       let world;
      world =WorldL.slice(WL-20);
+     let domain = world[19].day + 0.4 * world[19].day;
+
     console.log('worldTotal[1] ',world);
-    let domain = world[19].day + 0.4 * world[19].day;
 
      const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,350]).padding(0.1);
      const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
@@ -70,11 +70,8 @@ b2.addEventListener('pointerdown', this.goforward2);
    
     
        var svg = d3.select('#svg3')
-   
    .attr("viewBox", [0, 0, 350, 300])
-   //.attr("transform", "rotate(90)");
-   
-   
+
        svg.append("g")
            .attr("fill", "#D42424")
          .selectAll("rect")
@@ -107,8 +104,5 @@ b2.addEventListener('pointerdown', this.goforward2);
 
   console.log('goforward');
 }
-chart = () =>{
 
- 
-}
 }
