@@ -28,13 +28,9 @@ svg :any;
    }
 
   ngOnInit() {
- 
-
-
-
-
 this.code();
   }
+  
 code =  () =>{
  
   this.route.queryParams.subscribe(async params => {
@@ -49,31 +45,29 @@ let c = params["country"];
  this.tr = c.TotalRecovered;
  this.slug = c.Slug;
 
-this.appservice.getDayOne(this.slug).subscribe(data =>{
+ console.log(this.cc);
+ console.log(this.cn);
 
+this.appservice.getDayOne(this.slug).subscribe(data =>{
+  console.log(data)
 this.dayone = Object.entries(data);
 
 console.log(this.dayone);
 
-
- let dayone102 = [];
  let dayone20= [];
+
 for  (let d of this.dayone){
-  dayone20.push(d[1]);
+  if (d[1].Province == '')  
+  {
+    dayone20.push(d[1]);
+  }
+  
 }
 
 console.log('dayone20 ', dayone20);
 
-for (let day of dayone20)
-{
-  if (day.Province == '')
-  {
-    dayone102.push(day);
-  }
-}
-this.dayL = dayone102.length;
- let dayone210 = dayone102.slice(this.dayL -20);
-console.log('dayone102 ', dayone102);
+this.dayL = dayone20.length;
+ let dayone210 = dayone20.slice(this.dayL -20);
 
 let domain = dayone210[19].Cases + 0.4 * dayone210[9].Cases;
 
@@ -82,12 +76,9 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
 
   const y_axis = d3.axisRight().scale(yScale)
 
- 
     this.svg = d3.select('#svg2')
 
 .attr("viewBox", [0, 0, 350, 300])
-//.attr("transform", "rotate(90)");
-
 
     this.svg.append("g")
         .attr("fill", "#D42424")
@@ -106,18 +97,11 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
         .attr("class", "y axis")
         .attr("transform", "translate(0, 0)")
         .call(y_axis);
-   
-       
-
-     
-        //this.svg.attr("transform", "rotate(90)");
       
      console.log(this.svg)
 
 })
 
- console.log(this.cc);
- console.log(this.cn);
 
   }) 
 }

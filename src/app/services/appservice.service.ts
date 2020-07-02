@@ -19,7 +19,7 @@ return this.http.get(`${this.Url}/countries?offset=0`)
     return this.http.get(`${this.Url}/summary?offset=0`)
       }
       getDayOne(country){
-        return this.http.get(`${this.Url}/dayone/country/${country}/status/confirmed?offset=0`)
+        return this.http.get(`${this.Url}/total/dayone/country/${country}/status/confirmed?offset=0`)
       }
       WorldTotal(){
         let date = new Date().toJSON();
