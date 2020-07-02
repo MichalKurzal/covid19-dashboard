@@ -22,38 +22,36 @@ dayone :any;
 dayL : any;
 svg :any;
 
-
   constructor(private route: ActivatedRoute, public appservice : AppserviceService) {
    
    }
 
   ngOnInit() {
-this.code();
+    this.route.queryParams.subscribe(async params => {
+      let c = params["country"];
+       this.cc = c.CountryCode;
+       this.cn = c.Country;
+       this.ncon = c.NewConfirmed;
+       this.nd = c.NewDeaths;
+       this.nr = c.NewRecovered;
+       this.tc = c.TotalConfirmed;
+       this.td = c.TotalDeaths;
+       this.tr = c.TotalRecovered;
+       this.slug = c.Slug;
+     
+       console.log(this.cc);
+       console.log(this.cn);
+       this.code();
+      })
+
   }
-  
+
 code =  () =>{
- 
-  this.route.queryParams.subscribe(async params => {
-let c = params["country"];
- this.cc = c.CountryCode;
- this.cn = c.Country;
- this.ncon = c.NewConfirmed;
- this.nd = c.NewDeaths;
- this.nr = c.NewRecovered;
- this.tc = c.TotalConfirmed;
- this.td = c.TotalDeaths;
- this.tr = c.TotalRecovered;
- this.slug = c.Slug;
 
- console.log(this.cc);
- console.log(this.cn);
-
-this.appservice.getDayOne(this.slug).subscribe(data =>{
-  console.log(data)
-this.dayone = Object.entries(data);
-
-console.log(this.dayone);
-
+  this.appservice.getDayOne(this.slug).subscribe(async data =>{
+    console.log(data)
+  this.dayone = Object.entries(data);
+  
  let dayone20= [];
 
 for  (let d of this.dayone){
@@ -100,11 +98,11 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
       
      console.log(this.svg)
 
-})
 
+  })
 
-  }) 
-}
+  
+};
 ionViewWillLeave(){
   console.log('wiil leave');
   this.svg.selectAll("rect")
