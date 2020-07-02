@@ -21,6 +21,7 @@ slug: any;
 dayone :any;
 dayL : any;
 svg :any;
+dayoneAU :any;
 
   constructor(private route: ActivatedRoute, public appservice : AppserviceService) {
    
@@ -41,28 +42,99 @@ svg :any;
      
        console.log(this.cc);
        console.log(this.cn);
-       this.code();
-      })
 
+  
+   
+      if ((this.cc !== 'AU')&&(this.cc !== 'CN')) {
+        this.appservice.getDayOne(this.slug).subscribe(async data =>{
+
+          console.log(data)
+        this.dayone = Object.entries(data);
+        this.code();
+        
+      })
+      }
+     else{
+       console.log('china or australia')
+       this.appservice.getDayOne2(this.slug).subscribe(async data2 =>{
+    
+
+        let daysum = Object.entries(data2);
+      
+    let daysum1 =[];
+        for  (let d of daysum){
+            daysum1.push(d[1]);
+        }
+        
+      var   startDate = new Date("2020-06-01");
+      var   endDate = new Date();
+        var getDateArray = function(start, end) {
+    
+          var
+            arr = new Array(),
+            dt = new Date(start);
+        
+          while (dt <= end) {
+            arr.push(new Date(dt).toISOString().split('.')[0]+"Z");
+            dt.setDate(dt.getDate() + 1);
+          }
+        
+          return arr;
+        
+        }
+        var dateArr = getDateArray(startDate, endDate);
+
+    let sum = []
+        console.log('daysum1', daysum1)
+       let date1;
+       let sumint = 0;
+    for (let date of dateArr)
+    {if (date1 !== date)
+      {
+        sum.push({Cases: sumint, Date: date})
+        
+        sumint = 0;
+      } 
+    
+      for (let days of daysum1)
+        {
+         date1 = date;
+          if(date == days.Date){
+            sumint += (days.Cases)
+          
+          }
+        }  
+    }
+  
+     this.dayoneAU = sum;
+     console.log('dayone210 T  ',this.dayoneAU);
+     this.code();
+      })
+     } 
+    })
   }
 
 code =  () =>{
 
-  this.appservice.getDayOne(this.slug).subscribe(async data =>{
-    console.log(data)
-  this.dayone = Object.entries(data);
-  
- let dayone20= [];
-
-for  (let d of this.dayone){
-  if (d[1].Province == '')  
-  {
-    dayone20.push(d[1]);
+let dayone20= [];
+if (this.cc == 'AU'){
+  dayone20 = this.dayoneAU;
+}
+else if  (this.cc == 'CN'){
+  dayone20 = this.dayoneAU;
+}
+else{
+  for  (let d of this.dayone){
+    if (d[1].Province == '')  
+    {
+      dayone20.push(d[1]);
+    }
+    
   }
   
+  console.log('dayone20 ', dayone20);
 }
 
-console.log('dayone20 ', dayone20);
 
 this.dayL = dayone20.length;
  let dayone210 = dayone20.slice(this.dayL -20);
@@ -98,10 +170,6 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
       
      console.log(this.svg)
 
-
-  })
-
-  
 };
 ionViewWillLeave(){
   console.log('wiil leave');
