@@ -54,22 +54,30 @@ this.appservice.getDayOne(this.slug).subscribe(data =>{
 this.dayone = Object.entries(data);
 
 console.log(this.dayone);
-this.dayL = this.dayone.length;
-console.log(this.dayL);
 
- let dayone102 = this.dayone.slice(this.dayL -20);
- let dayone10= [];
-for  (let d of dayone102){
 
- 
-  dayone10.push(d[1]);
- 
+ let dayone102 = [];
+ let dayone20= [];
+for  (let d of this.dayone){
+  dayone20.push(d[1]);
 }
 
-console.log(dayone10);
-let domain = dayone10[19].Cases + 0.4 * dayone10[9].Cases;
+console.log('dayone20 ', dayone20);
 
-const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).rangeRound([0,350]).padding(0.1);
+for (let day of dayone20)
+{
+  if (day.Province == '')
+  {
+    dayone102.push(day);
+  }
+}
+this.dayL = dayone102.length;
+ let dayone210 = dayone102.slice(this.dayL -20);
+console.log('dayone102 ', dayone102);
+
+let domain = dayone210[19].Cases + 0.4 * dayone210[9].Cases;
+
+const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,350]).padding(0.1);
   const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
 
   const y_axis = d3.axisRight().scale(yScale)
@@ -84,11 +92,11 @@ const xScale = d3.scaleBand().domain(dayone10.map((dataPoint)=>dataPoint.Date)).
     this.svg.append("g")
         .attr("fill", "#D42424")
       .selectAll("rect")
-      .data(dayone10)
+      .data(dayone210)
       .join("rect")
-       .attr("x", (dayone10) => xScale(dayone10.Date))
-      .attr("y", dayone10 => yScale(dayone10.Cases))
-        .attr("height", (dayone10) =>350 - yScale(dayone10.Cases))
+       .attr("x", (dayone210) => xScale(dayone210.Date))
+      .attr("y", dayone210 => yScale(dayone210.Cases))
+        .attr("height", (dayone210) =>350 - yScale(dayone210.Cases))
         .attr("width", xScale.bandwidth())
 
         this.svg.select(".y")
