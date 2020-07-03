@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ countries;
     this.loadGlobal();
 
   }
-loadGlobal(){
+loadGlobal= async()=>{
   this.appservice.getGlobal().subscribe(res =>{
     this.global = res;
      this.countries = this.global.Countries;

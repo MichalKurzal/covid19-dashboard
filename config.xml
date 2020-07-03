@@ -5,12 +5,14 @@
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Michal Kurzal</author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin="content:///*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="https://api.covid19api.com/*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />

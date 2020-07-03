@@ -13,7 +13,10 @@ export class DashboardPage implements OnInit {
 global : any;
 
 data= [];
-data2= [];
+data2;
+TotalC;
+TotalD;
+TotalR;
 
   constructor(public appservice:AppserviceService, public nav: NavController, public router : Router) { }
 
@@ -30,7 +33,9 @@ b2.addEventListener('pointerdown', this.goforward2);
     this.appservice.getGlobal().subscribe(res =>{
       this.global = res;
       this.data2 = this.global.Global;
-  
+       this.TotalC = this.data2.TotalConfirmed;
+       this.TotalD = this.data2.TotalDeaths;
+       this.TotalR = this.data2.TotalRecovered;
        console.log('data2', this.data2);
   
      
