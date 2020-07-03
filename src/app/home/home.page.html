@@ -5,7 +5,7 @@
   <ion-list id="container"   >
 
     <ion-item *ngFor="let c of countries" (click)='goforward(c)' >
-    <img  src='https://www.countryflags.io/{{c.CountryCode}}/flat/64.png'>  <p id='it'>{{c.Country}}</p>   <ion-badge color="warning">{{c.TotalConfirmed}}</ion-badge> <ion-badge color="danger">{{c.TotalDeaths}}</ion-badge> <ion-badge color="success">{{c.TotalRecovered}}</ion-badge> 
+    <img  src='{{gurl}}{{c.CountryCode}}.png'>  <p id='it'>{{c.Country}}</p>   <ion-badge color="warning">{{c.TotalConfirmed}}</ion-badge> <ion-badge color="danger">{{c.TotalDeaths}}</ion-badge> <ion-badge color="success">{{c.TotalRecovered}}</ion-badge> 
     </ion-item>
   </ion-list>
 

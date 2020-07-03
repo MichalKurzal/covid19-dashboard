@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as d3 from "d3";
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -28,6 +29,7 @@ b1.addEventListener('pointerdown', this.goforward);
 let b2 = document.getElementById('c2');
 b2.addEventListener('pointerdown', this.goforward2);
 
+
   }
   loadGlobal = async()=>{
     this.appservice.getGlobal().subscribe(res =>{
@@ -37,11 +39,12 @@ b2.addEventListener('pointerdown', this.goforward2);
        this.TotalD = this.data2.TotalDeaths;
        this.TotalR = this.data2.TotalRecovered;
        console.log('data2', this.data2);
-  
-     
+
     })
   
   }
+  
+  
   loadWorld = ()=>{
     this.appservice.WorldTotal().subscribe(res =>{
       console.log('worldTotal ', res)
