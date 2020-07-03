@@ -90,6 +90,14 @@ b2.addEventListener('pointerdown', this.goforward2);
            .attr("transform", "translate(0, 0)")
            .call(y_axis);
 
+           svg.append('text')
+        .attr('text-anchor', 'start')
+        .attr("dy", 30)
+        .attr("dx", 20)
+        .attr("font-size", 16)
+        .text('Total Cases Worldwide in the last 20 days')
+
+
     })
   }
   goforward = () =>{
