@@ -16,17 +16,23 @@ div{
     padding-right: 20px;
 }
 ion-card{
+padding: 0px;;
  margin: 0px;
  width: 100%;
-    background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
+background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
 }
 ion-title{
     color:black;
+    font-size: 24px;
+}
+ion-card-header{
+padding: 0px;
+margin: 0px;
 }
 svg{
     margin-top:10px;
 }
 #svg2{
-   width: 350px;
+   //width: 350px;
    height: 300px;
 }

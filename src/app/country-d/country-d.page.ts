@@ -45,7 +45,7 @@ dayoneAU :any;
 
   
    
-      if ((this.cc !== 'AU')&&(this.cc !== 'CN')) {
+      if ((this.cc !== 'AU')&&(this.cc !== 'CN')&&(this.cc !== 'CA')) {
         this.appservice.getDayOne(this.slug).subscribe(async data =>{
 
           console.log(data)
@@ -123,6 +123,9 @@ if (this.cc == 'AU'){
 else if  (this.cc == 'CN'){
   dayone20 = this.dayoneAU;
 }
+else if  (this.cc == 'CA'){
+  dayone20 = this.dayoneAU;
+}
 else{
   for  (let d of this.dayone){
     if (d[1].Province == '')  
@@ -134,21 +137,26 @@ else{
   
   console.log('dayone20 ', dayone20);
 }
+console.log(window.innerWidth);
+let width = window.innerWidth;
 
-
+if (width > 600)
+{
+  width = 400;
+}
 this.dayL = dayone20.length;
  let dayone210 = dayone20.slice(this.dayL -20);
 
 let domain = dayone210[19].Cases + 0.4 * dayone210[9].Cases;
 
-const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,350]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
+const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width]).padding(0.1);
+  const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
 
   const y_axis = d3.axisRight().scale(yScale)
 
     this.svg = d3.select('#svg2')
 
-.attr("viewBox", [0, 0, 350, 300])
+.attr("viewBox", [0, 0, width, 360])
 
     this.svg.append("g")
         .attr("fill", "#D42424")
@@ -157,7 +165,7 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
       .join("rect")
        .attr("x", (dayone210) => xScale(dayone210.Date))
       .attr("y", dayone210 => yScale(dayone210.Cases))
-        .attr("height", (dayone210) =>350 - yScale(dayone210.Cases))
+        .attr("height", (dayone210) =>width - yScale(dayone210.Cases))
         .attr("width", xScale.bandwidth())
 
         this.svg.select(".y")

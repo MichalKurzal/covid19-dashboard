@@ -27,11 +27,7 @@ countries;
       this.global = res;
       this.countries = this.global.Countries;
       console.log('countries', this.countries);
-   
-    
-     
     })
-  
   }
  
 goforward = (param)=>{
@@ -41,7 +37,6 @@ goforward = (param)=>{
     queryParams: {
         country: param
     }
-    
 };
 console.log('Detail Country Page');
 this.nav.navigateForward('tabs-nav/countryD', navigationExtras);
