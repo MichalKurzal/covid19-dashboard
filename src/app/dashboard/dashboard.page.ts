@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
 import { NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import * as d3 from "d3";
+import {File} from '@ionic-native/file/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 
 @Component({
@@ -12,14 +14,14 @@ import * as d3 from "d3";
 })
 export class DashboardPage implements OnInit {
 global : any;
-
 data= [];
 data2;
 TotalC;
 TotalD;
 TotalR;
+countries;
 
-  constructor(public appservice:AppserviceService, public nav: NavController, public router : Router) { }
+  constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, public nav: NavController,private file :File, public router : Router) { }
 
   ngOnInit() {
 this.loadGlobal();
@@ -28,7 +30,6 @@ let b1 = document.getElementById('c1');
 b1.addEventListener('pointerdown', this.goforward);
 let b2 = document.getElementById('c2');
 b2.addEventListener('pointerdown', this.goforward2);
-
 
   }
   loadGlobal = async()=>{
@@ -39,6 +40,29 @@ b2.addEventListener('pointerdown', this.goforward2);
        this.TotalD = this.data2.TotalDeaths;
        this.TotalR = this.data2.TotalRecovered;
        console.log('data2', this.data2);
+       this.countries = this.global.Countries;
+
+       let  PACF = []
+       for (let c of this.countries)
+       {
+        PACF.push(this.file.checkFile(this.file.dataDirectory, c.CountryCode+ '.png'))
+       }
+      Promise.all(PACF).then(async res=>{
+        console.log('Sucess' + res)
+      }).catch(err =>{
+        console.log('files not fund')
+        let PA = []
+   
+        console.log(this.countries.length)
+         for (let c of this.countries)
+         {
+           PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c.CountryCode}/flat/64.png`, this.file.dataDirectory + `${c.CountryCode}` + '.png'))
+         }
+         Promise.all(PA).then(res =>{
+           console.log('Promise-all', res)
+          
+         })
+      })
 
     })
   
@@ -47,7 +71,6 @@ b2.addEventListener('pointerdown', this.goforward2);
   
   loadWorld = ()=>{
     this.appservice.WorldTotal().subscribe(res =>{
-      console.log('worldTotal ', res)
       let data = [];
       let WorldL = [];
       let data2 = [];
@@ -57,7 +80,7 @@ b2.addEventListener('pointerdown', this.goforward2);
         data2.push(d[1].TotalConfirmed)
       }
       data2.sort((a,b)=> a-b);
-      console.log('data2', data2)
+ 
      for (let d of data2){
  
      WorldL.push({day :d, nr: d.toString()});
@@ -69,7 +92,7 @@ b2.addEventListener('pointerdown', this.goforward2);
      world =WorldL.slice(WL-20);
      let domain = world[19].day + 0.4 * world[19].day;
 
-    console.log('worldTotal[1] ',world);
+    console.log('Final Data World ',world);
 
      const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,350]).padding(0.1);
      const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
