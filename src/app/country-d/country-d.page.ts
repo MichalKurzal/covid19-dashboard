@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppserviceService } from '../services/appservice.service';
 import * as d3 from "d3";
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import {File} from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-country-d',
@@ -22,12 +24,14 @@ dayone :any;
 dayL : any;
 svg :any;
 dayoneAU :any;
+gurl
 
-  constructor(private route: ActivatedRoute, public appservice : AppserviceService) {
+  constructor(private route: ActivatedRoute, public appservice : AppserviceService, private WebView : WebView, private file: File) {
    
    }
 
   ngOnInit() {
+    this.gurl =  this.WebView.convertFileSrc( this.file.dataDirectory);
     this.route.queryParams.subscribe(async params => {
       let c = params["country"];
        this.cc = c.CountryCode;

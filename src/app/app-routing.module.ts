@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'country-d',
     loadChildren: () => import('./country-d/country-d.module').then( m => m.CountryDPageModule)
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
 ];
 
 @NgModule({
