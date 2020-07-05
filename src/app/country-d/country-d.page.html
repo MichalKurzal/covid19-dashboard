@@ -6,50 +6,76 @@
 <div>
 
 
-  <ion-item>
-    <img [(ngModel)]="cc" ngDefaultControl src='{{gurl}}{{cc}}.png'> 
-  <p [(ngModel)]="cn" ngDefaultControl>{{cn}}</p>
-  </ion-item>
-<ion-card>
-  <ion-card-header>
+  <ion-grid>
+    <ion-row>
+      <ion-item>
+   <ion-col> <img [(ngModel)]="cc" ngDefaultControl src='{{gurl}}{{cc}}.png'> </ion-col>  
+ <ion-col>    <p [(ngModel)]="cn" ngDefaultControl>{{cn}}</p></ion-col> 
+</ion-item>
+    </ion-row>
+    <ion-card>
+      <ion-card-header>
+<ion-row>
+ <ion-col> <ion-card-subtitle>
+    New Confirmed
+  </ion-card-subtitle></ion-col> <ion-col><ion-card-subtitle>
+    Total Confirmed
+  </ion-card-subtitle></ion-col> 
+</ion-row>
+<ion-row>
+  <ion-col>
     <ion-title>
-      New Confirmed {{ncon}}
+      {{ncon}}
     </ion-title>
-   </ion-card-header>
-</ion-card>
-<ion-card>
-  <ion-card-header>
+  </ion-col>
+  <ion-col>
+  <ion-title>
+  {{tc}}
+  </ion-title>
+</ion-col>
+</ion-row>
+<ion-row>
+  <ion-col> <ion-card-subtitle>
+    New Deaths 
+   </ion-card-subtitle></ion-col> <ion-col><ion-card-subtitle>
+    Total Deaths
+   </ion-card-subtitle></ion-col> 
+ </ion-row>
+ <ion-row>
+  <ion-col>
     <ion-title>
-      New Deaths {{nd}}
+      {{nd}}
     </ion-title>
+  </ion-col>
+  <ion-col>
+  <ion-title>
+  {{td}}
+  </ion-title>
+</ion-col>
+</ion-row>
+ <ion-row>
+  <ion-col> <ion-card-subtitle>
+    New Recovered
+   </ion-card-subtitle></ion-col> <ion-col><ion-card-subtitle>
+    Total Recovered
+   </ion-card-subtitle></ion-col> 
+ </ion-row>
+ <ion-row>
+  <ion-col>
+    <ion-title>
+      {{nr}}
+    </ion-title>
+  </ion-col>
+  <ion-col>
+  <ion-title>
+  {{tr}}
+  </ion-title>
+</ion-col>
+</ion-row>
+
+   
   </ion-card-header>
 </ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-title>
-      New Recovered {{nr}}
-    </ion-title>
-  </ion-card-header>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-title>
-      Total Confirmed {{tc}}
-    </ion-title>
-   </ion-card-header>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-title>
-      Total Deaths {{td}}
-    </ion-title>
-  </ion-card-header>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-title>
-      Total Recovered {{tr}}
-    </ion-title>
-  </ion-card-header>
-</ion-card>
+</ion-grid>
+
 </div>

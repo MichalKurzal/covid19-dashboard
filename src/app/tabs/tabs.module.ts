@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path: 'countryD',
         loadChildren: '../country-d/country-d.module#CountryDPageModule'
+      },
+      {
+        path: 'about',
+        loadChildren: '../about/about.module#AboutPageModule'
       }
     ]
   },

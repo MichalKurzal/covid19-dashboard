@@ -49,7 +49,7 @@ gurl
 
   
    
-      if ((this.cc !== 'AU')&&(this.cc !== 'CN')&&(this.cc !== 'CA')) {
+      if ((this.cc !== 'AU')&&(this.cc !== 'CN')) {
         this.appservice.getDayOne(this.slug).subscribe(async data =>{
 
           console.log(data)
@@ -125,9 +125,6 @@ if (this.cc == 'AU'){
   dayone20 = this.dayoneAU;
 }
 else if  (this.cc == 'CN'){
-  dayone20 = this.dayoneAU;
-}
-else if  (this.cc == 'CA'){
   dayone20 = this.dayoneAU;
 }
 else{
