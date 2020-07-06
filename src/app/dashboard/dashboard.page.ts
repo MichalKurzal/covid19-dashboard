@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import * as d3 from "d3";
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,11 +21,11 @@ TotalD;
 TotalR;
 countries;
 
-  constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, public nav: NavController,private file :File, public router : Router) { }
+  constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, 
+    public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage) { }
 
   ngOnInit() {
-this.loadGlobal();
-this.loadWorld()
+Promise.all([this.loadWorld(),this.loadGlobal()]);
 let b1 = document.getElementById('c1');
 b1.addEventListener('pointerdown', this.goforward);
 let b2 = document.getElementById('c2');
@@ -33,44 +33,73 @@ b2.addEventListener('pointerdown', this.goforward2);
 
   }
   loadGlobal = async()=>{
-    this.appservice.getGlobal().subscribe(res =>{
+return await   this.appservice.getGlobal().then(res =>{
       this.global = res;
       this.data2 = this.global.Global;
-       this.TotalC = this.data2.TotalConfirmed;
-       this.TotalD = this.data2.TotalDeaths;
-       this.TotalR = this.data2.TotalRecovered;
-       console.log('data2', this.data2);
-       this.countries = this.global.Countries;
+      this.countries = this.global.Countries;
+      this.setTotal(this.data2);
+      this.checkImages(this.countries);
+      console.log('data2', this.data2);
 
-       let  PACF = []
-       for (let c of this.countries)
-       {
-        PACF.push(this.file.checkFile(this.file.dataDirectory, c.CountryCode+ '.png'))
-       }
-      Promise.all(PACF).then(async res=>{
-        console.log('Sucess' + res)
-      }).catch(err =>{
-        console.log('files not fund')
-        let PA = []
-   
-        console.log(this.countries.length)
-         for (let c of this.countries)
-         {
-           PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c.CountryCode}/flat/64.png`, this.file.dataDirectory + `${c.CountryCode}` + '.png'))
-         }
-         Promise.all(PA).then(res =>{
-           console.log('Promise-all', res)
-          
-         })
-      })
+       this.nativeStorage.setItem('DataGlobal', this.data2).then(()=> console.log('stored Item'),
+       error => console.error('Error stoting item', error)
+       );
+       this.nativeStorage.setItem('DataCountries', this.countries).then(()=> console.log('stored Item'),
+       error => console.error('Error stoting item', error)
+       );
+       
 
+    }).catch(error =>{
+      console.log('catch error get Global');
+      this.getData();
     })
   
   }
-  
-  
-  loadWorld = ()=>{
-    this.appservice.WorldTotal().subscribe(res =>{
+  getData = ()=>{
+    this.nativeStorage.getItem('DataGlobal').then(res =>{
+      let data = res;
+      this.setTotal(data);
+      
+      console.log('get Data',data);
+    })
+    this.nativeStorage.getItem('DataCountries').then(res =>{
+      let data = res;
+      this.checkImages(data);
+      
+      console.log('get Data',data);
+    })
+  }
+  setTotal=(data)=>{
+    this.TotalC = data.TotalConfirmed;
+    this.TotalD = data.TotalDeaths;
+    this.TotalR = data.TotalRecovered;
+  }
+  checkImages=(data)=>{
+    let  PACF = []
+    for (let c of data)
+    {
+     PACF.push(this.file.checkFile(this.file.dataDirectory, c.CountryCode+ '.png'))
+    }
+   Promise.all(PACF).then(async res=>{
+     console.log('Sucess' + res)
+   }).catch(err =>{
+     console.log('files not fund')
+     let PA = []
+
+     console.log(this.countries.length)
+      for (let c of this.countries)
+      {
+        PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c.CountryCode}/flat/64.png`, this.file.dataDirectory + `${c.CountryCode}` + '.png'))
+      }
+      Promise.all(PA).then(res =>{
+        console.log('Promise-all', res)
+       
+      })
+   })
+  }
+
+  loadWorld = async()=>{
+ return await   this.appservice.WorldTotal().subscribe(res =>{
       let data = [];
       let WorldL = [];
       let data2 = [];

@@ -147,10 +147,11 @@ else{
 console.log(window.innerWidth);
 let width = window.innerWidth;
 
-if (width > 600)
+if (width > 800)
 {
-  width = 400;
+  width = 800;
 }
+let height = width -50;
 this.dayL = dayone20.length;
  let dayone210 = dayone20.slice(this.dayL -20);
 
@@ -163,7 +164,7 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
 
     this.svg = d3.select('#svg2')
 
-.attr("viewBox", [0, 0, width, 360])
+.attr("viewBox", [0, 0, width, height])
 
     this.svg.append("g")
         .attr("fill", "#D42424")

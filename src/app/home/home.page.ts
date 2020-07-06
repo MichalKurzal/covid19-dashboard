@@ -23,7 +23,7 @@ countries;
     public navParams: NavParams, private route: ActivatedRoute, private router : Router,private file: File) {}
   ngOnInit() {
   this.gurl =  this.WebView.convertFileSrc( this.file.dataDirectory);
-    this.appservice.getGlobal().subscribe(res =>{
+    this.appservice.getGlobal().then(res =>{
       this.global = res;
       this.countries = this.global.Countries;
       console.log('countries', this.countries);

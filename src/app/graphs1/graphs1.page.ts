@@ -22,7 +22,7 @@ export class Graphs1Page implements OnInit {
     let dataC;
     let dataL = [];
     let dataM = [];
-    this.appservice.getGlobal().subscribe(res =>{
+    this.appservice.getGlobal().then(res =>{
 dataC = res;
 dataL = dataC.Countries;
 for(let d of dataL)

@@ -12,15 +12,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer,  FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [
     File,FileTransfer,FileTransferObject,
     StatusBar,NavParams,
-    SplashScreen,WebView,
+    SplashScreen,WebView,NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
