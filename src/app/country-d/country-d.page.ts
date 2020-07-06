@@ -46,78 +46,84 @@ gurl
      
        console.log(this.cc);
        console.log(this.cn);
+       this.getData();
+       return await c;
 
   
-   
-      if ((this.cc !== 'AU')&&(this.cc !== 'CN')) {
-        this.appservice.getDayOne(this.slug).subscribe(async data =>{
 
-          console.log(data)
-        this.dayone = Object.entries(data);
-        this.code();
-        
-      })
-      }
-     else{
-       console.log('china or australia')
-       this.appservice.getDayOne2(this.slug).subscribe(async data2 =>{
-    
-
-        let daysum = Object.entries(data2);
-      
-    let daysum1 =[];
-        for  (let d of daysum){
-            daysum1.push(d[1]);
-        }
-        
-      var   startDate = new Date("2020-06-01");
-      var   endDate = new Date();
-        var getDateArray = function(start, end) {
-    
-          var
-            arr = new Array(),
-            dt = new Date(start);
-        
-          while (dt <= end) {
-            arr.push(new Date(dt).toISOString().split('.')[0]+"Z");
-            dt.setDate(dt.getDate() + 1);
-          }
-        
-          return arr;
-        
-        }
-        var dateArr = getDateArray(startDate, endDate);
-
-    let sum = []
-        console.log('daysum1', daysum1)
-       let date1;
-       let sumint = 0;
-    for (let date of dateArr)
-    {if (date1 !== date)
-      {
-        sum.push({Cases: sumint, Date: date})
-        
-        sumint = 0;
-      } 
-    
-      for (let days of daysum1)
-        {
-         date1 = date;
-          if(date == days.Date){
-            sumint += (days.Cases)
-          
-          }
-        }  
-    }
-  
-     this.dayoneAU = sum;
-     console.log('dayone210 T  ',this.dayoneAU);
-     this.code();
-      })
-     } 
+     
     })
   }
 
+getData = ()=>{
+     
+  if ((this.cc !== 'AU')&&(this.cc !== 'CN')) {
+    this.appservice.getDayOne(this.slug).subscribe(async data =>{
+
+      console.log(data)
+    this.dayone = Object.entries(data);
+    this.code();
+    
+  })
+  }
+ else{
+   console.log('china or australia')
+   this.appservice.getDayOne2(this.slug).subscribe(async data2 =>{
+
+
+    let daysum = Object.entries(data2);
+  
+let daysum1 =[];
+    for  (let d of daysum){
+        daysum1.push(d[1]);
+    }
+    
+  var   startDate = new Date("2020-06-01");
+  var   endDate = new Date();
+    var getDateArray = function(start, end) {
+
+      var
+        arr = new Array(),
+        dt = new Date(start);
+    
+      while (dt <= end) {
+        arr.push(new Date(dt).toISOString().split('.')[0]+"Z");
+        dt.setDate(dt.getDate() + 1);
+      }
+    
+      return arr;
+    
+    }
+    var dateArr = getDateArray(startDate, endDate);
+
+let sum = []
+    console.log('daysum1', daysum1)
+   let date1;
+   let sumint = 0;
+for (let date of dateArr)
+{if (date1 !== date)
+  {
+    sum.push({Cases: sumint, Date: date})
+    
+    sumint = 0;
+  } 
+
+  for (let days of daysum1)
+    {
+     date1 = date;
+      if(date == days.Date){
+        sumint += (days.Cases)
+      
+      }
+    }  
+}
+
+ this.dayoneAU = sum;
+ console.log('dayone210 T  ',this.dayoneAU);
+ this.code();
+  })
+}
+}
 code =  () =>{
 
 let dayone20= [];
