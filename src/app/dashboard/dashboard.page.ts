@@ -14,7 +14,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class DashboardPage implements OnInit {
 global : any;
-data= [];
+data;
 data2;
 TotalC;
 TotalD;
@@ -99,66 +99,85 @@ return await   this.appservice.getGlobal().then(res =>{
   }
 
   loadWorld = async()=>{
- return await   this.appservice.WorldTotal().subscribe(res =>{
-      let data = [];
-      let WorldL = [];
-      let data2 = [];
-      data = Object.entries(res);
-     
-      for (let d of data){
-        data2.push(d[1].TotalConfirmed)
-      }
-      data2.sort((a,b)=> a-b);
- 
-     for (let d of data2){
- 
-     WorldL.push({day :d, nr: d.toString()});
- 
-     }
-      
-     let WL = WorldL.length;
-      let world;
-     world =WorldL.slice(WL-20);
-     let domain = world[19].day + 0.4 * world[19].day;
-
-    console.log('Final Data World ',world);
-
-     const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,350]).padding(0.1);
-     const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
-   
-     const y_axis = d3.axisRight().scale(yScale)
-   
-    
-       var svg = d3.select('#svg3')
-   .attr("viewBox", [0, 0, 350, 300])
-
-       svg.append("g")
-           .attr("fill", "#D42424")
-         .selectAll("rect")
-         .data(world)
-         .join("rect")
-          .attr("x", (world) => xScale(world.nr))
-         .attr("y", world => yScale(world.day))
-           .attr("height", (world) =>350 - yScale(world.day))
-           .attr("width", xScale.bandwidth())
-   
-           svg.select(".y")
-         .remove()
-      
-          svg.append("g")
-           .attr("class", "y axis")
-           .attr("transform", "translate(0, 0)")
-           .call(y_axis);
-
-           svg.append('text')
-        .attr('text-anchor', 'start')
-        .attr("dy", 30)
-        .attr("dx", 20)
-        .attr("font-size", 16)
-        .text('Total Cases Worldwide in the last 20 days')
-
-
+ return await   this.appservice.WorldTotal().then(res =>{
+      this.data = [];
+      this.data = Object.entries(res);
+      this.nativeStorage.setItem('DataWorld', this.data).then(()=> console.log('stored Item Data World'),
+      error => console.error('Error stoting item', error)
+      );
+      this.worldchart(this.data);
+    }).catch(error =>{
+      console.log('Catch error LoadWorld');
+      this.getWorld();
     })
+  }
+
+  getWorld=()=>{
+    this.nativeStorage.getItem('DataWorld').then(res =>{
+      let dataW = res;
+      this.worldchart(dataW);
+      
+      console.log('get Data World',dataW);
+    }).catch(error =>{
+      console.log('error ', error)
+    })
+  }
+
+  worldchart =(data)=>{
+    let WorldL = [];
+    let data2 = [];
+    for (let d of data){
+      data2.push(d[1].TotalConfirmed)
+    }
+    data2.sort((a,b)=> a-b);
+
+   for (let d of data2){
+
+   WorldL.push({day :d, nr: d.toString()});
+
+   }
+    
+   let WL = WorldL.length;
+    let world;
+   world =WorldL.slice(WL-20);
+   let domain = world[19].day + 0.4 * world[19].day;
+
+  console.log('Final Data World ',world);
+
+   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,350]).padding(0.1);
+   const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
+ 
+   const y_axis = d3.axisRight().scale(yScale)
+ 
+  
+     var svg = d3.select('#svg3')
+ .attr("viewBox", [0, 0, 350, 300])
+
+     svg.append("g")
+         .attr("fill", "#D42424")
+       .selectAll("rect")
+       .data(world)
+       .join("rect")
+        .attr("x", (world) => xScale(world.nr))
+       .attr("y", world => yScale(world.day))
+         .attr("height", (world) =>350 - yScale(world.day))
+         .attr("width", xScale.bandwidth())
+ 
+         svg.select(".y")
+       .remove()
+    
+        svg.append("g")
+         .attr("class", "y axis")
+         .attr("transform", "translate(0, 0)")
+         .call(y_axis);
+
+         svg.append('text')
+      .attr('text-anchor', 'start')
+      .attr("dy", 30)
+      .attr("dx", 20)
+      .attr("font-size", 16)
+      .text('Total Cases Worldwide in the last 20 days')
+
   }
   goforward = () =>{
     

@@ -28,7 +28,7 @@ export class AppserviceService {
       
       WorldTotal(){
         let date = new Date().toJSON();
-        console.log('date ',date)
-        return this.http.get(`${this.Url}/world?from=2020-06-01T00:00:00Z&to=${date}`)
+        console.log('date ',date);
+        return this.http.get(`${this.Url}/world?from=2020-06-01T00:00:00Z&to=${date}`).toPromise()
       }
 }
