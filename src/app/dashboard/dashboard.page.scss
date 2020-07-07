@@ -28,8 +28,11 @@ ion-card-header{
     padding: 0px;
 }
 #svg3{
-    width: 350px;
-    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    //width: 350px;
+    //height: 300px;
     margin-bottom: 10px;
  }
  ion-icon{
@@ -67,6 +70,12 @@ ion-card-header{
     background-image:linear-gradient(to right,red,#d8a3aa);
 }
      
+#header{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-left: 10px;
+}
 @media only screen and (orientation: landscape) and (min-width: 600px){
     svg {
        float: left;
@@ -94,4 +103,5 @@ ion-card-header{
          color: black;
          font-size: 12px;
      }
+   
    }

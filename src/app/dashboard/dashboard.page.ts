@@ -159,28 +159,57 @@ return await   this.appservice.getGlobal().then(res =>{
    let WL = WorldL.length;
     let world;
    world =WorldL.slice(WL-20);
-   let domain = world[19].day + 0.4 * world[19].day;
+
+   let width = window.innerWidth;
+
+if (width > 800)
+{
+  width = 800;
+}
+let height = width -50;
+   let domain = world[19].day + 0.2 * world[19].day;
 
   console.log('Final Data World ',world);
 
-   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,350]).padding(0.1);
-   const yScale = d3.scaleLinear().domain([0,domain]).range([350,0]);
+   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]).padding(0.1);
+   const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
  
    const y_axis = d3.axisRight().scale(yScale)
  
   
      var svg = d3.select('#svg3')
- .attr("viewBox", [0, 0, 350, 300])
+ .attr("viewBox", [0, 0, width, height])
 
-     svg.append("g")
-         .attr("fill", "#D42424")
-       .selectAll("rect")
-       .data(world)
-       .join("rect")
-        .attr("x", (world) => xScale(world.nr))
-       .attr("y", world => yScale(world.day))
-         .attr("height", (world) =>350 - yScale(world.day))
-         .attr("width", xScale.bandwidth())
+  
+         var gradient = svg.append("svg:defs")
+         .append("svg:linearGradient")
+           .attr("id", "gradient2")
+           .attr("x1", "0%")
+           .attr("y1", "0%")
+          .attr("x2", "100%")
+           .attr("y2", "0%")
+           .attr("spreadMethod", "pad");
+    gradient.append("svg:stop")
+           .attr("offset", "0%")
+           .attr("stop-color", "#19ACD4")
+           .attr("stop-opacity", 0.6);
+    gradient.append("svg:stop")
+           .attr("offset", "100%")
+           .attr("stop-color", "#0B1BA4")
+           .attr("stop-opacity", 0.6);
+
+           svg.append("g")
+         //  .attr("fill", "#D42424")
+         .attr("fill", "url(#gradient2)")
+         .selectAll("rect")
+         .data(world)
+         .join("rect")
+          .attr("x", (world) => xScale(world.nr))
+         .attr("y", world => yScale(world.day))
+           .attr("height", (world) =>width - yScale(world.day))
+           .attr("width", xScale.bandwidth())
+      
+  
  
          svg.select(".y")
        .remove()
@@ -190,12 +219,7 @@ return await   this.appservice.getGlobal().then(res =>{
          .attr("transform", "translate(0, 0)")
          .call(y_axis);
 
-         svg.append('text')
-      .attr('text-anchor', 'start')
-      .attr("dy", 30)
-      .attr("dx", 20)
-      .attr("font-size", 16)
-      .text('Total Cases Worldwide in the last 20 days')
+      
 
   }
   goforward = () =>{

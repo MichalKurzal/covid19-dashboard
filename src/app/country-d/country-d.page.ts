@@ -155,7 +155,7 @@ let height = width -50;
 this.dayL = dayone20.length;
  let dayone210 = dayone20.slice(this.dayL -20);
 
-let domain = dayone210[19].Cases + 0.4 * dayone210[9].Cases;
+let domain = dayone210[19].Cases + 0.2 * dayone210[9].Cases;
 
 const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width]).padding(0.1);
   const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
@@ -166,8 +166,26 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
 
 .attr("viewBox", [0, 0, width, height])
 
+var gradient = this.svg.append("svg:defs")
+         .append("svg:linearGradient")
+           .attr("id", "gradient")
+           .attr("x1", "0%")
+           .attr("y1", "0%")
+          .attr("x2", "100%")
+           .attr("y2", "0%")
+           .attr("spreadMethod", "pad");
+    gradient.append("svg:stop")
+           .attr("offset", "0%")
+           .attr("stop-color", "#19ACD4")
+           .attr("stop-opacity", 0.6);
+    gradient.append("svg:stop")
+           .attr("offset", "100%")
+           .attr("stop-color", "#0B1BA4")
+           .attr("stop-opacity", 0.6);
+
     this.svg.append("g")
-        .attr("fill", "#D42424")
+        //.attr("fill", "#D42424")
+        .attr("fill", "url(#gradient)")
       .selectAll("rect")
       .data(dayone210)
       .join("rect")
@@ -175,6 +193,7 @@ const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date))
       .attr("y", dayone210 => yScale(dayone210.Cases))
         .attr("height", (dayone210) =>width - yScale(dayone210.Cases))
         .attr("width", xScale.bandwidth())
+       
 
         this.svg.select(".y")
       .remove()
