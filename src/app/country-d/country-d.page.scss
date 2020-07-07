@@ -60,28 +60,28 @@ ion-card-subtitle{
 @media only screen and (orientation: landscape) and (min-width: 600px){
    svg {
       float: left;
-      height: 400px;
-      width: 400px;
+      height: 280px;
+      width: 280px;
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      left: 10px;
     }
    
     div{
         float: right;
         position: absolute;
         top: 20px;
-        right: 20px;
+        right: 10px;
     }
     p
     {
         color:black;
-        font-size: 22px;
+        font-size: 20px;
         margin: 0px;
         padding: 0px;
     }
     ion-card-subtitle{
         color: black;
-        font-size: 16px;
+        font-size: 12px;
     }
   }

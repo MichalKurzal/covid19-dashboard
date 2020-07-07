@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 import * as d3 from "d3";
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,10 +20,13 @@ data2;
 TotalC;
 TotalD;
 TotalR;
+NewC;
+NewD;
+NewR;
 countries;
 
   constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, 
-    public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage) { }
+    public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
 Promise.all([this.loadWorld(),this.loadGlobal()]);
@@ -73,6 +77,9 @@ return await   this.appservice.getGlobal().then(res =>{
     this.TotalC = data.TotalConfirmed;
     this.TotalD = data.TotalDeaths;
     this.TotalR = data.TotalRecovered;
+    this.NewC = data.NewConfirmed;
+    this.NewD = data.NewDeaths;
+    this.NewR = data.NewRecovered;
   }
   checkImages=(data)=>{
     let  PACF = []
@@ -123,6 +130,18 @@ return await   this.appservice.getGlobal().then(res =>{
     })
   }
 
+  reload = async()=>{
+    console.log('reload');
+    let load=  await this.loading.create({
+      message : 'Reloading the Page...',
+      duration: 2000,
+    });
+    load.present();
+    location.reload();
+  
+   
+  }
+ 
   worldchart =(data)=>{
     let WorldL = [];
     let data2 = [];
