@@ -25,6 +25,7 @@ NewD;
 NewR;
 countries;
 svg:any;
+svg2:any;
 
   constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, 
     public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
@@ -139,25 +140,42 @@ return await   this.appservice.getGlobal().then(res =>{
   }
  
   worldchart =(data)=>{
-    let WorldL = [];
-    let data2 = [];
+    let WorldCon = [];
+    let TotalCon = [];
+    let WorldDeaths = [];
+    let TotalDeaths = [];
+
+
     for (let d of data){
-      data2.push(d[1].TotalConfirmed)
+      TotalCon.push(d[1].TotalConfirmed)
     }
-    data2.sort((a,b)=> a-b);
+    TotalCon.sort((a,b)=> a-b);
 
-   for (let d of data2){
+   for (let d of TotalCon){
 
-   WorldL.push({day :d, nr: d.toString()});
+   WorldCon.push({day :d, nr: d.toString()});
 
    }
+
+   for(let d2 of data){
+     TotalDeaths.push(d2[1].TotalDeaths)
+   }
+   TotalDeaths.sort((a,b)=> a-b);
+
+   for (let d2 of TotalDeaths){
+   WorldDeaths.push({day :d2, nr: d2.toString()});
+    }
     
-   let WL = WorldL.length;
-    let world;
-   world =WorldL.slice(WL-20);
+   let WL = WorldCon.length;
+   let world;
+   world =WorldCon.slice(WL-20);
+
+   let DL = WorldDeaths.length;
+   let DeathsData;
+   DeathsData = WorldDeaths.slice(DL-20);
+   console.log('Deaths Data', DeathsData);
 
    let width = window.innerWidth;
-
 if (width > 800)
 {
   width = 800;
@@ -168,21 +186,42 @@ if (ratio< 1.45){
 ratio = 1.45;
 }
 console.log('ratio ',ratio);
-let height = (width/2) * ratio;
+let height = width/2;
 console.log('width ',width);
 console.log('height ', height)
 
-   let domain = world[19].day + 0.2 * world[19].day;
+   let domain = world[19].day + 0.1 * world[19].day;
+   let domain2 = DeathsData[DeathsData.length-1].day + 0.1*DeathsData[DeathsData.length-1].day
 
   console.log('Final Data World ',world);
 
-   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]).padding(0.1);
-   const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
- 
-   const y_axis = d3.axisRight().scale(yScale)
- 
+   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]);
+   const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
+   const xScale2 = d3.scaleBand().domain(DeathsData.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]);
+   const yScale2 = d3.scaleLinear().domain([0,domain2]).range([height,0]);
+
+   const y_axis = d3.axisRight().scale(yScale);
+   const y_axis2 = d3.axisRight().scale(yScale2);
+
+   let curve = d3.curveLinear;
+   let curve2 = d3.curveLinear
+
+   let area = d3.area()
+   .curve(curve)
+   .x(d => xScale(d.nr))
+   .y0(yScale(0))
+   .y1(d => yScale(d.day))
+
+   let area2 = d3.area()
+   .curve(curve2)
+   .x(d => xScale2(d.nr))
+   .y0(yScale(0))
+   .y1(d => yScale2(d.day))
   
      this.svg = d3.select('#svg3')
+ .attr("viewBox", [0, 0, width, height])
+
+ this.svg2 = d3.select('#svg4')
  .attr("viewBox", [0, 0, width, height])
 
   
@@ -203,17 +242,34 @@ console.log('height ', height)
            .attr("stop-color", "#0B1BA4")
            .attr("stop-opacity", 0.6);
 
-           this.svg.append("g")
-         //  .attr("fill", "#D42424")
-         .attr("fill", "url(#gradient2)")
-         .selectAll("rect")
-         .data(world)
-         .join("rect")
-          .attr("x", (world) => xScale(world.nr))
-         .attr("y", world => yScale(world.day))
-           .attr("height", (world) =>width - yScale(world.day))
-           .attr("width", xScale.bandwidth())
-      
+           this.svg.append("path")
+           .attr("class", "area")
+           .datum(world)
+           .attr("fill", "url(#gradient2)")
+          //.attr("fill", "#D42424")
+          .attr('d', area)
+
+          this.svg.append('text')
+          .attr('text-anchor', 'start')
+          .attr("dy", 20)
+          .attr("dx", 60)
+          .attr("font-size", 14)
+          .text('Confirmed cases worldwide in the last 20 days')
+
+          this.svg2.append('text')
+          .attr('text-anchor', 'start')
+          .attr("dy", 20)
+          .attr("dx", 50)
+          .attr("font-size", 14)
+          .text('Deaths worldwide in the last 20 days')
+
+          
+          this.svg2.append("path")
+          .attr("class", "area")
+          .datum(DeathsData)
+         // .attr("fill", "url(#gradient2)")
+          .attr("fill", "#D42424")
+         .attr('d', area2)
   
  
          this.svg.select(".y")
@@ -223,6 +279,15 @@ console.log('height ', height)
          .attr("class", "y axis")
          .attr("transform", "translate(0, 0)")
          .call(y_axis);
+
+         this.svg2.select(".y")
+         .remove()
+      
+          this.svg2.append("g")
+           .attr("class", "y axis")
+           .attr("transform", "translate(0, 0)")
+           .call(y_axis2);
+  
 
       
 
@@ -242,9 +307,9 @@ console.log('height ', height)
 
 
 doRefresh(event) {
-  this.svg.selectAll("rect")
-  .attr("height", 0)
-  .attr("width", 0)
+  this.svg.selectAll(".area")
+  .remove()
+
   Promise.all([this.loadWorld(),this.loadGlobal()]).then(()=> event.target.complete())
 }
 }
