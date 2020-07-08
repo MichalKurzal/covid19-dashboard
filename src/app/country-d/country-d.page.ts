@@ -62,7 +62,7 @@ getData = ()=>{
 
       console.log(data)
     this.dayone = Object.entries(data);
-    this.code();
+    this.code(this.dayone);
     
   })
   }
@@ -118,32 +118,22 @@ for (let date of dateArr)
     }  
 }
 
- this.dayoneAU = sum;
+ this.dayoneAU = Object.entries(sum) ;
+ this.dayoneAU.shift();
+ this.dayoneAU.pop();
  console.log('dayone210 T  ',this.dayoneAU);
- this.code();
+ this.code(this.dayoneAU);
   })
 }
 }
-code =  () =>{
+code =  (data) =>{
+let dayone20 =[];
 
-let dayone20= [];
-if (this.cc == 'AU'){
-  dayone20 = this.dayoneAU;
-}
-else if  (this.cc == 'CN'){
-  dayone20 = this.dayoneAU;
-}
-else{
-  for  (let d of this.dayone){
-    if (d[1].Province == '')  
-    {
+  for  (let d of data){
       dayone20.push(d[1]);
-    }
-    
   }
-  
   console.log('dayone20 ', dayone20);
-}
+
 console.log(window.innerWidth);
 let width = window.innerWidth;
 
@@ -153,9 +143,11 @@ if (width > 800)
 }
 let height = width -50;
 this.dayL = dayone20.length;
+console.log(dayone20);
  let dayone210 = dayone20.slice(this.dayL -20);
 
-let domain = dayone210[19].Cases + 0.2 * dayone210[9].Cases;
+let domain = dayone210[dayone210.length -1].Cases + 0.2 * dayone210[dayone210.length -1].Cases;
+console.log('domain', domain)
 
 const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width]).padding(0.1);
   const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
