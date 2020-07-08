@@ -24,17 +24,13 @@ NewC;
 NewD;
 NewR;
 countries;
+svg:any;
 
   constructor(public appservice:AppserviceService,public fileTransfer :FileTransfer, 
     public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
 Promise.all([this.loadWorld(),this.loadGlobal()]);
-//let b1 = document.getElementsByClassName('c1');
-//b1.addEventListener('pointerdown', this.goforward);
-//let b2 = document.getElementById('c2');
-//b2.addEventListener('pointerdown', this.goforward2);
-
   }
   loadGlobal = async()=>{
 return await   this.appservice.getGlobal().then(res =>{
@@ -166,7 +162,16 @@ if (width > 800)
 {
   width = 800;
 }
-let height = width -50;
+let realheight = window.innerHeight;
+let ratio = realheight / width;
+if (ratio< 1.45){
+ratio = 1.45;
+}
+console.log('ratio ',ratio);
+let height = (width/2) * ratio;
+console.log('width ',width);
+console.log('height ', height)
+
    let domain = world[19].day + 0.2 * world[19].day;
 
   console.log('Final Data World ',world);
@@ -177,11 +182,11 @@ let height = width -50;
    const y_axis = d3.axisRight().scale(yScale)
  
   
-     var svg = d3.select('#svg3')
+     this.svg = d3.select('#svg3')
  .attr("viewBox", [0, 0, width, height])
 
   
-         var gradient = svg.append("svg:defs")
+         var gradient = this.svg.append("svg:defs")
          .append("svg:linearGradient")
            .attr("id", "gradient2")
            .attr("x1", "0%")
@@ -198,7 +203,7 @@ let height = width -50;
            .attr("stop-color", "#0B1BA4")
            .attr("stop-opacity", 0.6);
 
-           svg.append("g")
+           this.svg.append("g")
          //  .attr("fill", "#D42424")
          .attr("fill", "url(#gradient2)")
          .selectAll("rect")
@@ -211,10 +216,10 @@ let height = width -50;
       
   
  
-         svg.select(".y")
+         this.svg.select(".y")
        .remove()
     
-        svg.append("g")
+        this.svg.append("g")
          .attr("class", "y axis")
          .attr("transform", "translate(0, 0)")
          .call(y_axis);
@@ -235,4 +240,12 @@ let height = width -50;
   console.log('goforward');
 }
 
+
+doRefresh(event) {
+  this.svg.selectAll("rect")
+  .attr("height", 0)
+  .attr("width", 0)
+  Promise.all([this.loadWorld(),this.loadGlobal()]).then(()=> event.target.complete())
 }
+}
+

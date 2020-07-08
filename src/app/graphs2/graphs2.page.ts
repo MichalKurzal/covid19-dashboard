@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import { AppserviceService } from '../services/appservice.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-graphs2',
@@ -10,7 +11,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class Graphs2Page implements OnInit {
 
-  constructor(public appservice : AppserviceService, private nativeStorage: NativeStorage) { }
+  constructor(public appservice : AppserviceService, private nativeStorage: NativeStorage, public router: Router) { }
 
   ngOnInit() {
     this.chart();
@@ -67,13 +68,6 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
         .style("font-size", 24)
         .style("fill", "#69a3b2")
 
-        svg.append('text')
-        .attr('text-anchor', 'start')
-        .attr("dy", 30)
-        .attr("dx", 30)
-        .attr("font-size", 18)
-        .text('Countries with more than 10 000 deaths')
-
         svg.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(0, 0)")
@@ -82,4 +76,10 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
     });
   
   }
+  goforward = () =>{
+    
+    this.router.navigateByUrl('tabs-nav/graphs1');
+
+  console.log('goforward');
+}
 }

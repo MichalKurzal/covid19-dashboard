@@ -3,17 +3,26 @@
   <ion-toolbar>
    <ion-item lines="none">
     <p id="title">COVID-19 Dashboard</p>
-    <ion-icon (click)="reload()" name="repeat-outline"></ion-icon>
+    <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
    </ion-item>
    
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+
 <p id="header">Confimed Cases in the last 20 days</p>
 <svg id="svg3">
 
 </svg>
+
 <div >
- 
+    <ion-refresher slot="fixed"  pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content>
+  
+      </ion-refresher-content>
+    </ion-refresher>
+
 <ion-grid>
 
   <ion-card>
@@ -79,3 +88,4 @@
 </ion-card>
 </ion-grid>
 </div>
+</ion-content>
