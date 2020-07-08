@@ -30,10 +30,10 @@ countries;
 
   ngOnInit() {
 Promise.all([this.loadWorld(),this.loadGlobal()]);
-let b1 = document.getElementById('c1');
-b1.addEventListener('pointerdown', this.goforward);
-let b2 = document.getElementById('c2');
-b2.addEventListener('pointerdown', this.goforward2);
+//let b1 = document.getElementsByClassName('c1');
+//b1.addEventListener('pointerdown', this.goforward);
+//let b2 = document.getElementById('c2');
+//b2.addEventListener('pointerdown', this.goforward2);
 
   }
   loadGlobal = async()=>{

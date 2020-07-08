@@ -45,10 +45,10 @@
 </ion-col>
 </ion-row>
 <ion-row>
-<ion-col id="c1"><ion-card-subtitle>
+<ion-col class="c1" (click)='goforward()'><ion-card-subtitle>
   Total Confirmed
 </ion-card-subtitle></ion-col> 
- <ion-col id='c2' ><ion-card-subtitle>
+ <ion-col class='c2' (click)='goforward2()'><ion-card-subtitle>
   Total Deaths
  </ion-card-subtitle></ion-col> 
  <ion-col><ion-card-subtitle>
@@ -56,12 +56,12 @@
  </ion-card-subtitle></ion-col> 
 </ion-row>
 <ion-row>
-<ion-col id="c1" routerLink='graphs1'>
+<ion-col class="c1" (click)='goforward()' >
 <p>
 {{TotalC}}
 </p>
 </ion-col>
-<ion-col id='c2'class="D" >
+<ion-col (click)='goforward2()' class='c2'class="D" >
 <p>
 {{TotalD}}
 </p>

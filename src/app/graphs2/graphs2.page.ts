@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import { AppserviceService } from '../services/appservice.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-graphs2',
@@ -9,19 +10,17 @@ import { AppserviceService } from '../services/appservice.service';
 })
 export class Graphs2Page implements OnInit {
 
-  constructor(public appservice : AppserviceService) { }
+  constructor(public appservice : AppserviceService, private nativeStorage: NativeStorage) { }
 
   ngOnInit() {
     this.chart();
 
   }
   chart (){
-    let dataC;
     let dataL = [];
     let dataM = [];
-    this.appservice.getGlobal().then(res =>{
-dataC = res;
-dataL = dataC.Countries;
+    this.nativeStorage.getItem('DataCountries').then(res =>{  
+dataL = res;
 for(let d of dataL)
 {
   if (d.TotalDeaths > 10000)
@@ -81,13 +80,6 @@ const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).
         .call(y_axis);
 
     });
-
-   let data = [
-     {id:1, value:17},
-     {id:2, value:5},
-     {id:3, value:12},
-     {id:4, value:24},
-   ]
   
   }
 }
