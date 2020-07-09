@@ -150,7 +150,16 @@ let domain = dayone210[dayone210.length -1].Cases + 0.2 * dayone210[dayone210.le
 console.log('domain', domain)
 
 const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,domain]).range([width,0]);
+const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
+
+  let curve = d3.curveLinear;
+
+  
+  let area = d3.area()
+  .curve(curve)
+  .x(d => xScale(d.Date))
+  .y0(yScale(0))
+  .y1(d => yScale(d.Cases))
 
   const y_axis = d3.axisRight().scale(yScale)
 
@@ -175,17 +184,13 @@ var gradient = this.svg.append("svg:defs")
            .attr("stop-color", "#0B1BA4")
            .attr("stop-opacity", 0.6);
 
-    this.svg.append("g")
+    this.svg.append("path")
         //.attr("fill", "#D42424")
+        .attr("class", "area")
         .attr("fill", "url(#gradient)")
-      .selectAll("rect")
-      .data(dayone210)
-      .join("rect")
-       .attr("x", (dayone210) => xScale(dayone210.Date))
-      .attr("y", dayone210 => yScale(dayone210.Cases))
-        .attr("height", (dayone210) =>width - yScale(dayone210.Cases))
-        .attr("width", xScale.bandwidth())
-       
+      .datum(dayone210)
+      .attr('d', area)
+
 
         this.svg.select(".y")
       .remove()
@@ -200,9 +205,7 @@ var gradient = this.svg.append("svg:defs")
 };
 ionViewWillLeave(){
   console.log('wiil leave');
-  this.svg.selectAll("rect")
-  .attr("height", 0)
-  .attr("width", 0)
- 
+  this.svg.selectAll(".area")
+   .remove()
 }	
 }

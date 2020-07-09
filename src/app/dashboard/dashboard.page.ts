@@ -186,7 +186,9 @@ if (ratio< 1.45){
 ratio = 1.45;
 }
 console.log('ratio ',ratio);
-let height = width/2;
+let ratio2 = 4-ratio;
+//let height = (width/2) * ratio;
+let height = width/ratio2;
 console.log('width ',width);
 console.log('height ', height)
 
@@ -270,7 +272,7 @@ console.log('height ', height)
          // .attr("fill", "url(#gradient2)")
           .attr("fill", "#D42424")
          .attr('d', area2)
-  
+
  
          this.svg.select(".y")
        .remove()
