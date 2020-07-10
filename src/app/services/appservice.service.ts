@@ -7,6 +7,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 })
 export class AppserviceService {
   Url = 'https://api.covid19api.com'
+  Url2 = 'https://corona.lmao.ninja/v2/'
+
  
 
   constructor(private http:HttpClient, private NativeStorage :NativeStorage) { }
@@ -30,5 +32,8 @@ export class AppserviceService {
         let date = new Date().toJSON();
         console.log('date ',date);
         return this.http.get(`${this.Url}/world?from=2020-06-01T00:00:00Z&to=${date}`).toPromise()
+      }
+      NewApiContinents(){
+        return this.http.get(`${this.Url2}continents?false&sort`);
       }
 }

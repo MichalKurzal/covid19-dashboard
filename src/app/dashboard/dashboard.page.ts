@@ -31,7 +31,29 @@ svg2:any;
     public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
-Promise.all([this.loadWorld(),this.loadGlobal()]);
+Promise.all([this.loadWorld(),this.loadGlobal(), this.loadContinents()]);
+  }
+  loadContinents = async()=>{
+    this.appservice.NewApiContinents().subscribe(res =>{
+      let ContArray = []
+      let TotalCases = [];
+    for (let cases in res)
+    {
+        ContArray.push(res[cases]);
+    }
+    for (let Cont of ContArray)
+    {
+      TotalCases.push(Cont.cases)
+    }
+    
+  
+    let SumCases = TotalCases.reduce(function (a,b) {
+      return a +b;
+    },0);
+    console.log('Total Cases',SumCases);
+    this.TotalC = SumCases;
+    })
+   
   }
   loadGlobal = async()=>{
 return await   this.appservice.getGlobal().then(res =>{
@@ -71,7 +93,7 @@ return await   this.appservice.getGlobal().then(res =>{
     })
   }
   setTotal=(data)=>{
-    this.TotalC = data.TotalConfirmed;
+   
     this.TotalD = data.TotalDeaths;
     this.TotalR = data.TotalRecovered;
     this.NewC = data.NewConfirmed;
