@@ -34,6 +34,6 @@ export class AppserviceService {
         return this.http.get(`${this.Url}/world?from=2020-06-01T00:00:00Z&to=${date}`).toPromise()
       }
       NewApiContinents(){
-        return this.http.get(`${this.Url2}continents?false&sort`);
+        return this.http.get(`${this.Url2}continents?false&sort`).toPromise();
       }
 }

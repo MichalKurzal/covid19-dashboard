@@ -16,7 +16,6 @@ import { async } from '@angular/core/testing';
 export class DashboardPage implements OnInit {
 global : any;
 data;
-data2;
 TotalC;
 TotalD;
 TotalR;
@@ -34,39 +33,98 @@ svg2:any;
 Promise.all([this.loadWorld(),this.loadGlobal(), this.loadContinents()]);
   }
   loadContinents = async()=>{
-    this.appservice.NewApiContinents().subscribe(res =>{
+    this.appservice.NewApiContinents().then(res =>{
       let ContArray = []
       let TotalCases = [];
+      let NewCases = [];
+      let TotalDeaths = [];
+      let NewDeaths = [];
+      let TotalRecovered =[];
+      let NewRecovered = []; 
+
     for (let cases in res)
     {
         ContArray.push(res[cases]);
     }
+    console.log('contarray ', ContArray);
     for (let Cont of ContArray)
     {
       TotalCases.push(Cont.cases)
     }
-    
-  
+    for (let Cont of ContArray){
+      NewCases.push(Cont.todayCases);
+    }
+    for (let Cont of ContArray){
+      TotalDeaths.push(Cont.deaths);
+    }
+    for (let Cont of ContArray){
+      NewDeaths.push(Cont.todayDeaths);
+    }
+    for (let Cont of ContArray){
+    TotalRecovered.push(Cont.recovered)
+    }
+    for (let Cont of ContArray){
+      NewRecovered.push(Cont.todayRecovered)
+    }
     let SumCases = TotalCases.reduce(function (a,b) {
       return a +b;
     },0);
+
+    let SumNewCases = NewCases.reduce(function(a,b){
+      return a +b;
+    },0) 
+
+    let SumDeaths = TotalDeaths.reduce(function(a,b){
+      return a +b;
+    },0) 
+
+    let SumNewDeaths = NewDeaths.reduce(function(a,b){
+      return a +b;
+    },0) 
+
+    let SumTotalRecoverde= TotalRecovered.reduce(function(a,b){
+      return a +b;
+    },0) 
+
+    let SumNewRecovered = NewRecovered.reduce(function(a,b){
+      return a +b;
+    },0) 
+
+
+
     console.log('Total Cases',SumCases);
-    this.TotalC = SumCases;
+    console.log('New Cases',SumNewCases);
+    console.log('Total Deaths',SumDeaths);
+    console.log('New Deaths',SumNewDeaths);
+
+ let DataCont = [];
+   DataCont['cases']=  SumCases;
+DataCont['newCases']= SumNewCases;
+DataCont['NewDeaths'] = SumNewDeaths;
+DataCont['deaths']= SumDeaths,
+DataCont['recovered'] =  SumTotalRecoverde,
+DataCont['NewRecovered'] = SumNewRecovered,
+
+this.setTotal(DataCont);
+   this.nativeStorage.setItem('DataContinents', DataCont).then(()=> console.log('stored Item'),
+       error => console.error('Error stoting item', error)
+       );
+    }).catch(error =>{
+      console.log('catch error get Global');
+      this.getDataCont();
     })
-   
+  
   }
   loadGlobal = async()=>{
 return await   this.appservice.getGlobal().then(res =>{
       this.global = res;
-      this.data2 = this.global.Global;
+    
       this.countries = this.global.Countries;
-      this.setTotal(this.data2);
+   
       this.checkImages(this.countries);
-      console.log('data2', this.data2);
+ 
 
-       this.nativeStorage.setItem('DataGlobal', this.data2).then(()=> console.log('stored Item'),
-       error => console.error('Error stoting item', error)
-       );
+       
        this.nativeStorage.setItem('DataCountries', this.countries).then(()=> console.log('stored Item'),
        error => console.error('Error stoting item', error)
        );
@@ -79,12 +137,7 @@ return await   this.appservice.getGlobal().then(res =>{
   
   }
   getData = ()=>{
-    this.nativeStorage.getItem('DataGlobal').then(res =>{
-      let data = res;
-      this.setTotal(data);
-      
-      console.log('get Data',data);
-    })
+  
     this.nativeStorage.getItem('DataCountries').then(res =>{
       let data = res;
       this.checkImages(data);
@@ -92,13 +145,22 @@ return await   this.appservice.getGlobal().then(res =>{
       console.log('get Data',data);
     })
   }
+  getDataCont = ()=>{
+    this.nativeStorage.getItem('DataGlobal').then(res =>{
+      let data = res;
+      console.log('get Data',data);
+this.setTotal(data);   
+    })
+  }
   setTotal=(data)=>{
-   
-    this.TotalD = data.TotalDeaths;
-    this.TotalR = data.TotalRecovered;
-    this.NewC = data.NewConfirmed;
-    this.NewD = data.NewDeaths;
-    this.NewR = data.NewRecovered;
+    console.log(data);
+    this.TotalC = data.cases;
+      this.NewC = data.newCases;
+      this.NewD = data.NewDeaths;
+      this.TotalD = data.deaths;
+      this.TotalR = data.recovered;
+      this.NewR = data.NewRecovered;
+
   }
   checkImages=(data)=>{
     let  PACF = []
@@ -127,7 +189,8 @@ return await   this.appservice.getGlobal().then(res =>{
   loadWorld = async()=>{
  return await   this.appservice.WorldTotal().then(res =>{
       this.data = [];
-      this.data = Object.entries(res);
+      console.log(res);
+      this.data = Object.entries(res)
       this.nativeStorage.setItem('DataWorld', this.data).then(()=> console.log('stored Item Data World'),
       error => console.error('Error stoting item', error)
       );
@@ -148,20 +211,9 @@ return await   this.appservice.getGlobal().then(res =>{
       console.log('error ', error)
     })
   }
-
-  reload = async()=>{
-    console.log('reload');
-    let load=  await this.loading.create({
-      message : 'Reloading the Page...',
-      duration: 2000,
-    });
-    load.present();
-    location.reload();
-  
-   
-  }
  
   worldchart =(data)=>{
+    console.log('worldchart', data)
     let WorldCon = [];
     let TotalCon = [];
     let WorldDeaths = [];
@@ -334,7 +386,7 @@ doRefresh(event) {
   this.svg.selectAll(".area")
   .remove()
 
-  Promise.all([this.loadWorld(),this.loadGlobal()]).then(()=> event.target.complete())
+  Promise.all([this.loadWorld(),this.loadGlobal(),this.loadContinents]).then(()=> event.target.complete())
 }
 }
 
