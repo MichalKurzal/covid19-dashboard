@@ -30,7 +30,7 @@ svg2:any;
     public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
-Promise.all([this.loadWorld(),this.loadGlobal(), this.loadContinents()]);
+Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical()]);
   }
   loadContinents = async()=>{
     this.appservice.NewApiContinents().then(res =>{
@@ -186,25 +186,10 @@ this.setTotal(data);
    })
   }
 
-  loadWorld = async()=>{
- return await   this.appservice.WorldTotal().then(res =>{
-      this.data = [];
-      console.log(res);
-      this.data = Object.entries(res)
-      this.nativeStorage.setItem('DataWorld', this.data).then(()=> console.log('stored Item Data World'),
-      error => console.error('Error stoting item', error)
-      );
-      this.worldchart(this.data);
-    }).catch(error =>{
-      console.log('Catch error LoadWorld');
-      this.getWorld();
-    })
-  }
-
   getWorld=()=>{
     this.nativeStorage.getItem('DataWorld').then(res =>{
       let dataW = res;
-      this.worldchart(dataW);
+     this.worldchart(dataW);
       
       console.log('get Data World',dataW);
     }).catch(error =>{
@@ -212,6 +197,20 @@ this.setTotal(data);
     })
   }
  
+loadHistorical=()=>{
+ this.appservice.HistoricalData().then(data =>{
+console.log('Historical ', data)
+let result = Object.values(data)
+this.nativeStorage.setItem('DataWorld', result).then(()=> console.log('stored Item Data World'),
+error => console.error('Error stoting item', error)
+);
+this.worldchart(result)
+ }).catch(error=>{
+   console.log('error ',error)
+   this.getWorld();
+ })
+}
+
   worldchart =(data)=>{
     console.log('worldchart', data)
     let WorldCon = [];
@@ -219,34 +218,27 @@ this.setTotal(data);
     let WorldDeaths = [];
     let TotalDeaths = [];
 
-
-    for (let d of data){
-      TotalCon.push(d[1].TotalConfirmed)
-    }
-    TotalCon.sort((a,b)=> a-b);
-
-   for (let d of TotalCon){
-
-   WorldCon.push({day :d, nr: d.toString()});
-
+   TotalCon = data[0];
+   for (let d in TotalCon)
+   {
+     WorldCon.push({day:TotalCon[d],nr:TotalCon[d].toString()})
    }
 
-   for(let d2 of data){
-     TotalDeaths.push(d2[1].TotalDeaths)
+console.log('chart cases',WorldCon)
+  
+  TotalDeaths = data[1];
+  
+   for (let td in TotalDeaths)
+   {
+    WorldDeaths.push({day :TotalDeaths[td],nr:TotalDeaths[td].toString()})
    }
-   TotalDeaths.sort((a,b)=> a-b);
-
-   for (let d2 of TotalDeaths){
-   WorldDeaths.push({day :d2, nr: d2.toString()});
-    }
+   console.log('chart deaths',WorldDeaths)
     
-   let WL = WorldCon.length;
    let world;
-   world =WorldCon.slice(WL-20);
-
-   let DL = WorldDeaths.length;
+   world =WorldCon;
+ 
    let DeathsData;
-   DeathsData = WorldDeaths.slice(DL-20);
+   DeathsData = WorldDeaths;
    console.log('Deaths Data', DeathsData);
 
    let width = window.innerWidth;
@@ -266,7 +258,7 @@ let height = width/ratio2;
 console.log('width ',width);
 console.log('height ', height)
 
-   let domain = world[19].day + 0.1 * world[19].day;
+   let domain = world[world.length -1].day + 0.1 * world[world.length -1].day;
    let domain2 = DeathsData[DeathsData.length-1].day + 0.1*DeathsData[DeathsData.length-1].day
 
   console.log('Final Data World ',world);
@@ -330,14 +322,14 @@ console.log('height ', height)
           .attr("dy", 20)
           .attr("dx", 60)
           .attr("font-size", 14)
-          .text('Confirmed cases worldwide in the last 20 days')
+          .text('Confirmed cases worldwide in the last 30 days')
 
           this.svg2.append('text')
           .attr('text-anchor', 'start')
           .attr("dy", 20)
           .attr("dx", 50)
           .attr("font-size", 14)
-          .text('Deaths worldwide in the last 20 days')
+          .text('Deaths worldwide in the last 30 days')
 
           
           this.svg2.append("path")
@@ -386,7 +378,7 @@ doRefresh(event) {
   this.svg.selectAll(".area")
   .remove()
 
-  Promise.all([this.loadWorld(),this.loadGlobal(),this.loadContinents]).then(()=> event.target.complete())
+  Promise.all([this.loadGlobal(),this.loadContinents()]).then(()=> event.target.complete())
 }
 }
 

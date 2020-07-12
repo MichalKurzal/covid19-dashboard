@@ -36,4 +36,7 @@ export class AppserviceService {
       NewApiContinents(){
         return this.http.get(`${this.Url2}continents?false&sort`).toPromise();
       }
+      HistoricalData(){
+        return  this.http.get(`${this.Url2}historical/all`).toPromise();
+      }
 }
