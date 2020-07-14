@@ -52,5 +52,6 @@ loadData(event){
     // and disable the infinite scroll
   }, 500);
 }
+
 }
 

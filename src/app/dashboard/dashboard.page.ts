@@ -30,8 +30,36 @@ svg2:any;
     public nav: NavController,private file :File, public router : Router,private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
-Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical()]);
+Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this.getCountrynames()]);
   }
+
+  getCountrynames= async()=>{
+    this.appservice.getCountries().then(data=>{
+let result = [];
+let codes = [];
+
+for (let code in data){
+  result.push(data[code])
+}
+for (let r of result){
+codes.push(r.alpha2Code)
+}
+console.log('Codes', codes)
+this.nativeStorage.setItem('CountryCodes', codes).then(()=> console.log('stored CountryCodes'),
+error => console.error('Error stoting item', error)
+);
+
+this.checkImages(codes)
+    }).catch(error=>{
+      console.log('Error getCountrynames', error)
+      this.nativeStorage.getItem('CountryCodes').then(res =>{
+        let data = res;
+     
+  this.checkImages(data); 
+      })
+    })
+  }
+
   loadContinents = async()=>{
     this.appservice.NewApiContinents().then(res =>{
       let ContArray = []
@@ -90,8 +118,6 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical()]);
       return a +b;
     },0) 
 
-
-
     console.log('Total Cases',SumCases);
     console.log('New Cases',SumNewCases);
     console.log('Total Deaths',SumDeaths);
@@ -113,38 +139,23 @@ this.setTotal(DataCont);
       console.log('catch error get Global');
       this.getDataCont();
     })
-  
   }
+
   loadGlobal = async()=>{
 return await   this.appservice.getGlobal().then(res =>{
       this.global = res;
-    
       this.countries = this.global.Countries;
    
-      this.checkImages(this.countries);
- 
-
-       
        this.nativeStorage.setItem('DataCountries', this.countries).then(()=> console.log('stored Item'),
        error => console.error('Error stoting item', error)
        );
-       
 
     }).catch(error =>{
-      console.log('catch error get Global');
-      this.getData();
-    })
-  
-  }
-  getData = ()=>{
-  
-    this.nativeStorage.getItem('DataCountries').then(res =>{
-      let data = res;
-      this.checkImages(data);
-      
-      console.log('get Data',data);
+      console.log('error ',error)
     })
   }
+
+
   getDataCont = ()=>{
     this.nativeStorage.getItem('DataGlobal').then(res =>{
       let data = res;
@@ -166,7 +177,7 @@ this.setTotal(data);
     let  PACF = []
     for (let c of data)
     {
-     PACF.push(this.file.checkFile(this.file.dataDirectory, c.CountryCode+ '.png'))
+     PACF.push(this.file.checkFile(this.file.dataDirectory, c+ '.png'))
     }
    Promise.all(PACF).then(async res=>{
      console.log('Sucess' + res)
@@ -174,10 +185,9 @@ this.setTotal(data);
      console.log('files not fund')
      let PA = []
 
-     console.log(this.countries.length)
-      for (let c of this.countries)
+      for (let c of data)
       {
-        PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c.CountryCode}/flat/64.png`, this.file.dataDirectory + `${c.CountryCode}` + '.png'))
+        PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c}/flat/64.png`, this.file.dataDirectory + `${c}` + '.png'))
       }
       Promise.all(PA).then(res =>{
         console.log('Promise-all', res)
@@ -263,9 +273,9 @@ console.log('height ', height)
 
   console.log('Final Data World ',world);
 
-   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]);
+   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width+20]);
    const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
-   const xScale2 = d3.scaleBand().domain(DeathsData.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width]);
+   const xScale2 = d3.scaleBand().domain(DeathsData.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width+20]);
    const yScale2 = d3.scaleLinear().domain([0,domain2]).range([height,0]);
 
    const y_axis = d3.axisRight().scale(yScale);
@@ -310,6 +320,23 @@ console.log('height ', height)
            .attr("stop-color", "#0B1BA4")
            .attr("stop-opacity", 0.6);
 
+           var gradient2 = this.svg.append("svg:defs")
+           .append("svg:linearGradient")
+             .attr("id", "gradientred")
+             .attr("x1", "0%")
+             .attr("y1", "0%")
+            .attr("x2", "100%")
+             .attr("y2", "0%")
+             .attr("spreadMethod", "pad");
+      gradient2.append("svg:stop")
+             .attr("offset", "0%")
+             .attr("stop-color", "#cf3e3e")
+             .attr("stop-opacity", 0.8);
+      gradient2.append("svg:stop")
+             .attr("offset", "100%")
+             .attr("stop-color", "#FF0000")
+             .attr("stop-opacity", 0.8);
+
            this.svg.append("path")
            .attr("class", "area")
            .datum(world)
@@ -335,8 +362,8 @@ console.log('height ', height)
           this.svg2.append("path")
           .attr("class", "area")
           .datum(DeathsData)
-         // .attr("fill", "url(#gradient2)")
-          .attr("fill", "#D42424")
+         .attr("fill", "url(#gradientred)")
+          //.attr("fill", "#D42424")
          .attr('d', area2)
 
  
@@ -355,20 +382,17 @@ console.log('height ', height)
            .attr("class", "y axis")
            .attr("transform", "translate(0, 0)")
            .call(y_axis2);
-  
-
-      
 
   }
+
   goforward = () =>{
-    
-      this.router.navigateByUrl('tabs-nav/graphs1');
+  this.router.navigateByUrl('tabs-nav/graphs1');
   
-    console.log('goforward');
+  console.log('goforward');
   }
+
   goforward2 = () =>{
-    
-    this.router.navigateByUrl('tabs-nav/graphs2');
+  this.router.navigateByUrl('tabs-nav/graphs2');
 
   console.log('goforward');
 }
@@ -378,7 +402,7 @@ doRefresh(event) {
   this.svg.selectAll(".area")
   .remove()
 
-  Promise.all([this.loadGlobal(),this.loadContinents()]).then(()=> event.target.complete())
+  Promise.all([this.loadHistorical(),this.loadGlobal(),this.loadContinents(),this.getCountrynames()]).then(()=> event.target.complete())
 }
 }
 

@@ -8,6 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 export class AppserviceService {
   Url = 'https://api.covid19api.com'
   Url2 = 'https://corona.lmao.ninja/v2/'
+  url3 = 'https://restcountries.eu/rest/v2/all?fields=alpha2Code'
 
  
 
@@ -38,5 +39,8 @@ export class AppserviceService {
       }
       HistoricalData(){
         return  this.http.get(`${this.Url2}historical/all`).toPromise();
+      }
+      getCountries(){
+        return this.http.get(this.url3).toPromise()
       }
 }
