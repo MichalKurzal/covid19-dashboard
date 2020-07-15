@@ -46,7 +46,8 @@ gurl
      
        console.log(this.cc);
        console.log(this.cn);
-       this.getData();
+       //this.getData();
+       this.getHistoricalData();
        return await c;
 
   
@@ -54,6 +55,26 @@ gurl
      
     })
   }
+
+getHistoricalData = ()=>{
+this.appservice.HistoricalCountry(this.cn).then(data=>{
+  let time = [];
+  let arraydata = [];
+  let timearray = []
+  
+  for(let d in data){
+    arraydata.push(data[d])
+  }
+ time = arraydata[2];
+ for (let t in time)
+ {
+   timearray.push(time[t])
+ }
+ console.log('historical ', timearray);
+ this.code(timearray);
+  
+})
+}
 
 getData = ()=>{
      
@@ -128,10 +149,14 @@ for (let date of dateArr)
 }
 code =  (data) =>{
 let dayone20 =[];
+let Cases = [];
+let days = [];
+days =data[0];
+Cases = Object.values(days)
+for (let c of Cases){
+  dayone20.push({Cases: c, Date: c.toString()})
+}
 
-  for  (let d of data){
-      dayone20.push(d[1]);
-  }
   console.log('dayone20 ', dayone20);
 
 console.log(window.innerWidth);
@@ -144,7 +169,7 @@ if (width > 800)
 let height = width -50;
 this.dayL = dayone20.length;
 console.log(dayone20);
- let dayone210 = dayone20.slice(this.dayL -20);
+ let dayone210 = dayone20;
 
 let domain = dayone210[dayone210.length -1].Cases + 0.2 * dayone210[dayone210.length -1].Cases;
 console.log('domain', domain)
