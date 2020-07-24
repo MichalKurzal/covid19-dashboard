@@ -3,4 +3,8 @@
 Covid-19 Data Dashboard Hybrid Android/iOS App  
 API: https://covid19api.com  
 To run this app:  
-ionic cordova run android
+  
+1.Install Node.js, Ionic, Java SDK, Android SDK
+2.Clone this Repoitory
+3.In the Project Directory run: npm install
+4. ionic cordova run android or ionic cordova emulate android
