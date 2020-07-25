@@ -46,12 +46,8 @@ gurl
      
        console.log(this.cc);
        console.log(this.cn);
-       //this.getData();
        this.getHistoricalData();
        return await c;
-
-  
-
      
     })
   }
@@ -86,11 +82,10 @@ for (let c of Cases){
   dayone20.push({Cases: c, Date: c.toString()})
 }
 
-  console.log('dayone20 ', dayone20);
-
+console.log('dayone20 ', dayone20);
 console.log(window.innerWidth);
-let width = window.innerWidth;
 
+let width = window.innerWidth;
 if (width > 800)
 {
   width = 800;
@@ -155,7 +150,6 @@ var gradient = this.svg.append("svg:defs")
         .call(y_axis);
       
      console.log(this.svg)
-
 };
 ionViewWillLeave(){
   console.log('wiil leave');

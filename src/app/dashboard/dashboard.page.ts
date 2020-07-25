@@ -34,26 +34,27 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
   }
 
   getCountrynames= async()=>{
-    this.appservice.getCountries().then(data=>{
-let result = [];
-let codes = [];
-
-for (let code in data){
-  result.push(data[code])
-}
-codes = result.map(a=>a.alpha2Code);
-console.log('Codes', codes);
-
-this.nativeStorage.setItem('CountryCodes', codes).then(()=> console.log('stored CountryCodes'),
-error => console.error('Error stoting item', error)
-);
-this.checkImages(codes)
-    }).catch(error=>{
-      console.log('Error getCountrynames', error)
-      this.nativeStorage.getItem('CountryCodes').then(res =>{
+    this.nativeStorage.getItem('CountryCodes').then(res =>{
       let data = res;
       this.checkImages(data); 
       })
+ .catch(error=>{
+      console.log('Error getCountrynames', error)
+     this.appservice.getCountries().then(data=>{
+    let result = [];
+    let codes = [];
+    
+    for (let code in data){
+      result.push(data[code])
+    }
+    codes = result.map(a=>a.alpha2Code);
+    console.log('Codes', codes);
+    
+    this.nativeStorage.setItem('CountryCodes', codes).then(()=> console.log('stored CountryCodes'),
+    error => console.error('Error stoting item', error)
+    );
+    this.checkImages(codes)
+        })
     })
   }
 
@@ -203,7 +204,6 @@ this.setTotal(data);
       }
       Promise.all(PA).then(res =>{
         console.log('Promise-all', res)
-       
       })
    })
   }
