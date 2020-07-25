@@ -6,7 +6,7 @@ import * as d3 from "d3";
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -60,6 +60,20 @@ this.checkImages(codes)
     })
   }
 
+  loadHistorical=()=>{
+    this.appservice.HistoricalData().then(data =>{
+   console.log('Historical ', data)
+   let result = Object.values(data)
+   this.nativeStorage.setItem('DataWorld', result).then(()=> console.log('stored Item Data World'),
+   error => console.error('Error stoting item', error)
+   );
+   this.worldchart(result)
+    }).catch(error=>{
+      console.log('error ',error)
+      this.getDataWorld();
+    })
+   }
+   
   loadContinents = async()=>{
     this.appservice.NewApiContinents().then(res =>{
       let ContArray = []
@@ -163,6 +177,18 @@ return await   this.appservice.getGlobal().then(res =>{
 this.setTotal(data);   
     })
   }
+
+  getDataWorld=()=>{
+    this.nativeStorage.getItem('DataWorld').then(res =>{
+      let dataW = res;
+     this.worldchart(dataW);
+      
+      console.log('get Data World',dataW);
+    }).catch(error =>{
+      console.log('error ', error)
+    })
+  }
+
   setTotal=(data)=>{
     console.log(data);
     this.TotalC = data.cases;
@@ -171,8 +197,8 @@ this.setTotal(data);
       this.TotalD = data.deaths;
       this.TotalR = data.recovered;
       this.NewR = data.NewRecovered;
-
   }
+  
   checkImages=(data)=>{
     let  PACF = []
     for (let c of data)
@@ -196,31 +222,7 @@ this.setTotal(data);
    })
   }
 
-  getWorld=()=>{
-    this.nativeStorage.getItem('DataWorld').then(res =>{
-      let dataW = res;
-     this.worldchart(dataW);
-      
-      console.log('get Data World',dataW);
-    }).catch(error =>{
-      console.log('error ', error)
-    })
-  }
  
-loadHistorical=()=>{
- this.appservice.HistoricalData().then(data =>{
-console.log('Historical ', data)
-let result = Object.values(data)
-this.nativeStorage.setItem('DataWorld', result).then(()=> console.log('stored Item Data World'),
-error => console.error('Error stoting item', error)
-);
-this.worldchart(result)
- }).catch(error=>{
-   console.log('error ',error)
-   this.getWorld();
- })
-}
-
   worldchart =(data)=>{
     console.log('worldchart', data)
     let WorldCon = [];

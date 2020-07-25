@@ -1,4 +1,4 @@
-
+<ion-content>
  <p id="header">Confimed Cases in the last 30 days</p>
  <svg id="svg2">
  
@@ -8,7 +8,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-item>
+      <ion-item id="country">
    <ion-col> <img [(ngModel)]="cc" ngDefaultControl src='{{gurl}}{{cc}}.png'> </ion-col>  
  <ion-col>    <p [(ngModel)]="cn" ngDefaultControl>{{cn}}</p></ion-col> 
 </ion-item>
@@ -77,3 +77,4 @@
 </ion-grid>
 
 </div>
+</ion-content>

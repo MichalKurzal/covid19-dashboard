@@ -103,7 +103,7 @@ console.log(dayone20);
 let domain = dayone210[dayone210.length -1].Cases + 0.2 * dayone210[dayone210.length -1].Cases;
 console.log('domain', domain)
 
-const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width]).padding(0.1);
+const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width+20]).padding(0.1);
 const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
 
   let curve = d3.curveLinear;
