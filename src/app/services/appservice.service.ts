@@ -41,7 +41,7 @@ export class AppserviceService {
         return  this.http.get(`${this.Url2}historical/all`).toPromise();
       }
       getCountries(){
-        return this.http.get(this.url3).toPromise()
+        return this.http.get(this.url3).toPromise();
       }
       HistoricalCountry(country){
       return this.http.get(`${this.Url2}historical/${country}?lastdays=30`).toPromise()

@@ -41,21 +41,18 @@ let codes = [];
 for (let code in data){
   result.push(data[code])
 }
-for (let r of result){
-codes.push(r.alpha2Code)
-}
-console.log('Codes', codes)
+codes = result.map(a=>a.alpha2Code);
+console.log('Codes', codes);
+
 this.nativeStorage.setItem('CountryCodes', codes).then(()=> console.log('stored CountryCodes'),
 error => console.error('Error stoting item', error)
 );
-
 this.checkImages(codes)
     }).catch(error=>{
       console.log('Error getCountrynames', error)
       this.nativeStorage.getItem('CountryCodes').then(res =>{
-        let data = res;
-     
-  this.checkImages(data); 
+      let data = res;
+      this.checkImages(data); 
       })
     })
   }
@@ -89,25 +86,14 @@ this.checkImages(codes)
         ContArray.push(res[cases]);
     }
     console.log('contarray ', ContArray);
-    for (let Cont of ContArray)
-    {
-      TotalCases.push(Cont.cases)
-    }
-    for (let Cont of ContArray){
-      NewCases.push(Cont.todayCases);
-    }
-    for (let Cont of ContArray){
-      TotalDeaths.push(Cont.deaths);
-    }
-    for (let Cont of ContArray){
-      NewDeaths.push(Cont.todayDeaths);
-    }
-    for (let Cont of ContArray){
-    TotalRecovered.push(Cont.recovered)
-    }
-    for (let Cont of ContArray){
-      NewRecovered.push(Cont.todayRecovered)
-    }
+   
+   TotalCases = ContArray.map(c=>c.cases);
+   NewCases = ContArray.map(c=>c.todayCases);
+   TotalDeaths = ContArray.map(c=>c.deaths);
+   NewDeaths = ContArray.map(c=>c.todayDeaths);
+   TotalRecovered = ContArray.map(c=>c.recovered);
+   NewRecovered = ContArray.map(c=>c.todayRecovered);
+  
     let SumCases = TotalCases.reduce(function (a,b) {
       return a +b;
     },0);
@@ -150,7 +136,7 @@ this.setTotal(DataCont);
        error => console.error('Error stoting item', error)
        );
     }).catch(error =>{
-      console.log('catch error get Global');
+      console.log('catch error get Global',error);
       this.getDataCont();
     })
   }
@@ -409,4 +395,3 @@ doRefresh(event) {
   Promise.all([this.loadHistorical(),this.loadGlobal(),this.loadContinents(),this.getCountrynames()]).then(()=> event.target.complete())
 }
 }
-
