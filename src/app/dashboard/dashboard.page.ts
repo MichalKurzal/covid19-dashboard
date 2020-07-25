@@ -403,6 +403,8 @@ console.log('height ', height)
 doRefresh(event) {
   this.svg.selectAll(".area")
   .remove()
+  this.svg2.selectAll(".area")
+  .remove()
 
   Promise.all([this.loadHistorical(),this.loadGlobal(),this.loadContinents(),this.getCountrynames()]).then(()=> event.target.complete())
 }
