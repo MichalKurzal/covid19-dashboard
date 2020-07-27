@@ -61,11 +61,13 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
   loadHistorical=()=>{
     this.appservice.HistoricalData().then(data =>{
    console.log('Historical ', data)
-   let result = Object.values(data)
-   this.nativeStorage.setItem('DataWorld', result).then(()=> console.log('stored Item Data World'),
+   let cases = data['cases'];
+   let deaths = data['deaths'];
+   console.log('cases' , cases);
+   this.nativeStorage.setItem('DataWorld', data).then(()=> console.log('stored Item Data World'),
    error => console.error('Error stoting item', error)
    );
-   this.worldchart(result)
+   this.worldchart(cases,deaths)
     }).catch(error=>{
       console.log('error ',error)
       this.getDataWorld();
@@ -167,10 +169,10 @@ this.setTotal(data);
 
   getDataWorld=()=>{
     this.nativeStorage.getItem('DataWorld').then(res =>{
-      let dataW = res;
-     this.worldchart(dataW);
-      
-      console.log('get Data World',dataW);
+     let cases = res['cases'];
+     let deaths = res['deaths'];
+
+    this.worldchart(cases,deaths);
     }).catch(error =>{
       console.log('error ', error)
     })
@@ -209,26 +211,19 @@ this.setTotal(data);
   }
 
  
-  worldchart =(data)=>{
-    console.log('worldchart', data)
+  worldchart =(cases, deaths)=>{
     let WorldCon = [];
-    let TotalCon = [];
     let WorldDeaths = [];
-    let TotalDeaths = [];
 
-   TotalCon = data[0];
-   for (let d in TotalCon)
+   for (let d in cases)
    {
-     WorldCon.push({day:TotalCon[d],nr:TotalCon[d].toString()})
+     WorldCon.push({day:cases[d],nr:cases[d].toString()})
    }
-
 console.log('chart cases',WorldCon)
   
-  TotalDeaths = data[1];
-  
-   for (let td in TotalDeaths)
+   for (let td in deaths)
    {
-    WorldDeaths.push({day :TotalDeaths[td],nr:TotalDeaths[td].toString()})
+    WorldDeaths.push({day :deaths[td],nr:deaths[td].toString()})
    }
    console.log('chart deaths',WorldDeaths)
     
