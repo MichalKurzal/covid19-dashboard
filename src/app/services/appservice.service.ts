@@ -22,33 +22,38 @@ export class AppserviceService {
   getGlobal(){
       return this.http.get(`${this.Url}/summary?offset=0`).toPromise()
   }
-      getDayOne(country){
+
+  getDayOne(country){
         return this.http.get(`${this.Url}/total/dayone/country/${country}/status/confirmed?offset=0`)
       }
 
-      getDayOne2(country){
+  getDayOne2(country){
         return this.http.get(`${this.Url}/dayone/country/${country}/status/confirmed?offset=0`)
       }
       
-      WorldTotal(){
+  WorldTotal(){
         let date = new Date().toJSON();
         console.log('date ',date);
         return this.http.get(`${this.Url}/world?from=2020-06-01T00:00:00Z&to=${date}`).toPromise()
       }
-      NewApiContinents(){
+
+  NewApiContinents(){
         return this.http.get(`${this.Url2}continents?false&sort`).toPromise();
       }
-      HistoricalData(){
+
+  HistoricalData(){
         return  this.http.get(`${this.Url2}historical/all`).toPromise();
       }
-      getCountries(){
+
+  getCountries(){
         return this.http.get(this.url3).toPromise();
       }
-      HistoricalCountry(country){
+
+  HistoricalCountry(country){
       return this.http.get(`${this.Url2}historical/${country}?lastdays=30`).toPromise()
       }
 
-      worldchart =(cases, deaths,svg1,svg2,id1,id2,g1,g2)=>{
+  worldchart =(cases, deaths,svg1,svg2,id1,id2,g1,g2)=>{
         let WorldCon = [];
         let WorldDeaths = [];
     
@@ -166,8 +171,6 @@ export class AppserviceService {
                .attr("class", "area")
                .datum(world)
                .attr("fill", 'url(#'+`${g1}`+')')
-               //.attr("fill", "url(#g{g1})")
-              //.attr("fill", "#D42424")
               .attr('d', area)
     
               svg1.append('text')
@@ -189,7 +192,6 @@ export class AppserviceService {
               .attr("class", "area")
               .datum(DeathsData)
              .attr("fill", 'url(#'+`${g2}`+')')
-             // .attr("fill", "#D42424")
              .attr('d', area2)
     
      

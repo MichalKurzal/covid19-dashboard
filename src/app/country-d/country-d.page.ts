@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppserviceService } from '../services/appservice.service';
-import * as d3 from "d3";
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import {File} from '@ionic-native/file/ngx';
 

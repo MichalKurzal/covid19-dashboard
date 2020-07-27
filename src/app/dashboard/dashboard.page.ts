@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import * as d3 from "d3";
+
 
 
 @Component({
@@ -97,31 +97,14 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
    TotalRecovered = ContArray.map(c=>c.recovered);
    NewRecovered = ContArray.map(c=>c.todayRecovered);
   
-    let SumCases = TotalCases.reduce(function (a,b) {
-      return a +b;
-    },0);
+    let SumCases = TotalCases.reduce((a,b) => a +b);
+    let SumNewCases = NewCases.reduce((a,b) => a +b) 
+    let SumDeaths = TotalDeaths.reduce((a,b) => a +b) 
+    let SumNewDeaths = NewDeaths.reduce((a,b) => a +b) 
+    let SumTotalRecoverde= TotalRecovered.reduce((a,b) => a +b) 
+    let SumNewRecovered = NewRecovered.reduce((a,b) => a +b) 
 
-    let SumNewCases = NewCases.reduce(function(a,b){
-      return a +b;
-    },0) 
-
-    let SumDeaths = TotalDeaths.reduce(function(a,b){
-      return a +b;
-    },0) 
-
-    let SumNewDeaths = NewDeaths.reduce(function(a,b){
-      return a +b;
-    },0) 
-
-    let SumTotalRecoverde= TotalRecovered.reduce(function(a,b){
-      return a +b;
-    },0) 
-
-    let SumNewRecovered = NewRecovered.reduce(function(a,b){
-      return a +b;
-    },0) 
-
-console.log('Total Cases, New Cases, Total Deaths, New Deaths',SumCases, SumNewCases, SumNewDeaths, SumNewDeaths);
+console.log('Total Cases, New Cases, Total Deaths, New Deaths',SumCases, SumNewCases, SumDeaths, SumNewDeaths);
 
  let DataCont = [];
    DataCont['cases']=  SumCases;
@@ -221,8 +204,6 @@ this.setTotal(data);
 
 
 doRefresh(event) {
-
-
   Promise.all([this.loadHistorical(),this.loadGlobal(),this.loadContinents(),this.getCountrynames()]).then(()=> event.target.complete())
 }
 }
