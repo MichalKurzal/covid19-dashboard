@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
-import * as d3 from "d3";
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
@@ -67,7 +66,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
    this.nativeStorage.setItem('DataWorld', data).then(()=> console.log('stored Item Data World'),
    error => console.error('Error stoting item', error)
    );
-   this.worldchart(cases,deaths)
+   this.appservice.worldchart(cases,deaths,this.svg,this.svg2)
     }).catch(error=>{
       console.log('error ',error)
       this.getDataWorld();
@@ -121,10 +120,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
       return a +b;
     },0) 
 
-    console.log('Total Cases',SumCases);
-    console.log('New Cases',SumNewCases);
-    console.log('Total Deaths',SumDeaths);
-    console.log('New Deaths',SumNewDeaths);
+console.log('Total Cases, New Cases, Total Deaths, New Deaths',SumCases, SumNewCases, SumNewDeaths, SumNewDeaths);
 
  let DataCont = [];
    DataCont['cases']=  SumCases;
@@ -171,8 +167,7 @@ this.setTotal(data);
     this.nativeStorage.getItem('DataWorld').then(res =>{
      let cases = res['cases'];
      let deaths = res['deaths'];
-
-    this.worldchart(cases,deaths);
+     this.appservice.worldchart(cases,deaths,this.svg,this.svg2)
     }).catch(error =>{
       console.log('error ', error)
     })
@@ -210,163 +205,6 @@ this.setTotal(data);
    })
   }
 
- 
-  worldchart =(cases, deaths)=>{
-    let WorldCon = [];
-    let WorldDeaths = [];
-
-   for (let d in cases)
-   {
-     WorldCon.push({day:cases[d],nr:cases[d].toString()})
-   }
-console.log('chart cases',WorldCon)
-  
-   for (let td in deaths)
-   {
-    WorldDeaths.push({day :deaths[td],nr:deaths[td].toString()})
-   }
-   console.log('chart deaths',WorldDeaths)
-    
-   let world;
-   world =WorldCon;
- 
-   let DeathsData;
-   DeathsData = WorldDeaths;
-   console.log('Deaths Data', DeathsData);
-
-   let width = window.innerWidth;
-if (width > 800)
-{
-  width = 800;
-}
-let realheight = window.innerHeight;
-let ratio = realheight / width;
-if (ratio< 1.45){
-ratio = 1.45;
-}
-console.log('ratio ',ratio);
-let ratio2 = 4-ratio;
-//let height = (width/2) * ratio;
-let height = width/ratio2;
-console.log('width ',width);
-console.log('height ', height)
-
-   let domain = world[world.length -1].day + 0.1 * world[world.length -1].day;
-   let domain2 = DeathsData[DeathsData.length-1].day + 0.1*DeathsData[DeathsData.length-1].day
-
-  console.log('Final Data World ',world);
-
-   const xScale = d3.scaleBand().domain(world.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width+20]);
-   const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
-   const xScale2 = d3.scaleBand().domain(DeathsData.map((dataPoint)=>dataPoint.nr)).rangeRound([0,width+20]);
-   const yScale2 = d3.scaleLinear().domain([0,domain2]).range([height,0]);
-
-   const y_axis = d3.axisRight().scale(yScale);
-   const y_axis2 = d3.axisRight().scale(yScale2);
-
-   let curve = d3.curveLinear;
-   let curve2 = d3.curveLinear
-
-   let area = d3.area()
-   .curve(curve)
-   .x(d => xScale(d.nr))
-   .y0(yScale(0))
-   .y1(d => yScale(d.day))
-
-   let area2 = d3.area()
-   .curve(curve2)
-   .x(d => xScale2(d.nr))
-   .y0(yScale(0))
-   .y1(d => yScale2(d.day))
-  
-     this.svg = d3.select('#svg3')
- .attr("viewBox", [0, 0, width, height])
-
- this.svg2 = d3.select('#svg4')
- .attr("viewBox", [0, 0, width, height])
-
-  
-         var gradient = this.svg.append("svg:defs")
-         .append("svg:linearGradient")
-           .attr("id", "gradient2")
-           .attr("x1", "0%")
-           .attr("y1", "0%")
-          .attr("x2", "100%")
-           .attr("y2", "0%")
-           .attr("spreadMethod", "pad");
-    gradient.append("svg:stop")
-           .attr("offset", "0%")
-           .attr("stop-color", "#19ACD4")
-           .attr("stop-opacity", 0.6);
-    gradient.append("svg:stop")
-           .attr("offset", "100%")
-           .attr("stop-color", "#0B1BA4")
-           .attr("stop-opacity", 0.6);
-
-           var gradient2 = this.svg.append("svg:defs")
-           .append("svg:linearGradient")
-             .attr("id", "gradientred")
-             .attr("x1", "0%")
-             .attr("y1", "0%")
-            .attr("x2", "100%")
-             .attr("y2", "0%")
-             .attr("spreadMethod", "pad");
-      gradient2.append("svg:stop")
-             .attr("offset", "0%")
-             .attr("stop-color", "#cf3e3e")
-             .attr("stop-opacity", 0.8);
-      gradient2.append("svg:stop")
-             .attr("offset", "100%")
-             .attr("stop-color", "#FF0000")
-             .attr("stop-opacity", 0.8);
-
-           this.svg.append("path")
-           .attr("class", "area")
-           .datum(world)
-           .attr("fill", "url(#gradient2)")
-          //.attr("fill", "#D42424")
-          .attr('d', area)
-
-          this.svg.append('text')
-          .attr('text-anchor', 'start')
-          .attr("dy", 20)
-          .attr("dx", 60)
-          .attr("font-size", 14)
-          .text('Confirmed cases worldwide in the last 30 days')
-
-          this.svg2.append('text')
-          .attr('text-anchor', 'start')
-          .attr("dy", 20)
-          .attr("dx", 50)
-          .attr("font-size", 14)
-          .text('Deaths worldwide in the last 30 days')
-
-          
-          this.svg2.append("path")
-          .attr("class", "area")
-          .datum(DeathsData)
-         .attr("fill", "url(#gradientred)")
-          //.attr("fill", "#D42424")
-         .attr('d', area2)
-
- 
-         this.svg.select(".y")
-       .remove()
-    
-        this.svg.append("g")
-         .attr("class", "y axis")
-         .attr("transform", "translate(0, 0)")
-         .call(y_axis);
-
-         this.svg2.select(".y")
-         .remove()
-      
-          this.svg2.append("g")
-           .attr("class", "y axis")
-           .attr("transform", "translate(0, 0)")
-           .call(y_axis2);
-
-  }
 
   goforward = () =>{
   this.router.navigateByUrl('tabs-nav/graphs1');
