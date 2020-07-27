@@ -54,32 +54,20 @@ gurl
 
 getHistoricalData = ()=>{
 this.appservice.HistoricalCountry(this.cn).then(data=>{
-  let time = [];
-  let arraydata = [];
-  let timearray = []
-  
-  for(let d in data){
-    arraydata.push(data[d])
-  }
- time = arraydata[2];
- for (let t in time)
- {
-   timearray.push(time[t])
- }
- console.log('historical ', timearray);
- this.code(timearray);
+  let timeline = data['timeline'];
+  let cases = timeline['cases'];
+  console.log('timeline cases', cases);
+
+ this.code(cases);
   
 })
 }
 
 code =  (data) =>{
 let dayone20 =[];
-let Cases = [];
-let days = [];
-days =data[0];
-Cases = Object.values(days)
-for (let c of Cases){
-  dayone20.push({Cases: c, Date: c.toString()})
+
+for (let c in data){
+  dayone20.push({Cases: data[c], Date: data[c].toString()})
 }
 
 console.log('dayone20 ', dayone20);
