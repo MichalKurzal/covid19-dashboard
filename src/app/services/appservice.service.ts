@@ -48,7 +48,7 @@ export class AppserviceService {
       return this.http.get(`${this.Url2}historical/${country}?lastdays=30`).toPromise()
       }
 
-      worldchart =(cases, deaths,svg1,svg2)=>{
+      worldchart =(cases, deaths,svg1,svg2,id1,id2,g1,g2)=>{
         let WorldCon = [];
         let WorldDeaths = [];
     
@@ -116,16 +116,16 @@ export class AppserviceService {
        .y0(yScale(0))
        .y1(d => yScale2(d.day))
       
-         svg1 = d3.select('#svg3')
+         svg1 = d3.select(`${id1}`)
      .attr("viewBox", [0, 0, width, height])
     
-     svg2 = d3.select('#svg4')
+     svg2 = d3.select(`${id2}`)
      .attr("viewBox", [0, 0, width, height])
     
       
              var gradient = svg1.append("svg:defs")
              .append("svg:linearGradient")
-               .attr("id", "gradient2")
+               .attr("id", `${g1}`)
                .attr("x1", "0%")
                .attr("y1", "0%")
               .attr("x2", "100%")
@@ -142,7 +142,7 @@ export class AppserviceService {
     
                var gradient2 = svg1.append("svg:defs")
                .append("svg:linearGradient")
-                 .attr("id", "gradientred")
+                 .attr("id", `${g2}`)
                  .attr("x1", "0%")
                  .attr("y1", "0%")
                 .attr("x2", "100%")
@@ -157,10 +157,16 @@ export class AppserviceService {
                  .attr("stop-color", "#FF0000")
                  .attr("stop-opacity", 0.8);
     
+                 svg1.select(".area")
+                 .remove()
+                 svg2.select(".area")
+                 .remove()
+
                svg1.append("path")
                .attr("class", "area")
                .datum(world)
-               .attr("fill", "url(#gradient2)")
+               .attr("fill", 'url(#'+`${g1}`+')')
+               //.attr("fill", "url(#g{g1})")
               //.attr("fill", "#D42424")
               .attr('d', area)
     
@@ -169,21 +175,21 @@ export class AppserviceService {
               .attr("dy", 20)
               .attr("dx", 60)
               .attr("font-size", 14)
-              .text('Confirmed cases worldwide in the last 30 days')
+              .text('Confirmed cases in the last 30 days')
     
               svg2.append('text')
               .attr('text-anchor', 'start')
               .attr("dy", 20)
               .attr("dx", 50)
               .attr("font-size", 14)
-              .text('Deaths worldwide in the last 30 days')
+              .text('Deaths in the last 30 days')
     
               
               svg2.append("path")
               .attr("class", "area")
               .datum(DeathsData)
-             .attr("fill", "url(#gradientred)")
-              //.attr("fill", "#D42424")
+             .attr("fill", 'url(#'+`${g2}`+')')
+             // .attr("fill", "#D42424")
              .attr('d', area2)
     
      
@@ -204,6 +210,5 @@ export class AppserviceService {
                .call(y_axis2);
     
       }
-    
    
 }

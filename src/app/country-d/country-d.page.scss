@@ -44,7 +44,15 @@ ion-card-header{
 padding: 0px;
 margin: 0px;
 }
-svg{
+#svg1{
+    display: block;
+    margin-top:10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#svg2{
+    display: block;
     margin-top:10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     margin-left: 5px;

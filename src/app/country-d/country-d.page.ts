@@ -22,9 +22,10 @@ td:any;
 slug: any;
 dayone :any;
 dayL : any;
-svg :any;
 dayoneAU :any;
-gurl
+gurl;
+svg:any;
+svg2:any;
 
   constructor(private route: ActivatedRoute, public appservice : AppserviceService, private WebView : WebView, private file: File) {
    
@@ -48,7 +49,6 @@ gurl
        console.log(this.cn);
        this.getHistoricalData();
        return await c;
-     
     })
   }
 
@@ -56,92 +56,10 @@ getHistoricalData = ()=>{
 this.appservice.HistoricalCountry(this.cn).then(data=>{
   let timeline = data['timeline'];
   let cases = timeline['cases'];
+  let deaths = timeline['deaths'];
   console.log('timeline cases', cases);
-
- this.code(cases);
-  
+this.appservice.worldchart(cases,deaths,this.svg,this.svg2,'#svg1','#svg2','g1','g2')
 })
 }
 
-code =  (data) =>{
-let dayone20 =[];
-
-for (let c in data){
-  dayone20.push({Cases: data[c], Date: data[c].toString()})
-}
-
-console.log('dayone20 ', dayone20);
-console.log(window.innerWidth);
-
-let width = window.innerWidth;
-if (width > 800)
-{
-  width = 800;
-}
-let height = width -50;
-this.dayL = dayone20.length;
-console.log(dayone20);
- let dayone210 = dayone20;
-
-let domain = dayone210[dayone210.length -1].Cases + 0.2 * dayone210[dayone210.length -1].Cases;
-console.log('domain', domain)
-
-const xScale = d3.scaleBand().domain(dayone210.map((dataPoint)=>dataPoint.Date)).rangeRound([0,width+20]).padding(0.1);
-const yScale = d3.scaleLinear().domain([0,domain]).range([height,0]);
-
-  let curve = d3.curveLinear;
-
-  
-  let area = d3.area()
-  .curve(curve)
-  .x(d => xScale(d.Date))
-  .y0(yScale(0))
-  .y1(d => yScale(d.Cases))
-
-  const y_axis = d3.axisRight().scale(yScale)
-
-    this.svg = d3.select('#svg2')
-
-.attr("viewBox", [0, 0, width, height])
-
-var gradient = this.svg.append("svg:defs")
-         .append("svg:linearGradient")
-           .attr("id", "gradient")
-           .attr("x1", "0%")
-           .attr("y1", "0%")
-          .attr("x2", "100%")
-           .attr("y2", "0%")
-           .attr("spreadMethod", "pad");
-    gradient.append("svg:stop")
-           .attr("offset", "0%")
-           .attr("stop-color", "#19ACD4")
-           .attr("stop-opacity", 0.6);
-    gradient.append("svg:stop")
-           .attr("offset", "100%")
-           .attr("stop-color", "#0B1BA4")
-           .attr("stop-opacity", 0.6);
-
-    this.svg.append("path")
-        //.attr("fill", "#D42424")
-        .attr("class", "area")
-        .attr("fill", "url(#gradient)")
-      .datum(dayone210)
-      .attr('d', area)
-
-
-        this.svg.select(".y")
-      .remove()
-   
-        this.svg.append("g")
-        .attr("class", "y axis")
-        .attr("transform", "translate(0, 0)")
-        .call(y_axis);
-      
-     console.log(this.svg)
-};
-ionViewWillLeave(){
-  console.log('wiil leave');
-  this.svg.selectAll(".area")
-   .remove()
-}	
 }

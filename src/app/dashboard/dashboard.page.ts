@@ -5,6 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import * as d3 from "d3";
 
 
 @Component({
@@ -66,7 +67,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(),this.loadHistorical(),this
    this.nativeStorage.setItem('DataWorld', data).then(()=> console.log('stored Item Data World'),
    error => console.error('Error stoting item', error)
    );
-   this.appservice.worldchart(cases,deaths,this.svg,this.svg2)
+   this.appservice.worldchart(cases,deaths,this.svg,this.svg2,'#svg3','#svg4','g3','g4')
     }).catch(error=>{
       console.log('error ',error)
       this.getDataWorld();
@@ -167,7 +168,7 @@ this.setTotal(data);
     this.nativeStorage.getItem('DataWorld').then(res =>{
      let cases = res['cases'];
      let deaths = res['deaths'];
-     this.appservice.worldchart(cases,deaths,this.svg,this.svg2)
+     this.appservice.worldchart(cases,deaths,this.svg,this.svg2,'#svg3','#svg4','g3','g4')
     }).catch(error =>{
       console.log('error ', error)
     })
@@ -220,10 +221,7 @@ this.setTotal(data);
 
 
 doRefresh(event) {
-  this.svg.selectAll(".area")
-  .remove()
-  this.svg2.selectAll(".area")
-  .remove()
+
 
   Promise.all([this.loadHistorical(),this.loadGlobal(),this.loadContinents(),this.getCountrynames()]).then(()=> event.target.complete())
 }
