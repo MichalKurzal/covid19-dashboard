@@ -27,8 +27,8 @@ svg: any;
 svg2: any;
 
   constructor(public appservice: AppserviceService, public fileTransfer: FileTransfer,
-              public nav: NavController, private file: File, public router: Router, private nativeStorage: NativeStorage, 
-              public loading: LoadingController) { }
+              public nav: NavController, private file: File, public router: Router,
+              private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
 Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), this.getCountrynames()]);

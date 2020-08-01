@@ -14,10 +14,10 @@ export class Graphs2Page implements OnInit {
   constructor( public appservice : AppserviceService, private nativeStorage: NativeStorage, public router: Router) { }
 
   ngOnInit() {
-    this.chart();
+    this.getdata();
 
   }
-  chart(){
+  getdata(){
     let dataL = [];
     let dataM = [];
     this.nativeStorage.getItem('DataCountries').then(res =>{  
@@ -36,46 +36,47 @@ dataM.sort(function(a, b) {
 
 console.log('dataL', dataL);
 console.log('dataM', dataM);
-
-let Length = dataM.length;
-const domain = dataM[ Length - 1].TotalDeaths + 0.4 * dataM[ Length - 1].TotalDeaths;
-
-const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).rangeRound([0,600]).padding(0.1);
-  const yScale = d3.scaleLinear().domain([0,domain]).range([600,0]);
-
-  const y_axis = d3.axisRight().scale(yScale)
-
-    const svg = d3.select("#s2")
-        .attr("viewBox", [0, 0, 600, 900]);
+this.chart(dataM);
+});
   
-    svg.append("g")
-        .attr("fill", "#D42424")
-      .selectAll("rect")
-      .data(dataM)
-      .join("rect")
-       .attr("x", (dataM) => xScale(dataM.Country))
-      .attr("y", dataM => yScale(dataM.TotalDeaths))
-        .attr("height", (dataM) =>600 - yScale(dataM.TotalDeaths))
-        .attr("width", xScale.bandwidth());
-
-        svg
-        .append("g")
-        .attr("transform", "translate(0,600)")      // This controls the vertical position of the Axis
-        .call(d3.axisBottom(xScale))
-        .selectAll("text")
-        .attr("transform", "translate(-15,15)rotate(-90)")
-        .style("text-anchor", "end")
-        .style("font-size", 24)
-        .style("fill", "#69a3b2")
-
-        svg.append("g")
-        .attr("class", "y axis")
-        .attr("transform", "translate(0, 0)")
-        .call(y_axis);
-
-    });
+}
+chart = (data) =>{
+  let Length = data.length;
+  const domain = data[ Length - 1].TotalDeaths + 0.2 * data[ Length - 1].TotalDeaths;
+  const xScale = d3.scaleBand().domain(data.map((dataPoint)=>dataPoint.Country)).rangeRound([0,600]).padding(0.1);
+    const yScale = d3.scaleLinear().domain([0,domain]).range([600,0]);
+    const y_axis = d3.axisRight().scale(yScale);
   
-  }
+      const svg = d3.select("#s2")
+          .attr("viewBox", [0, 0, 600, 900]);
+    
+      svg.append("g")
+          .attr("fill", "#D42424")
+        .selectAll("rect")
+        .data(data)
+        .join("rect")
+         .attr("x", (data) => xScale(data.Country))
+        .attr("y", data => yScale(data.TotalDeaths))
+          .attr("height", (data) =>600 - yScale(data.TotalDeaths))
+          .attr("width", xScale.bandwidth());
+  
+          svg
+          .append("g")
+          .attr("transform", "translate(0,600)")      // This controls the vertical position of the Axis
+          .call(d3.axisBottom(xScale))
+          .selectAll("text")
+          .attr("transform", "translate(-15,15)rotate(-90)")
+          .style("text-anchor", "end")
+          .style("font-size", 24)
+          .style("fill", "#69a3b2")
+  
+          svg.append("g")
+          .attr("class", "y axis")
+          .attr("transform", "translate(0, 0)")
+          .style('font-size', 24)
+          .call(y_axis);
+}
+
   goforward = () =>{
     
     this.router.navigateByUrl('tabs-nav/graphs1');
