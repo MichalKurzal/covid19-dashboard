@@ -27,7 +27,8 @@ svg: any;
 svg2: any;
 
   constructor(public appservice: AppserviceService, public fileTransfer: FileTransfer,
-              public nav: NavController, private file: File, public router: Router, private nativeStorage: NativeStorage, public loading: LoadingController) { }
+              public nav: NavController, private file: File, public router: Router, private nativeStorage: NativeStorage, 
+              public loading: LoadingController) { }
 
   ngOnInit() {
 Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), this.getCountrynames()]);
@@ -51,7 +52,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), th
     console.log('Codes', codes);
 
     this.nativeStorage.setItem('CountryCodes', codes).then(() => console.log('stored CountryCodes'),
-    error => console.error('Error stoting item', error)
+    err => console.error('Error stoting item', err)
     );
     this.checkImages(codes);
         });
@@ -106,7 +107,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), th
 
 console.log('Total Cases, New Cases, Total Deaths, New Deaths', SumCases, SumNewCases, SumDeaths, SumNewDeaths);
 
- let DataCont = {'cases' :0, 'newCases':0,'NewDeaths':0, 'deaths':0, 'recovered':0,'NewRecovered':0 };
+ let DataCont = {cases : 0, newCases: 0, NewDeaths : 0, deaths : 0, recovered : 0, NewRecovered : 0};
    DataCont.cases =  SumCases;
 DataCont.newCases = SumNewCases;
 DataCont.NewDeaths = SumNewDeaths;

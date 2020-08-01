@@ -52,8 +52,8 @@ svg2: any;
   }
 
 getHistoricalData = () => {
-this.appservice.HistoricalCountry(this.cn).then((data:any)  => {
-  let timeline = data.timeline;
+this.appservice.HistoricalCountry(this.cn).then(( data: any)  => {
+  const timeline = data.timeline;
   const cases = timeline.cases;
   const deaths = timeline.deaths;
   console.log('timeline cases', cases);
