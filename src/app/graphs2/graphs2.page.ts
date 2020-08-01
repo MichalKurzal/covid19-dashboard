@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as d3 from "d3";
+import * as d3 from 'd3';
 import { AppserviceService } from '../services/appservice.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Router } from '@angular/router';
@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 })
 export class Graphs2Page implements OnInit {
 
-  constructor(public appservice : AppserviceService, private nativeStorage: NativeStorage, public router: Router) { }
+  constructor( public appservice : AppserviceService, private nativeStorage: NativeStorage, public router: Router) { }
 
   ngOnInit() {
     this.chart();
 
   }
-  chart (){
+  chart(){
     let dataL = [];
     let dataM = [];
     this.nativeStorage.getItem('DataCountries').then(res =>{  
@@ -38,7 +38,7 @@ console.log('dataL', dataL);
 console.log('dataM', dataM);
 
 let Length = dataM.length;
-let domain = dataM[Length -1].TotalDeaths + 0.4 * dataM[Length -1].TotalDeaths;
+const domain = dataM[ Length - 1].TotalDeaths + 0.4 * dataM[ Length - 1].TotalDeaths;
 
 const xScale = d3.scaleBand().domain(dataM.map((dataPoint)=>dataPoint.Country)).rangeRound([0,600]).padding(0.1);
   const yScale = d3.scaleLinear().domain([0,domain]).range([600,0]);

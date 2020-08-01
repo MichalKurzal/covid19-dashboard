@@ -18,11 +18,11 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
-    File,FileTransfer,FileTransferObject,
-    StatusBar,NavParams,
-    SplashScreen,WebView,NativeStorage,
+    File, FileTransfer, FileTransferObject,
+    StatusBar, NavParams,
+    SplashScreen, WebView, NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

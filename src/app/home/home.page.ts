@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
 import { NavController , Platform, NavParams} from '@ionic/angular';
 import { NavigationExtras, ActivatedRoute, Router } from '@angular/router';
@@ -22,20 +22,20 @@ global;
 gurl;
 countries;
 
-  constructor(private appservice: AppserviceService, public nav:NavController, 
-     public platform:Platform, public fileTransfer :FileTransfer, private WebView : WebView,
-    public navParams: NavParams, private route: ActivatedRoute, private router : Router,private file: File,
-    private nativeStorage: NativeStorage) {}
+  constructor(private appservice: AppserviceService, public nav: NavController,
+              public platform: Platform, public fileTransfer: FileTransfer, private WebView: WebView,
+              public navParams: NavParams, private route: ActivatedRoute, private router: Router, private file: File,
+              private nativeStorage: NativeStorage) {}
   ngOnInit() {
   this.gurl =  this.WebView.convertFileSrc( this.file.dataDirectory);
-  this.nativeStorage.getItem('DataCountries').then(res =>{
+  this.nativeStorage.getItem('DataCountries').then(res => {
       this.countries = res;
       console.log('countries', this.countries);
-    })
+    });
   }
- 
-goforward = (param)=>{
- let navigationExtras: NavigationExtras = {
+
+goforward = (param) => {
+ const navigationExtras: NavigationExtras = {
     queryParams: {
         country: param
     }
@@ -44,7 +44,7 @@ console.log('Detail Country Page');
 this.nav.navigateForward('tabs-nav/countryD', navigationExtras);
 }
 loadData(event){
-  console.log(event)
+  console.log(event);
   setTimeout(() => {
     console.log('Done');
     event.target.complete();

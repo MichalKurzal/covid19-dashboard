@@ -10,30 +10,30 @@ import {File} from '@ionic-native/file/ngx';
   styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-cc : any;
-cn :any;
-ncon :any;
+cc: any;
+cn: any;
+ncon: any;
 nd: any;
-nr:any;
-tc:any;
+nr: any;
+tc: any;
 tr: any;
-td:any;
+td: any;
 slug: any;
-dayone :any;
-dayL : any;
-dayoneAU :any;
+dayone: any;
+dayL: any;
+dayoneAU: any;
 gurl;
-svg:any;
-svg2:any;
+svg: any;
+svg2: any;
 
-  constructor(private route: ActivatedRoute, public appservice : AppserviceService, private WebView : WebView, private file: File) {
-   
+  constructor( private route: ActivatedRoute, public appservice: AppserviceService, private webView: WebView, private file: File) {
+
    }
 
   ngOnInit() {
-    this.gurl =  this.WebView.convertFileSrc( this.file.dataDirectory);
+    this.gurl =  this.webView.convertFileSrc( this.file.dataDirectory);
     this.route.queryParams.subscribe(async params => {
-      let c = params["country"];
+      const c = params.country;
        this.cc = c.CountryCode;
        this.cn = c.Country;
        this.ncon = c.NewConfirmed;
@@ -43,22 +43,22 @@ svg2:any;
        this.td = c.TotalDeaths;
        this.tr = c.TotalRecovered;
        this.slug = c.Slug;
-     
+
        console.log(this.cc);
        console.log(this.cn);
        this.getHistoricalData();
        return await c;
-    })
+    });
   }
 
-getHistoricalData = ()=>{
-this.appservice.HistoricalCountry(this.cn).then(data=>{
-  let timeline = data['timeline'];
-  let cases = timeline['cases'];
-  let deaths = timeline['deaths'];
+getHistoricalData = () => {
+this.appservice.HistoricalCountry(this.cn).then((data:any)  => {
+  let timeline = data.timeline;
+  const cases = timeline.cases;
+  const deaths = timeline.deaths;
   console.log('timeline cases', cases);
-this.appservice.worldchart(cases,deaths,this.svg,this.svg2,'#svg1','#svg2','g1','g2')
-})
+this.appservice.worldchart(cases, deaths, this.svg, this.svg2, '#svg1', '#svg2', 'g1', 'g2');
+});
 }
 
 }

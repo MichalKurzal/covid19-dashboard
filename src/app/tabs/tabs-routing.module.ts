@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
-  
+
   }
 ];
 
