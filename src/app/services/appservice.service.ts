@@ -56,25 +56,21 @@ export class AppserviceService {
   worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
         const WorldCon = [];
         const WorldDeaths = [];
-
+        let n1 = 0;
+        let n2 = 0;
        for (const d in cases)
        {
-         WorldCon.push({day: cases[d], nr: cases[d].toString()});
+         n1++;
+         WorldCon.push({day: cases[d], nr: n1.toString()});
        }
     console.log('chart cases', WorldCon);
 
        for (const td in deaths)
        {
-        WorldDeaths.push({day : deaths[td], nr: deaths[td].toString()});
+        n2++;
+        WorldDeaths.push({day : deaths[td], nr: n2.toString()});
        }
        console.log('chart deaths', WorldDeaths);
-
-       let world;
-       world = WorldCon;
-
-       let DeathsData;
-       DeathsData = WorldDeaths;
-       console.log('Deaths Data', DeathsData);
 
        let width = window.innerWidth;
     if (width > 800)
@@ -93,14 +89,14 @@ export class AppserviceService {
     console.log('width ', width);
     console.log('height ', height);
 
-       const domain = world[world.length - 1].day + 0.1 * world[world.length - 1].day;
-       const domain2 = DeathsData[DeathsData.length - 1].day + 0.1 * DeathsData[DeathsData.length - 1].day;
+       const domain = WorldCon[WorldCon.length - 1].day + 0.1 * WorldCon[WorldCon.length - 1].day;
+       const domain2 = WorldDeaths[WorldDeaths.length - 1].day + 0.1 * WorldDeaths[WorldDeaths.length - 1].day;
 
-      console.log('Final Data World ', world);
+      console.log('Final Data World ', WorldCon);
 
-       const xScale = d3.scaleBand().domain(world.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
+       const xScale = d3.scaleBand().domain(WorldCon.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
        const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0]);
-       const xScale2 = d3.scaleBand().domain(DeathsData.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
+       const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
 
        const y_axis = d3.axisRight().scale(yScale);
@@ -169,7 +165,7 @@ export class AppserviceService {
 
                svg1.append('path')
                .attr('class', 'area')
-               .datum(world)
+               .datum(WorldCon)
                .attr('fill', 'url(#' + `${g1}` + ')')
               .attr('d', area);
 
@@ -190,7 +186,7 @@ export class AppserviceService {
 
               svg2.append('path')
               .attr('class', 'area')
-              .datum(DeathsData)
+              .datum(WorldDeaths)
              .attr('fill', 'url(#' + `${g2}` + ')')
              .attr('d', area2);
 
