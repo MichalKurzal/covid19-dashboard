@@ -60,7 +60,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), th
   }
 
   loadHistorical = () => {
-    this.appservice.HistoricalData().then((data:any) => {
+    this.appservice.HistoricalData().then((data: any) => {
    console.log('Historical ', data);
    const cases = data.cases;
    const deaths = data.deaths;
@@ -107,7 +107,7 @@ Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), th
 
 console.log('Total Cases, New Cases, Total Deaths, New Deaths', SumCases, SumNewCases, SumDeaths, SumNewDeaths);
 
- let DataCont = {cases : 0, newCases: 0, NewDeaths : 0, deaths : 0, recovered : 0, NewRecovered : 0};
+ const DataCont = {cases : 0, newCases: 0, NewDeaths : 0, deaths : 0, recovered : 0, NewRecovered : 0};
    DataCont.cases =  SumCases;
 DataCont.newCases = SumNewCases;
 DataCont.NewDeaths = SumNewDeaths;

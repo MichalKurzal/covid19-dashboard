@@ -23,11 +23,11 @@ gurl;
 countries;
 
   constructor(private appservice: AppserviceService, public nav: NavController,
-              public platform: Platform, public fileTransfer: FileTransfer, private WebView: WebView,
+              public platform: Platform, public fileTransfer: FileTransfer, private webView: WebView,
               public navParams: NavParams, private route: ActivatedRoute, private router: Router, private file: File,
               private nativeStorage: NativeStorage) {}
   ngOnInit() {
-  this.gurl =  this.WebView.convertFileSrc( this.file.dataDirectory);
+  this.gurl =  this.webView.convertFileSrc( this.file.dataDirectory);
   this.nativeStorage.getItem('DataCountries').then(res => {
       this.countries = res;
       console.log('countries', this.countries);
