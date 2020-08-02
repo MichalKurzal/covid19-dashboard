@@ -31,9 +31,7 @@ for (const d of dataL)
   }
 }
 
-dataM.sort(function(a, b) {
-  return a.TotalConfirmed - b.TotalConfirmed;
-});
+dataM.sort((a, b) => a.TotalConfirmed - b.TotalConfirmed);
 console.log('dataL', dataL);
 console.log('dataM', dataM);
 this.chart(dataM);

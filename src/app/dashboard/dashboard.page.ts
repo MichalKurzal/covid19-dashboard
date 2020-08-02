@@ -205,6 +205,7 @@ this.setTotal(data);
 
 
 doRefresh(event) {
-  Promise.all([this.loadHistorical(), this.loadGlobal(), this.loadContinents(), this.getCountrynames()]).then(() => event.target.complete());
+  Promise.all([this.loadHistorical(), this.loadGlobal(), this.loadContinents(), this.getCountrynames()])
+  .then(() => event.target.complete());
 }
 }

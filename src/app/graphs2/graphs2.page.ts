@@ -30,10 +30,7 @@ for (const d of dataL)
   }
 }
 
-dataM.sort(function(a, b) {
-  return a.TotalDeaths - b.TotalDeaths;
-});
-
+dataM.sort((a, b) => a.TotalDeaths - b.TotalDeaths);
 console.log('dataL', dataL);
 console.log('dataM', dataM);
 this.chart(dataM);

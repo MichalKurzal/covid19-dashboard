@@ -13,7 +13,7 @@ export class AppserviceService {
 
 
 
-  constructor(private http: HttpClient, private NativeStorage: NativeStorage) { }
+  constructor(private http: HttpClient) { }
 
    getData(){
   return this.http.get(`${this.Url}/countries?offset=0`);
@@ -99,8 +99,8 @@ export class AppserviceService {
        const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
 
-       const y_axis = d3.axisRight().scale(yScale);
-       const y_axis2 = d3.axisRight().scale(yScale2);
+       const yaxis = d3.axisRight().scale(yScale);
+       const yaxis2 = d3.axisRight().scale(yScale2);
 
        const curve = d3.curveLinear;
        const curve2 = d3.curveLinear;
@@ -197,7 +197,7 @@ export class AppserviceService {
             svg1.append('g')
              .attr('class', 'y axis')
              .attr('transform', 'translate(0, 0)')
-             .call(y_axis);
+             .call(yaxis);
 
              svg2.select('.y')
              .remove();
@@ -205,7 +205,7 @@ export class AppserviceService {
               svg2.append('g')
                .attr('class', 'y axis')
                .attr('transform', 'translate(0, 0)')
-               .call(y_axis2);
+               .call(yaxis2);
 
       }
 
