@@ -1,7 +1,12 @@
 ion-content{
     --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 #svg1{
+    flex: 1;
     display: block;
     margin-top:10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -9,6 +14,7 @@ ion-content{
     margin-right: 5px;
 }
 #svg2{
+    flex: 1;
     display: block;
     margin-top:10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -16,6 +22,7 @@ ion-content{
     margin-right: 5px;
 }
 div{
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -112,5 +119,16 @@ ion-card-subtitle{
     ion-card-subtitle{
         color: black;
         font-size: 12px;
+    }
+  }
+  @media only screen and (max-width: 370px)  {
+    p
+    {
+        font-size: 20px;
+      
+    }
+    ion-card-subtitle{
+        color: black;
+        font-size: 14px;
     }
   }
