@@ -1,3 +1,80 @@
+ion-header{
+    margin:0px;
+    padding: 0px;
+ }
+ #title{
+    margin: 0px;
+    padding: 0px;
+}
+
+ ion-toolbar{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+p
+{
+    color:black;
+    font-size: 24px;
+    margin: 0px;
+    padding: 0px;
+}
+ion-icon{
+    float: right;
+    font-size: 44px;
+    margin-left: 25px;
+    margin-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: black;
+}
+ion-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
+
+}
+
+#svg3{
+  flex:1;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+ }
+ #svg4{
+    flex:1;
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+ }
+ 
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+ion-card{
+    flex:1;
+    margin: 0px;
+    background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
+}
 ion-card-title{
     color: black;
     font-size: 28px;
@@ -11,80 +88,9 @@ ion-card-subtitle{
     margin: 0px;
     padding: 0px;
 }
-ion-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 0px;
-    padding: 0px;
-    --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
-
-}
 
 
-div{
-  
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: flex-start;
-    //align-items: center;
-    margin: 0px;
-    padding: 0px;
-}
-
-ion-card{
-    margin: 0px;
-    background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
-}
 ion-card-header{
-    margin: 0px;
-    padding: 0px;
-}
-#svg3{
-    display: block;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
- }
- #svg4{
-    display: block;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-top: 0px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
- }
- ion-icon{
-     float: right;
-     font-size: 44px;
-     margin-left: 25px;
-     margin-right: 5px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-     padding: 0px;
-     color: black;
- }
- ion-toolbar{
-     margin: 0px;
-     padding: 0px;
-     display: flex;
-     flex-direction: row;
-     justify-content: flex-start;
- }
- #title{
-     margin: 0px;
-     padding: 0px;
- }
- ion-header{
-    margin:0px;
-    padding: 0px;
- }
- p
-{
-    color:black;
-    font-size: 20px;
     margin: 0px;
     padding: 0px;
 }
@@ -157,7 +163,6 @@ ion-card-header{
    }
    }
    @media only screen and (min-width: 600px)  and (orientation: portrait){
-    
        p
    {
        color:black;

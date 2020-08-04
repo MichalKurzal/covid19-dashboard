@@ -21,6 +21,7 @@ data ;
 global;
 gurl;
 countries;
+code;
 
   constructor(private appservice: AppserviceService, public nav: NavController,
               public platform: Platform, public fileTransfer: FileTransfer, private webView: WebView,
@@ -30,7 +31,10 @@ countries;
   this.gurl =  this.webView.convertFileSrc( this.file.dataDirectory);
   this.nativeStorage.getItem('DataCountries').then(res => {
       this.countries = res;
+      this.countries.reverse();
       console.log('countries', this.countries);
+    }).catch(error =>{
+      console.log('error', error);
     });
   }
 

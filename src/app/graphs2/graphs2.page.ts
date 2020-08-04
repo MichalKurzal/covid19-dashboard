@@ -20,7 +20,7 @@ export class Graphs2Page implements OnInit {
   getdata(){
     let dataL = [];
     const dataM = [];
-    this.nativeStorage.getItem('DataCountries').then(res => {
+    this.nativeStorage.getItem('DataCountries2').then(res => {
 dataL = res;
 for (const d of dataL)
 {

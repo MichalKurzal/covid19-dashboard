@@ -3,7 +3,7 @@
   <ion-list id="container"   >
 
     <ion-item *ngFor="let c of countries" (click)='goforward(c)' >
-    <img  src='{{gurl}}{{c.CountryCode}}.png'>  <p id='it'>{{c.Country}}</p>   <ion-badge color="warning">{{c.TotalConfirmed}}</ion-badge> <ion-badge color="danger">{{c.TotalDeaths}}</ion-badge> <ion-badge color="success">{{c.TotalRecovered}}</ion-badge> 
+    <img  src='{{gurl}}{{c.countryInfo.iso2}}.png'>  <p id='it'>{{c.country}}</p>   <ion-badge color="warning">{{c.cases}}</ion-badge> <ion-badge color="danger">{{c.deaths}}</ion-badge> <ion-badge color="success">{{c.recovered}}</ion-badge> 
     </ion-item>
   </ion-list>
 

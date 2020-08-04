@@ -34,18 +34,15 @@ svg2: any;
     this.gurl =  this.webView.convertFileSrc( this.file.dataDirectory);
     this.route.queryParams.subscribe(async params => {
       const c = params.country;
-       this.cc = c.CountryCode;
-       this.cn = c.Country;
-       this.ncon = c.NewConfirmed;
-       this.nd = c.NewDeaths;
-       this.nr = c.NewRecovered;
-       this.tc = c.TotalConfirmed;
-       this.td = c.TotalDeaths;
-       this.tr = c.TotalRecovered;
-       this.slug = c.Slug;
-
-       console.log(this.cc);
-       console.log(this.cn);
+      console.log(c);
+       this.cc = c.countryInfo.iso2;
+       this.cn = c.country;
+       this.ncon = c.todayCases;
+       this.nd = c.todayDeaths;
+       this.nr = c.todayRecovered;
+       this.tc = c.cases;
+       this.td = c.deaths;
+       this.tr = c.recovered;
        this.getHistoricalData();
        return await c;
     });

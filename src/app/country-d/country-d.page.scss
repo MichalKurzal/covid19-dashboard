@@ -1,20 +1,19 @@
 ion-content{
     --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
 }
-#country{
-    --background:linear-gradient(to right, rgb(111, 132, 202),#449ebe);
-
+#svg1{
+    display: block;
+    margin-top:10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
 }
-img{
-    width: 64px;
-    float: left;
-}
-p{
-    margin-left: 10px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 18px;
-    float: left;
+#svg2{
+    display: block;
+    margin-top:10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
 }
 div{
     display: flex;
@@ -24,6 +23,15 @@ div{
     padding-left: 10px;
     padding-right: 10px;
 }
+#country{
+    --background:linear-gradient(to right, rgb(111, 132, 202),#449ebe);
+
+}
+img{
+    width: 64px;
+    float: left;
+}
+
 ion-card{
 padding: 0px;
  margin: 0px;
@@ -44,20 +52,7 @@ ion-card-header{
 padding: 0px;
 margin: 0px;
 }
-#svg1{
-    display: block;
-    margin-top:10px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    margin-left: 5px;
-    margin-right: 5px;
-}
-#svg2{
-    display: block;
-    margin-top:10px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    margin-left: 5px;
-    margin-right: 5px;
-}
+
 
 #header{
     margin-left: 10px;

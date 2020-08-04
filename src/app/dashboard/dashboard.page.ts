@@ -31,7 +31,7 @@ svg2: any;
               private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
-Promise.all([this.loadGlobal(), this.loadContinents(), this.loadHistorical(), this.getCountrynames()]);
+Promise.all([this.loadCountriesData(), this.loadGlobal(), this.loadContinents(), this.loadHistorical(), this.getCountrynames()]);
   }
 
   getCountrynames = async () => {
@@ -125,20 +125,27 @@ this.setTotal(DataCont);
     });
   }
 
-  loadGlobal = async () => {
-return await   this.appservice.getGlobal().then(res => {
+  loadGlobal= ()=> {
+ this.appservice.getGlobal().then(res => {
       this.global = res;
       this.countries = this.global.Countries;
-
-       this.nativeStorage.setItem('DataCountries', this.countries).then(() => console.log('stored Item'),
+      console.log('load global')
+       this.nativeStorage.setItem('DataCountries2', this.countries).then(() => console.log('stored Item'),
        error => console.error('Error stoting item', error)
        );
 
     }).catch(error => {
       console.log('error ', error);
     });
-  }
-
+}
+loadCountriesData = ()=>{
+  this.appservice.getCountriesData().then(res=>{
+    console.log('Countries data', res)
+    this.nativeStorage.setItem('DataCountries', res).then(() => console.log('stored Item'),
+    error => console.error('Error stoting item', error)
+    )}
+  )
+}
 
   getDataCont = () => {
     this.nativeStorage.getItem('DataGlobal').then(res => {
@@ -205,7 +212,7 @@ this.setTotal(data);
 
 
 doRefresh(event) {
-  Promise.all([this.loadHistorical(), this.loadGlobal(), this.loadContinents(), this.getCountrynames()])
+  Promise.all([this.loadHistorical(), this.loadGlobal(), this.loadCountriesData(), this.loadContinents(), this.getCountrynames()])
   .then(() => event.target.complete());
 }
 }
