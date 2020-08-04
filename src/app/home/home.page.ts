@@ -33,7 +33,7 @@ code;
       this.countries = res;
       this.countries.reverse();
       console.log('countries', this.countries);
-    }).catch(error =>{
+    }).catch(error => {
       console.log('error', error);
     });
   }

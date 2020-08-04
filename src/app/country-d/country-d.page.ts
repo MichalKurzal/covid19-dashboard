@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AppserviceService } from '../services/appservice.service';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import {File} from '@ionic-native/file/ngx';
+import * as d3 from 'd3';
+
 
 @Component({
   selector: 'app-country-d',
@@ -49,13 +51,26 @@ svg2: any;
   }
 
 getHistoricalData = () => {
-this.appservice.HistoricalCountry(this.cn).then(( data: any)  => {
+this.appservice.HistoricalCountry(this.cc).then(( data: any)  => {
   const timeline = data.timeline;
   const cases = timeline.cases;
   const deaths = timeline.deaths;
   console.log('timeline cases', cases);
 this.appservice.worldchart(cases, deaths, this.svg, this.svg2, '#svg1', '#svg2', 'g1', 'g2');
-});
-}
+}).catch(error => {
+  console.log('error', error);
 
+  this.svg = d3.select('#svg1')
+  .attr('viewBox', [0, 0, 0, 0]);
+  this.svg = d3.select('#svg2')
+  .attr('viewBox', [0, 0, 0, 0]);
+
+  this.svg.select('.area')
+  .remove();
+  this.svg2.select('.area')
+  .remove();
+
+});
+
+}
 }

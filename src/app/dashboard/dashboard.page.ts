@@ -125,11 +125,11 @@ this.setTotal(DataCont);
     });
   }
 
-  loadGlobal= ()=> {
+  loadGlobal = () => {
  this.appservice.getGlobal().then(res => {
       this.global = res;
       this.countries = this.global.Countries;
-      console.log('load global')
+      console.log('load global');
        this.nativeStorage.setItem('DataCountries2', this.countries).then(() => console.log('stored Item'),
        error => console.error('Error stoting item', error)
        );
@@ -138,13 +138,13 @@ this.setTotal(DataCont);
       console.log('error ', error);
     });
 }
-loadCountriesData = ()=>{
-  this.appservice.getCountriesData().then(res=>{
-    console.log('Countries data', res)
+loadCountriesData = () => {
+  this.appservice.getCountriesData().then(res => {
+    console.log('Countries data', res);
     this.nativeStorage.setItem('DataCountries', res).then(() => console.log('stored Item'),
     error => console.error('Error stoting item', error)
-    )}
-  )
+    ); }
+  );
 }
 
   getDataCont = () => {
