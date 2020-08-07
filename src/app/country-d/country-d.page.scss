@@ -53,7 +53,9 @@ p
 }
 ion-card-subtitle{
     color: black;
-    font-size: 18px;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
 }
 ion-card-header{
 padding: 0px;
@@ -94,13 +96,17 @@ ion-card-subtitle{
 }
 }
 @media only screen and (orientation: landscape) and (min-width: 600px){
+    ion-content{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin:0px;
+        padding: 0px;
+    }
    svg {
       float: left;
-      height: 280px;
-      width: 280px;
-      position: absolute;
-      top: 10px;
-      left: 10px;
+      height: 210px;
+      width: 200px;
     }
    
     div{
@@ -121,11 +127,10 @@ ion-card-subtitle{
         font-size: 12px;
     }
   }
-  @media only screen and (max-width: 370px)  {
+  @media only screen and (max-width: 370px) and (orientation: portrait)  {
     p
     {
         font-size: 20px;
-      
     }
     ion-card-subtitle{
         color: black;

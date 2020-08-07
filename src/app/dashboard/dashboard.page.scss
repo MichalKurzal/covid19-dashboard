@@ -35,7 +35,7 @@ ion-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     margin: 0px;
     padding: 0px;
     --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
@@ -43,7 +43,6 @@ ion-content{
 }
 
 #svg3{
-  flex:1;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -51,8 +50,6 @@ ion-content{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
  }
  #svg4{
-    flex:1;
-    display: block;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -62,6 +59,7 @@ ion-content{
  
 
 div{
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -84,7 +82,7 @@ ion-card-title{
 ion-card-subtitle{
     color: black;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0px;
     padding: 0px;
 }
@@ -116,18 +114,13 @@ ion-card-header{
        float: left;
        height: 210px;
        width: 200px;
-    
      }
      #svg4 {
         float: left;
         height: 210px;
         width: 200px;
-     
       }
-     
-
      div{
-      
          top:  0px;
          right: 10px;
      }
@@ -137,7 +130,6 @@ ion-card-header{
          font-size: 20px;
          margin: 0px;
          padding: 0px;
-  
      }
      ion-card-subtitle{
          color: black;
@@ -186,3 +178,13 @@ ion-card-header{
        margin: 0px;
    }
    }
+   @media only screen and (max-width: 370px) and (orientation: portrait) {
+    p
+    {
+        font-size: 20px;
+    }
+    ion-card-subtitle{
+        color: black;
+        font-size: 14px;
+    }
+  }

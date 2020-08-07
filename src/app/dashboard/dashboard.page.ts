@@ -5,6 +5,8 @@ import { Router, NavigationExtras } from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { async } from 'rxjs';
+import { error } from 'protractor';
 
 
 
@@ -35,12 +37,12 @@ Promise.all([this.loadCountriesData(), this.loadGlobal(), this.loadContinents(),
   }
 
   getCountrynames = async () => {
-    this.nativeStorage.getItem('CountryCodes').then(res => {
+  return await this.nativeStorage.getItem('CountryCodes').then(res => {
       const data = res;
       this.checkImages(data);
       })
- .catch(error => {
-      console.log('Error getCountrynames', error);
+ .catch(err => {
+      console.log('Error getCountrynames', err);
      this.appservice.getCountries().then(data => {
     const result = [];
     let codes = [];
@@ -59,8 +61,8 @@ Promise.all([this.loadCountriesData(), this.loadGlobal(), this.loadContinents(),
     });
   }
 
-  loadHistorical = () => {
-    this.appservice.HistoricalData().then((data: any) => {
+  loadHistorical = async () => {
+    return await this.appservice.HistoricalData().then((data: any) => {
    console.log('Historical ', data);
    const cases = data.cases;
    const deaths = data.deaths;
@@ -76,7 +78,7 @@ Promise.all([this.loadCountriesData(), this.loadGlobal(), this.loadContinents(),
    }
 
   loadContinents = async () => {
-    this.appservice.NewApiContinents().then(res => {
+    return  await this.appservice.NewApiContinents().then(res => {
       const ContArray = [];
       let TotalCases = [];
       let NewCases = [];
@@ -117,7 +119,7 @@ DataCont.NewRecovered = SumNewRecovered,
 
 this.setTotal(DataCont);
    this.nativeStorage.setItem('DataContinents', DataCont).then(() => console.log('stored Item'),
-       error => console.error('Error stoting item', error)
+       err => console.error('Error stoting item', err)
        );
     }).catch(error => {
       console.log('catch error get Global', error);
@@ -125,26 +127,28 @@ this.setTotal(DataCont);
     });
   }
 
-  loadGlobal = () => {
- this.appservice.getGlobal().then(res => {
+
+  loadGlobal = async  () => {
+ return await this.appservice.getGlobal().then(res => {
       this.global = res;
       this.countries = this.global.Countries;
       console.log('load global');
        this.nativeStorage.setItem('DataCountries2', this.countries).then(() => console.log('stored Item'),
        error => console.error('Error stoting item', error)
        );
-
     }).catch(error => {
       console.log('error ', error);
     });
 }
-loadCountriesData = () => {
-  this.appservice.getCountriesData().then(res => {
+loadCountriesData = async () => {
+ return await this.appservice.getCountriesData().then(res => {
     console.log('Countries data', res);
     this.nativeStorage.setItem('DataCountries', res).then(() => console.log('stored Item'),
     error => console.error('Error stoting item', error)
-    ); }
-  );
+    ).catch(error => {
+      console.log('error', error);
+    });
+  });
 }
 
   getDataCont = () => {
@@ -152,6 +156,8 @@ loadCountriesData = () => {
       const data = res;
       console.log('get Data', data);
 this.setTotal(data);
+    }).catch(error => {
+      console.log('error', error);
     });
   }
 
@@ -184,7 +190,7 @@ this.setTotal(data);
    Promise.all(PACF).then(async res => {
      console.log('Sucess' + res);
    }).catch(err => {
-     console.log('files not fund');
+     console.log('files not fund', err);
      const PA = [];
 
       for (const c of data)
