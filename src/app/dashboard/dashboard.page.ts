@@ -5,8 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { async } from 'rxjs';
-import { error } from 'protractor';
+
 
 
 

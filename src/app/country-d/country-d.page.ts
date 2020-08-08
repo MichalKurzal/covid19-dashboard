@@ -52,10 +52,10 @@ svg2: any;
 
 getHistoricalData = () => {
 this.appservice.HistoricalCountry(this.cc).then(( data: any)  => {
+  console.log('HistorcalData', data);
   const timeline = data.timeline;
   const cases = timeline.cases;
   const deaths = timeline.deaths;
-  console.log('timeline cases', cases);
 this.appservice.worldchart(cases, deaths, this.svg, this.svg2, '#svg1', '#svg2', 'g1', 'g2');
 }).catch(error => {
   console.log('error', error);
