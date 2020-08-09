@@ -5,6 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import {File} from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { async } from 'rxjs';
 
 
 
@@ -32,9 +33,19 @@ svg2: any;
               private nativeStorage: NativeStorage, public loading: LoadingController) { }
 
   ngOnInit() {
-Promise.all([this.loadCountriesData(), this.loadGlobal(), this.loadContinents(), this.loadHistorical(), this.getCountrynames()]);
+Promise.all([this.loadContinents(), this.loadHistorical()]);
   }
-
+  async ngAfterViewInit(){
+    console.log('ngAfterViewInit');
+  let loading = this.loading.create({
+    spinner: 'circles',
+    message: 'Loading Please Wait...'
+  });
+  (await loading).present().then(async()=>{
+    Promise.all([this.loadGlobal(), this.getCountrynames(), this.loadCountriesData()])
+    .then(async () => (await loading).dismiss());
+  });
+}
   getCountrynames = async () => {
   return await this.nativeStorage.getItem('CountryCodes').then(res => {
       const data = res;
