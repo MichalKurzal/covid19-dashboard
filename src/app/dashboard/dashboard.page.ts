@@ -37,11 +37,11 @@ Promise.all([this.loadContinents(), this.loadHistorical()]);
   }
   async ngAfterViewInit(){
     console.log('ngAfterViewInit');
-  let loading = this.loading.create({
+  const loading = this.loading.create({
     spinner: 'circles',
     message: 'Loading Please Wait...'
   });
-  (await loading).present().then(async()=>{
+  (await loading).present().then(async () => {
     Promise.all([this.loadGlobal(), this.getCountrynames(), this.loadCountriesData()])
     .then(async () => (await loading).dismiss());
   });
