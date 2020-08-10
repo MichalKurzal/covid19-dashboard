@@ -76,9 +76,9 @@ export class AppserviceService {
 
       console.log('Final Data World ', WorldCon);
 
-       const xScale = d3.scaleBand().domain(WorldCon.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
+       const xScale = d3.scaleBand().domain(WorldCon.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
        const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0]);
-       const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 20]);
+       const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
 
        const yaxis = d3.axisRight().scale(yScale);
@@ -116,14 +116,14 @@ export class AppserviceService {
                .attr('spreadMethod', 'pad');
         gradient.append('svg:stop')
                .attr('offset', '0%')
-               .attr('stop-color', '#19ACD4')
+               .attr('stop-color', '#3dc1f0')
                .attr('stop-opacity', 0.6);
         gradient.append('svg:stop')
                .attr('offset', '100%')
-               .attr('stop-color', '#0B1BA4')
+               .attr('stop-color', '#2aa7d4')
                .attr('stop-opacity', 0.6);
 
-               const gradient2 = svg1.append('svg:defs')
+               const gradient2 = svg2.append('svg:defs')
                .append('svg:linearGradient')
                  .attr('id', `${g2}`)
                  .attr('x1', '0%')
@@ -133,11 +133,11 @@ export class AppserviceService {
                  .attr('spreadMethod', 'pad');
           gradient2.append('svg:stop')
                  .attr('offset', '0%')
-                 .attr('stop-color', '#cf3e3e')
+                 .attr('stop-color', '#d6233c')
                  .attr('stop-opacity', 0.8);
           gradient2.append('svg:stop')
                  .attr('offset', '100%')
-                 .attr('stop-color', '#FF0000')
+                 .attr('stop-color', '#c71d3b')
                  .attr('stop-opacity', 0.8);
 
                  svg1.select('.area')

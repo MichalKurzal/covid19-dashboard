@@ -57,12 +57,13 @@ Promise.all([this.loadContinents(), this.loadHistorical()]);
     const result = [];
     let codes = [];
 
+    
     for (const code in data){
       result.push(data[code]);
     }
     codes = result.map(a => a.alpha2Code);
     console.log('Codes', codes);
-
+   
     this.nativeStorage.setItem('CountryCodes', codes).then(() => console.log('stored CountryCodes'),
     err => console.error('Error stoting item', err)
     );
@@ -205,7 +206,7 @@ this.setTotal(data);
 
       for (const c of data)
       {
-        PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c}/flat/64.png`, this.file.dataDirectory + `${c}` + '.png'));
+        PA.push(this.fileTransfer.create().download(`https://www.countryflags.io/${c}/shiny/64.png`, this.file.dataDirectory + `${c}` + '.png'));
       }
       Promise.all(PA).then(res => {
         console.log('Promise-all', res);

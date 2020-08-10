@@ -8,12 +8,14 @@ ion-header{
 }
 
  ion-toolbar{
-    margin: 0px;
+   margin: 0px;
     padding: 0px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    --background:linear-gradient(to right, #2fae88, #84d1b8);
 }
+
 p
 {
     color:black;
@@ -21,6 +23,11 @@ p
     margin: 0px;
     padding: 0px;
 }
+.header{
+    --background:linear-gradient(to right, #2fae88, #84d1b8);
+    --color: white;
+   
+   }
 ion-icon{
     float: right;
     font-size: 44px;
@@ -38,20 +45,20 @@ ion-content{
     align-items: stretch;
     margin: 0px;
     padding: 0px;
-    --background:linear-gradient(to right, rgb(154, 169, 219),#5da5c0);
+    --background:linear-gradient(to right, #2fae88, #84d1b8);
 
 }
 
 #svg3{
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
  }
  #svg4{
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 0px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -71,7 +78,7 @@ div{
 ion-card{
     flex:1;
     margin: 0px;
-    background-image:linear-gradient(to right, rgb(126, 148, 223),#1A9CCC);
+    background-image:linear-gradient(to right, #2fae88, #84d1b8);
 }
 ion-card-title{
     color: black;
@@ -93,7 +100,7 @@ ion-card-header{
     padding: 0px;
 }
 .D{
-    background-image:linear-gradient(to right,red,#d8a3aa);
+    background-image:linear-gradient(to right,#de3d55,#e75c71);
 }
      
 #header{
