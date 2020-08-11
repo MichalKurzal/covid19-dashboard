@@ -40,73 +40,73 @@ export class AppserviceService {
         const WorldDeaths = [];
         let n1 = 0;
         let n2 = 0;
-       for (const d in cases)
+        for (const d in cases)
        {
          n1++;
          WorldCon.push({day: cases[d], nr: n1.toString()});
        }
-    console.log('chart cases', WorldCon);
+        console.log('chart cases', WorldCon);
 
-       for (const td in deaths)
+        for (const td in deaths)
        {
         n2++;
         WorldDeaths.push({day : deaths[td], nr: n2.toString()});
        }
-       console.log('chart deaths', WorldDeaths);
+        console.log('chart deaths', WorldDeaths);
 
-       let width = window.innerWidth;
-    if (width > 800)
+        let width = window.innerWidth;
+        if (width > 800)
     {
       width = 800;
     }
-    const realheight = window.innerHeight;
-    let ratio = realheight / width;
-    if (ratio < 1.45){
+        const realheight = window.innerHeight;
+        let ratio = realheight / width;
+        if (ratio < 1.45){
     ratio = 1.45;
     }
-    console.log('ratio ', ratio);
-    const ratio2 = 4 - ratio;
+        console.log('ratio ', ratio);
+        const ratio2 = 4 - ratio;
     // let height = (width/2) * ratio;
-    const height = width / ratio2;
-    console.log('width ', width);
-    console.log('height ', height);
+        const height = width / ratio2;
+        console.log('width ', width);
+        console.log('height ', height);
 
-       const domain = WorldCon[WorldCon.length - 1].day + 0.1 * WorldCon[WorldCon.length - 1].day;
-       const domain2 = WorldDeaths[WorldDeaths.length - 1].day + 0.1 * WorldDeaths[WorldDeaths.length - 1].day;
+        const domain = WorldCon[WorldCon.length - 1].day + 0.1 * WorldCon[WorldCon.length - 1].day;
+        const domain2 = WorldDeaths[WorldDeaths.length - 1].day + 0.1 * WorldDeaths[WorldDeaths.length - 1].day;
 
-      console.log('Final Data World ', WorldCon);
+        console.log('Final Data World ', WorldCon);
 
-       const xScale = d3.scaleBand().domain(WorldCon.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
-       const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0]);
-       const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
-       const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
+        const xScale = d3.scaleBand().domain(WorldCon.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
+        const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0]);
+        const xScale2 = d3.scaleBand().domain(WorldDeaths.map((dataPoint) => dataPoint.nr)).rangeRound([0, width + 15]);
+        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
 
-       const yaxis = d3.axisRight().scale(yScale);
-       const yaxis2 = d3.axisRight().scale(yScale2);
+        const yaxis = d3.axisRight().scale(yScale);
+        const yaxis2 = d3.axisRight().scale(yScale2);
 
-       const curve = d3.curveLinear;
-       const curve2 = d3.curveLinear;
+        const curve = d3.curveLinear;
+        const curve2 = d3.curveLinear;
 
-       const area = d3.area()
+        const area = d3.area()
        .curve(curve)
        .x(d => xScale(d.nr))
        .y0(yScale(0))
        .y1(d => yScale(d.day));
 
-       const area2 = d3.area()
+        const area2 = d3.area()
        .curve(curve2)
        .x(d => xScale2(d.nr))
        .y0(yScale(0))
        .y1(d => yScale2(d.day));
 
-         svg1 = d3.select(`${id1}`)
+        svg1 = d3.select(`${id1}`)
      .attr('viewBox', [0, 0, width, height]);
 
-     svg2 = d3.select(`${id2}`)
+        svg2 = d3.select(`${id2}`)
      .attr('viewBox', [0, 0, width, height]);
 
 
-             const gradient = svg1.append('svg:defs')
+        const gradient = svg1.append('svg:defs')
              .append('svg:linearGradient')
                .attr('id', `${g1}`)
                .attr('x1', '0%')
@@ -123,7 +123,7 @@ export class AppserviceService {
                .attr('stop-color', '#2aa7d4')
                .attr('stop-opacity', 0.6);
 
-               const gradient2 = svg2.append('svg:defs')
+        const gradient2 = svg2.append('svg:defs')
                .append('svg:linearGradient')
                  .attr('id', `${g2}`)
                  .attr('x1', '0%')
@@ -131,34 +131,34 @@ export class AppserviceService {
                 .attr('x2', '100%')
                  .attr('y2', '0%')
                  .attr('spreadMethod', 'pad');
-          gradient2.append('svg:stop')
+        gradient2.append('svg:stop')
                  .attr('offset', '0%')
                  .attr('stop-color', '#d6233c')
                  .attr('stop-opacity', 0.8);
-          gradient2.append('svg:stop')
+        gradient2.append('svg:stop')
                  .attr('offset', '100%')
                  .attr('stop-color', '#c71d3b')
                  .attr('stop-opacity', 0.8);
 
-                 svg1.select('.area')
+        svg1.select('.area')
                  .remove();
-                 svg2.select('.area')
+        svg2.select('.area')
                  .remove();
 
-               svg1.append('path')
+        svg1.append('path')
                .attr('class', 'area')
                .datum(WorldCon)
                .attr('fill', 'url(#' + `${g1}` + ')')
               .attr('d', area);
 
-              svg1.append('text')
+        svg1.append('text')
               .attr('text-anchor', 'start')
               .attr('dy', 20)
               .attr('dx', 60)
               .attr('font-size', 14)
               .text('Confirmed cases in the last 30 days');
 
-              svg2.append('text')
+        svg2.append('text')
               .attr('text-anchor', 'start')
               .attr('dy', 20)
               .attr('dx', 50)
@@ -166,25 +166,25 @@ export class AppserviceService {
               .text('Deaths in the last 30 days');
 
 
-              svg2.append('path')
+        svg2.append('path')
               .attr('class', 'area')
               .datum(WorldDeaths)
              .attr('fill', 'url(#' + `${g2}` + ')')
              .attr('d', area2);
 
 
-            svg1.select('.y')
+        svg1.select('.y')
            .remove();
 
-            svg1.append('g')
+        svg1.append('g')
              .attr('class', 'y axis')
              .attr('transform', 'translate(0, 0)')
              .call(yaxis);
 
-             svg2.select('.y')
+        svg2.select('.y')
              .remove();
 
-              svg2.append('g')
+        svg2.append('g')
                .attr('class', 'y axis')
                .attr('transform', 'translate(0, 0)')
                .call(yaxis2);

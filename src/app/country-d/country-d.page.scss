@@ -1,12 +1,11 @@
 ion-content{
-    --background:linear-gradient(to right, #0E9F76, #84d1b8);
+    --background:linear-gradient(to right,  #b4e2d3, #84d1b8);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 #svg1{
-    flex: 1;
     display: block;
     margin-top:10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -14,7 +13,6 @@ ion-content{
     margin-right: 5px;
 }
 #svg2{
-    flex: 1;
     display: block;
     margin-top:10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -22,7 +20,6 @@ ion-content{
     margin-right: 5px;
 }
 div{
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -31,7 +28,7 @@ div{
     padding-right: 10px;
 }
 #country{
-    --background:linear-gradient(to right, #0E9F76,#84d1b8);
+    --background:linear-gradient(to right,#b4e2d3, #84d1b8);
 
 }
 img{
@@ -42,7 +39,7 @@ img{
 ion-card{
 padding: 0px;
  margin: 0px;
- background-image:linear-gradient(to right, #0E9F76, #84d1b8);
+ background-image:linear-gradient(to right,  #b4e2d3, #84d1b8);
 }
 p
 {

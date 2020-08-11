@@ -3,7 +3,7 @@
   "rules": {
     "align": {
       "options": [
-        "parameters"
+        "parameters", "statements"
       ]
     },
     "array-type": false,

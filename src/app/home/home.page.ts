@@ -43,8 +43,8 @@ goforward = (param) => {
         country: param
     }
 };
-console.log('Detail Country Page');
-this.nav.navigateForward('tabs-nav/countryD', navigationExtras);
+ console.log('Detail Country Page');
+ this.nav.navigateForward('tabs-nav/countryD', navigationExtras);
 }
 loadData(event){
   console.log(event);
