@@ -1,197 +1,185 @@
-ion-header{
-    margin:0px;
-    padding: 0px;
- }
- #title{
-    margin: 0px;
-    padding: 0px;
+ion-header {
+  margin: 0px;
+  padding: 0px;
+}
+#title {
+  margin: 0px;
+  padding: 0px;
 }
 
- ion-toolbar{
-   margin: 0px;
-    padding: 0px;
+ion-toolbar {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
+}
+
+p {
+  color: black;
+  font-size: 24px;
+  margin: 0px;
+  padding: 0px;
+}
+.header {
+  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
+  --color: white;
+}
+ion-icon {
+  float: right;
+  font-size: 44px;
+  margin-left: 25px;
+  margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  color: black;
+}
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0px;
+  padding: 0px;
+  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
+}
+
+#svg3 {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+#svg4 {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+ion-card {
+  flex: 1;
+  margin: 0px;
+  background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
+}
+ion-card-title {
+  color: black;
+  font-size: 28px;
+  text-align: center;
+  margin: 0px;
+}
+ion-card-subtitle {
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+ion-card-header {
+  margin: 0px;
+  padding: 0px;
+}
+.D {
+  background-image: linear-gradient(to right, #de3d55, #e75c71);
+}
+
+#header {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  margin-left: 10px;
+}
+@media only screen and (orientation: landscape) and (min-width: 600px) {
+  ion-content {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    --background:linear-gradient(to right,#b4e2d3, #84d1b8);
-}
-
-p
-{
-    color:black;
-    font-size: 24px;
     margin: 0px;
     padding: 0px;
+  }
+  #svg3 {
+    float: left;
+    height: 210px;
+    width: 200px;
+  }
+  #svg4 {
+    float: left;
+    height: 210px;
+    width: 200px;
+  }
+  div {
+    top: 0px;
+    right: 10px;
+  }
+  p {
+    color: black;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+  }
+  ion-card-subtitle {
+    color: black;
+    font-size: 12px;
+  }
+  #header {
+    display: none;
+  }
 }
-.header{
-    --background:linear-gradient(to right, #b4e2d3, #84d1b8);
-    --color: white;
-   
-   }
-ion-icon{
-    float: right;
+@media only screen and (min-width: 430px) and (max-width: 600px) {
+  p {
+    color: black;
+    font-size: 28px;
+    margin: 0px;
+    padding: 0px;
+  }
+  ion-card-subtitle {
+    color: black;
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 600px) and (orientation: portrait) {
+  p {
+    color: black;
     font-size: 44px;
-    margin-left: 25px;
+    margin-left: 5px;
     margin-right: 5px;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding: 0px;
-    color: black;
-}
-ion-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    margin: 0px;
-    padding: 0px;
-    --background:linear-gradient(to right, #b4e2d3, #84d1b8);
-
-}
-
-#svg3{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
- }
- #svg4{
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    margin-top: 0px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
- }
- 
-
-div{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0px;
-    padding: 0px;
-}
-
-ion-card{
-    flex:1;
-    margin: 0px;
-    background-image:linear-gradient(to right, #b4e2d3, #84d1b8);
-}
-ion-card-title{
-    color: black;
-    font-size: 28px;
-    text-align: center;
-    margin: 0px;
-}
-ion-card-subtitle{
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    margin: 0px;
-    padding: 0px;
-}
-
-
-ion-card-header{
-    margin: 0px;
-    padding: 0px;
-}
-.D{
-    background-image:linear-gradient(to right,#de3d55,#e75c71);
-}
-     
-#header{
-    margin-top: 0px;
-    margin-bottom: 0px;
-    text-align: center;
-    margin-left: 10px;
-}
-@media only screen and (orientation: landscape) and (min-width: 600px){
-    ion-content{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        margin:0px;
-        padding: 0px;
-    }
-    #svg3 {
-       float: left;
-       height: 210px;
-       width: 200px;
-     }
-     #svg4 {
-        float: left;
-        height: 210px;
-        width: 200px;
-      }
-     div{
-         top:  0px;
-         right: 10px;
-     }
-     p
-     {
-         color:black;
-         font-size: 20px;
-         margin: 0px;
-         padding: 0px;
-     }
-     ion-card-subtitle{
-         color: black;
-         font-size: 12px;
-     }
-     #header{
-         display:none;
-     }
-   
-   }
-   @media only screen and (min-width: 430px) and (max-width:600px)
-   {
-       p
-   {
-       color:black;
-       font-size: 28px;
-       margin: 0px;
-       padding: 0px;
-   }
-   ion-card-subtitle{
-       color: black;
-       font-size: 18px;
-   }
-   }
-   @media only screen and (min-width: 600px)  and (orientation: portrait){
-       p
-   {
-       color:black;
-       font-size: 44px;
-       margin-left: 5px;
-       margin-right: 5px;
-       margin-top: 0px;
-       margin-bottom: 0px;
-       padding-left: 5px;
-       padding-right: 5px;
-       padding-top: 0px;
-       padding-bottom: 0px;
-   }
-   ion-card-subtitle{
-       color: black;
-       font-size: 24px;
-   }
-  
-   div{
-
-       margin: 0px;
-   }
-   }
-   @media only screen and (max-width: 370px) and (orientation: portrait) {
-    p
-    {
-        font-size: 20px;
-    }
-    ion-card-subtitle{
-        color: black;
-        font-size: 14px;
-    }
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
+  ion-card-subtitle {
+    color: black;
+    font-size: 24px;
+  }
+
+  div {
+    margin: 0px;
+  }
+}
+@media only screen and (max-width: 370px) and (orientation: portrait) {
+  p {
+    font-size: 20px;
+  }
+  ion-card-subtitle {
+    color: black;
+    font-size: 14px;
+  }
+}
