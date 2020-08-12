@@ -249,32 +249,20 @@ export class DashboardPage implements OnInit {
   };
 
   checkImages = (data) => {
-    const PACF = [];
-    for (const c of data) {
-      PACF.push(this.file.checkFile(this.file.dataDirectory, c + '.png'));
-    }
-    Promise.all(PACF)
-      .then(async (res) => {
-        console.log('Sucess' + res);
-      })
-      .catch((err) => {
-        console.log('files not fund', err);
-        const PA = [];
-
-        for (const c of data) {
-          PA.push(
-            this.fileTransfer
-              .create()
-              .download(
-                `https://www.countryflags.io/${c}/shiny/64.png`,
-                this.file.dataDirectory + `${c}` + '.png'
-              )
-          );
-        }
-        Promise.all(PA).then((res) => {
-          console.log('Promise-all', res);
-        });
-      });
+    data.map((code: any) =>
+      this.file
+        .checkFile(this.file.dataDirectory, code + '.png')
+        .then((res: any) => console.log('succsess', res))
+        .catch((err) => {
+          console.log('error', err);
+          this.fileTransfer
+            .create()
+            .download(
+              `https://www.countryflags.io/${code}/shiny/64.png`,
+              this.file.dataDirectory + `${code}` + '.png'
+            );
+        })
+    );
   };
 
   goforward = () => {
