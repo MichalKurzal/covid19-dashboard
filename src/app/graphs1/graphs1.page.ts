@@ -38,6 +38,7 @@ export class Graphs1Page implements OnInit {
     });
   }
   chart = (data) => {
+    const height = window.innerHeight - 100;
     const Length = data.length;
     const domain = data[Length - 1].TotalConfirmed + 0.2 * data[Length - 1].TotalConfirmed;
     const xScale = d3

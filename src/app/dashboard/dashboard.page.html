@@ -1,91 +1,98 @@
-
 <ion-header>
   <ion-toolbar>
-   <ion-item lines="none" class='header'>
-    <p id="title">COVID-19 Dashboard</p>
-    <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
-   </ion-item>
-   
+    <ion-item lines="none" class="header">
+      <p id="title">COVID-19 Dashboard</p>
+      <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-<svg id="svg3">
-</svg>
-<svg id="svg4">
-</svg>
+  <svg id="svg3"></svg>
+  <svg id="svg4"></svg>
 
-<div >
-    <ion-refresher slot="fixed"  pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content>
-  
-      </ion-refresher-content>
+  <div id="main">
+    <ion-refresher
+      slot="fixed"
+      pullFactor="0.5"
+      pullMin="100"
+      pullMax="200"
+      (ionRefresh)="doRefresh($event)"
+    >
+      <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-<ion-grid>
-
-  <ion-card>
-    <ion-card-header>
-<ion-row>
-<ion-col> <ion-card-subtitle>
-  New Confirmed
-</ion-card-subtitle></ion-col>
-<ion-col > <ion-card-subtitle >
-  New Deaths 
- </ion-card-subtitle></ion-col>
- <ion-col> <ion-card-subtitle>
-  New Recovered
- </ion-card-subtitle></ion-col>
-</ion-row>
-<ion-row>
-<ion-col>
- <p>
-  {{NewC}}
- </p>
-</ion-col>
-<ion-col class="D">
-<p>  {{NewD}}</p>
-</ion-col>
-<ion-col>
-<p>
-{{NewR}}
-</p>
-</ion-col>
-</ion-row>
-<ion-row>
-<ion-col class="c1" (click)='goforward()'><ion-card-subtitle>
-  Total Confirmed
-</ion-card-subtitle></ion-col> 
- <ion-col class='c2' (click)='goforward2()'><ion-card-subtitle>
-  Total Deaths
- </ion-card-subtitle></ion-col> 
- <ion-col><ion-card-subtitle>
-  Total Recovered
- </ion-card-subtitle></ion-col> 
-</ion-row>
-<ion-row>
-<ion-col class="c1" (click)='goforward()' >
-<p>
-{{TotalC}}
-</p>
-</ion-col>
-<ion-col (click)='goforward2()' class='c2'class="D" >
-<p>
-{{TotalD}}
-</p>
-</ion-col>
-<ion-col>
-<p>
-{{TotalR}}
-</p>
-</ion-col>
-</ion-row>
-
-
- 
-</ion-card-header>
-</ion-card>
-</ion-grid>
-</div>
+    <ion-grid>
+      <ion-card>
+        <ion-card-header>
+          <ion-row>
+            <ion-col>
+              <ion-card-subtitle>
+                New Confirmed
+              </ion-card-subtitle>
+            </ion-col>
+            <ion-col>
+              <ion-card-subtitle>
+                New Deaths
+              </ion-card-subtitle>
+            </ion-col>
+            <ion-col>
+              <ion-card-subtitle>
+                New Recovered
+              </ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p>
+                {{NewC}}
+              </p>
+            </ion-col>
+            <ion-col class="D">
+              <p>{{NewD}}</p>
+            </ion-col>
+            <ion-col>
+              <p>
+                {{NewR}}
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="c1" (click)="goforward()">
+              <ion-card-subtitle>
+                Total Confirmed
+              </ion-card-subtitle>
+            </ion-col>
+            <ion-col class="c2" (click)="goforward2()">
+              <ion-card-subtitle>
+                Total Deaths
+              </ion-card-subtitle>
+            </ion-col>
+            <ion-col>
+              <ion-card-subtitle>
+                Total Recovered
+              </ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="c1" (click)="goforward()">
+              <p>
+                {{TotalC}}
+              </p>
+            </ion-col>
+            <ion-col (click)="goforward2()" class="c2" class="D">
+              <p>
+                {{TotalD}}
+              </p>
+            </ion-col>
+            <ion-col>
+              <p>
+                {{TotalR}}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+      </ion-card>
+    </ion-grid>
+  </div>
 </ion-content>

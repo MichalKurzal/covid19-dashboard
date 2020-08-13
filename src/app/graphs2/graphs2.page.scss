@@ -1,5 +1,10 @@
-ion-icon{
-    font-size: 44px;
-    color: black;
-    margin-right: 10px;
+ion-icon {
+  font-size: 44px;
+  color: black;
+  margin-right: 10px;
+}
+@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+  #s2 {
+    max-height: 400px;
+  }
 }

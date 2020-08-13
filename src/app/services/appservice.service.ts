@@ -62,7 +62,7 @@ export class AppserviceService {
     console.log('ratio ', ratio);
     const ratio2 = 4 - ratio;
     // let height = (width/2) * ratio;
-    const height = width / ratio2;
+    let height = width / ratio2;
     console.log('width ', width);
     console.log('height ', height);
 

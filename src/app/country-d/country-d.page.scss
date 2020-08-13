@@ -6,20 +6,18 @@ ion-content {
   align-items: center;
 }
 #svg1 {
-  display: block;
   margin-top: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin-left: 5px;
   margin-right: 5px;
 }
 #svg2 {
-  display: block;
   margin-top: 10px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   margin-left: 5px;
   margin-right: 5px;
 }
-div {
+#main2 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -85,7 +83,7 @@ ion-card-header {
     font-size: 24px;
   }
 }
-@media only screen and (orientation: landscape) and (min-width: 600px) {
+@media only screen and (orientation: landscape) and (min-width: 600px) and(max-width: 900px) {
   ion-content {
     display: flex;
     flex-direction: row;
@@ -99,7 +97,7 @@ ion-card-header {
     width: 200px;
   }
 
-  div {
+  #main2 {
     float: right;
     position: absolute;
     top: 20px;
@@ -114,6 +112,73 @@ ion-card-header {
   ion-card-subtitle {
     color: black;
     font-size: 12px;
+  }
+}
+@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+  ion-content {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+  #svg1 {
+    max-height: 400px;
+    max-width: 450px;
+    flex: 1;
+  }
+  #svg2 {
+    max-height: 400px;
+    max-width: 450px;
+    flex: 1;
+  }
+
+  #main2 {
+    flex: 1;
+  }
+  p {
+    color: black;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+  }
+  ion-card-subtitle {
+    color: black;
+    font-size: 12px;
+  }
+}
+@media only screen and (orientation: landscape) and (min-width: 1200px) {
+  ion-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+  #svg1 {
+    max-height: 550px;
+    max-width: 450px;
+    flex: 1;
+  }
+  #svg2 {
+    max-height: 550px;
+    max-width: 450px;
+    flex: 1;
+  }
+  #main {
+    flex: 1;
+  }
+  ion-card-subtitle {
+    font-size: 24px;
+  }
+  p {
+    color: black;
+    font-size: 28px;
+    margin: 0px;
+    padding: 0px;
   }
 }
 @media only screen and (max-width: 370px) and (orientation: portrait) {

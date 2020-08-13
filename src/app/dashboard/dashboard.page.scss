@@ -61,7 +61,7 @@ ion-content {
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-div {
+#main {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -104,7 +104,7 @@ ion-card-header {
   text-align: center;
   margin-left: 10px;
 }
-@media only screen and (orientation: landscape) and (min-width: 600px) {
+@media only screen and (orientation: landscape) and (min-width: 600px) and(max-width: 900px) {
   ion-content {
     display: flex;
     flex-direction: row;
@@ -138,6 +138,72 @@ ion-card-header {
   }
   #header {
     display: none;
+  }
+}
+@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+  ion-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+  #svg3 {
+    max-height: 400px;
+    max-width: 450px;
+    flex: 1;
+  }
+  #svg4 {
+    max-height: 400px;
+    max-width: 450px;
+    flex: 1;
+  }
+
+  #main {
+    flex: 1;
+  }
+  p {
+    color: black;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+  }
+  ion-card-subtitle {
+    color: black;
+    font-size: 12px;
+  }
+}
+@media only screen and (orientation: landscape) and (min-width: 1100px) {
+  ion-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+  #svg3 {
+    max-height: 450px;
+    max-width: 400px;
+    flex: 1;
+  }
+  #svg4 {
+    max-height: 450px;
+    max-width: 400px;
+    flex: 1;
+  }
+  #main {
+    flex: 1;
+  }
+  ion-card-subtitle {
+    font-size: 24px;
+  }
+  p {
+    color: black;
+    font-size: 28px;
+    margin: 0px;
+    padding: 0px;
   }
 }
 @media only screen and (min-width: 430px) and (max-width: 600px) {
