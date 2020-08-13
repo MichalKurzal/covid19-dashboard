@@ -3,8 +3,13 @@ ion-icon {
   color: black;
   margin-right: 10px;
 }
-@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+@media only screen and (orientation: landscape) and (min-width: 900px) and (max-width: 1200px) and (min-height: 480px) and (max-height: 600px) {
   #s2 {
     max-height: 400px;
+  }
+}
+@media only screen and (orientation: landscape) and (min-width: 1200px) and (min-height: 600px) {
+  #s2 {
+    max-height: 600px;
   }
 }

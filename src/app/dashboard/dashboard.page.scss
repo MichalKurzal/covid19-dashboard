@@ -140,7 +140,7 @@ ion-card-header {
     display: none;
   }
 }
-@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+@media only screen and (orientation: landscape) and (min-width: 900px) and (max-width: 1200px) and (min-height: 480px) and (max-height: 600px) {
   ion-content {
     display: flex;
     flex-direction: row;
@@ -174,23 +174,23 @@ ion-card-header {
     font-size: 12px;
   }
 }
-@media only screen and (orientation: landscape) and (min-width: 1100px) {
+@media only screen and (orientation: landscape) and (min-width: 1200px) and (min-height: 600px) {
   ion-content {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin: 0px;
     padding: 0px;
   }
   #svg3 {
-    max-height: 450px;
-    max-width: 400px;
+    max-height: 530px;
+    max-width: 600px;
     flex: 1;
   }
   #svg4 {
-    max-height: 450px;
-    max-width: 400px;
+    max-height: 530px;
+    max-width: 600px;
     flex: 1;
   }
   #main {
