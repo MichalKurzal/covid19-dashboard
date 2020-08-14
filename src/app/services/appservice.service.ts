@@ -104,8 +104,9 @@ export class AppserviceService {
       .y1((d) => yScale2(d.day));
 
     svg1 = d3.select(`${id1}`).attr('viewBox', [0, 0, width, height]);
-
     svg2 = d3.select(`${id2}`).attr('viewBox', [0, 0, width, height]);
+    svg1.attr('visibility', 'visible');
+    svg2.attr('visibility', 'visible');
 
     const gradient = svg1
       .append('svg:defs')

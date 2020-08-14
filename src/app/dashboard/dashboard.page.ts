@@ -13,7 +13,6 @@ import { async } from 'rxjs';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  global: any;
   data;
   TotalC;
   TotalD;
@@ -175,12 +174,11 @@ export class DashboardPage implements OnInit {
   loadGlobal = async () => {
     return await this.appservice
       .getGlobal()
-      .then((res) => {
-        this.global = res;
-        this.countries = this.global.Countries;
+      .then((res: any) => {
+        this.countries = res.Countries;
         console.log('load global');
         this.nativeStorage.setItem('DataCountries2', this.countries).then(
-          () => console.log('stored Item'),
+          () => console.log('stored Item DataCountries2'),
           (error) => console.error('Error stoting item', error)
         );
       })

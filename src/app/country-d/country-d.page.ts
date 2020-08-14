@@ -72,13 +72,12 @@ export class CountryDPage implements OnInit {
         );
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log('Cannot get Data for this Country - Error', error);
 
         this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0]);
-        this.svg = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0]);
-
-        this.svg.select('.area').remove();
-        this.svg2.select('.area').remove();
+        this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0]);
+        this.svg.attr('visibility', 'hidden');
+        this.svg2.attr('visibility', 'hidden');
       });
   };
 }
