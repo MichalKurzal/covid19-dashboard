@@ -2,10 +2,13 @@
 # covid19-dashboard
 Covid-19 Data Dashboard Hybrid Android/iOS App  
 API: NovelCOVID API  
-https://github.com/disease-sh/API  
-To run this app:  
+https://github.com/disease-sh/API      
+## To run this app:  
   
 1.Install Node.js, Ionic, Java SDK, Android SDK  
 2.Clone this Repoitory  
 3.In the Project Directory run: npm install  
 4. ionic cordova run android or ionic cordova emulate android  
+
+##Download Android APK
+https://github.com/MichalKurzal/covid19-dashboard/releases/
