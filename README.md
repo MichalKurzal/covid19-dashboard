@@ -11,5 +11,6 @@ https://github.com/disease-sh/API
 4.Finally: ionic cordova run android or ionic cordova emulate android  
 Browser is not supported  
   
-## Download Android APK
+## Download Android APK  
+You can safe install this app on your Android Phone  
 https://github.com/MichalKurzal/covid19-dashboard/releases/
