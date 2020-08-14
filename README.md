@@ -8,7 +8,8 @@ https://github.com/disease-sh/API
 1.Install Node.js, Ionic, Java SDK, Android SDK  
 2.Clone this Repoitory  
 3.In the Project Directory run: npm install  
-4. ionic cordova run android or ionic cordova emulate android  
+4.Finally: ionic cordova run android or ionic cordova emulate android
+Browser is not supported  
 
 ## Download Android APK
 https://github.com/MichalKurzal/covid19-dashboard/releases/
