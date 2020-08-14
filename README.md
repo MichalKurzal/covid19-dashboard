@@ -10,5 +10,5 @@ https://github.com/disease-sh/API
 3.In the Project Directory run: npm install  
 4. ionic cordova run android or ionic cordova emulate android  
 
-##Download Android APK
+## Download Android APK
 https://github.com/MichalKurzal/covid19-dashboard/releases/
