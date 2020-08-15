@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { async } from 'rxjs';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,13 +32,18 @@ export class DashboardPage implements OnInit {
     public router: Router,
     private nativeStorage: NativeStorage,
     public loading: LoadingController,
-    private _platform: Platform
+    private _platform: Platform,
+    private screenOrientation: ScreenOrientation
   ) {
     this.platform = _platform;
   }
 
   ngOnInit() {
     Promise.all([this.loadContinents(), this.loadHistorical()]);
+    if (window.innerWidth < 900) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+      console.log(navigator.userAgent);
+    }
   }
   async ngAfterViewInit() {
     console.log('ngAfterViewInit');
