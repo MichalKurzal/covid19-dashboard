@@ -149,7 +149,7 @@ ion-card-header {
     font-size: 12px;
   }
 }
-@media only screen and (orientation: landscape) and (min-width: 1200px) {
+@media only screen and (orientation: landscape) and (min-width: 1200px) and (max-width: 1900px) {
   ion-content {
     display: flex;
     flex-direction: row;
@@ -160,12 +160,12 @@ ion-card-header {
   }
   #svg1 {
     max-height: 550px;
-    max-width: 450px;
+    max-width: 600px;
     flex: 1;
   }
   #svg2 {
     max-height: 550px;
-    max-width: 450px;
+    max-width: 600px;
     flex: 1;
   }
   #main {
@@ -181,6 +181,19 @@ ion-card-header {
     padding: 0px;
   }
 }
+@media only screen and (orientation: landscape) and (min-width: 1900px) {
+  #svg1 {
+    max-height: 650px;
+    max-width: 900px;
+    flex: 1;
+  }
+  #svg2 {
+    max-height: 650px;
+    max-width: 900px;
+    flex: 1;
+  }
+}
+
 @media only screen and (max-width: 370px) and (orientation: portrait) {
   p {
     font-size: 20px;

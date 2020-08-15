@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="platform.isPortrait()">
   <ion-toolbar>
     <ion-item lines="none" class="header">
       <p id="title">COVID-19 Dashboard</p>
@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="content">
   <svg id="svg3"></svg>
   <svg id="svg4"></svg>
 

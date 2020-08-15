@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../services/appservice.service';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, Platform } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
@@ -13,6 +13,7 @@ import { async } from 'rxjs';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  public platform: any;
   data;
   TotalC;
   TotalD;
@@ -20,7 +21,6 @@ export class DashboardPage implements OnInit {
   NewC;
   NewD;
   NewR;
-  countries;
   svg: any;
   svg2: any;
 
@@ -31,8 +31,11 @@ export class DashboardPage implements OnInit {
     private file: File,
     public router: Router,
     private nativeStorage: NativeStorage,
-    public loading: LoadingController
-  ) {}
+    public loading: LoadingController,
+    private _platform: Platform
+  ) {
+    this.platform = _platform;
+  }
 
   ngOnInit() {
     Promise.all([this.loadContinents(), this.loadHistorical()]);
@@ -44,11 +47,9 @@ export class DashboardPage implements OnInit {
       message: 'Loading Please Wait...',
     });
     (await loading).present().then(async () => {
-      Promise.all([
-        this.loadGlobal(),
-        this.getCountrynames(),
-        this.loadCountriesData(),
-      ]).then(async () => (await loading).dismiss());
+      Promise.all([this.getCountrynames(), this.loadCountriesData()]).then(async () =>
+        (await loading).dismiss()
+      );
     });
   }
   getCountrynames = async () => {
@@ -85,6 +86,7 @@ export class DashboardPage implements OnInit {
         const cases = data.cases;
         const deaths = data.deaths;
         console.log('cases', cases);
+        console.log('deaths', deaths);
         this.nativeStorage.setItem('DataWorld', data).then(
           () => console.log('stored Item Data World'),
           (error) => console.error('Error stoting item', error)
@@ -171,21 +173,6 @@ export class DashboardPage implements OnInit {
       });
   };
 
-  loadGlobal = async () => {
-    return await this.appservice
-      .getGlobal()
-      .then((res: any) => {
-        this.countries = res.Countries;
-        console.log('load global');
-        this.nativeStorage.setItem('DataCountries2', this.countries).then(
-          () => console.log('stored Item DataCountries2'),
-          (error) => console.error('Error stoting item', error)
-        );
-      })
-      .catch((error) => {
-        console.log('error ', error);
-      });
-  };
   loadCountriesData = async () => {
     return await this.appservice.getCountriesData().then((res) => {
       console.log('Countries data', res);
@@ -278,7 +265,6 @@ export class DashboardPage implements OnInit {
   doRefresh(event) {
     Promise.all([
       this.loadHistorical(),
-      this.loadGlobal(),
       this.loadCountriesData(),
       this.loadContinents(),
       this.getCountrynames(),

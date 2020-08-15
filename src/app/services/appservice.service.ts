@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as d3 from 'd3';
+import { WeekDay } from '@angular/common';
+
+interface cases {
+  day: string;
+  nr: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppserviceService {
-  Url = 'https://api.covid19api.com';
   Url2 = 'https://corona.lmao.ninja/v2/';
   url3 = 'https://restcountries.eu/rest/v2/all?fields=alpha2Code';
 
   constructor(private http: HttpClient) {}
-  getGlobal() {
-    return this.http.get(`${this.Url}/summary?offset=0`).toPromise();
-  }
-
   NewApiContinents() {
     return this.http.get(`${this.Url2}continents?false&sort`).toPromise();
   }
@@ -38,18 +39,18 @@ export class AppserviceService {
     const WorldDeaths = [];
     let n1 = 0;
     let n2 = 0;
-    for (const d in cases) {
+    for (const case_ in cases) {
       n1++;
-      WorldCon.push({ day: cases[d], nr: n1.toString() });
+      WorldCon.push({ day: cases[case_], nr: n1.toString() });
     }
     console.log('chart cases', WorldCon);
 
-    for (const td in deaths) {
+    for (const case_ in deaths) {
       n2++;
-      WorldDeaths.push({ day: deaths[td], nr: n2.toString() });
+      WorldDeaths.push({ day: deaths[case_], nr: n2.toString() });
     }
     console.log('chart deaths', WorldDeaths);
-
+    console.log(window.innerWidth);
     let width = window.innerWidth;
     if (width > 800) {
       width = 800;

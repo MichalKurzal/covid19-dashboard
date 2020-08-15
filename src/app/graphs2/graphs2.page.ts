@@ -22,15 +22,15 @@ export class Graphs2Page implements OnInit {
   getdata() {
     let dataL = [];
     const dataM = [];
-    this.nativeStorage.getItem('DataCountries2').then((res) => {
+    this.nativeStorage.getItem('DataCountries').then((res) => {
       dataL = res;
       for (const d of dataL) {
-        if (d.TotalDeaths > 10000) {
+        if (d.deaths > 10000) {
           dataM.push(d);
         }
       }
 
-      dataM.sort((a, b) => a.TotalDeaths - b.TotalDeaths);
+      dataM.sort((a, b) => a.deaths - b.deaths);
       console.log('dataL', dataL);
       console.log('dataM', dataM);
       this.chart(dataM);
@@ -38,10 +38,10 @@ export class Graphs2Page implements OnInit {
   }
   chart = (data) => {
     const Length = data.length;
-    const domain = data[Length - 1].TotalDeaths + 0.2 * data[Length - 1].TotalDeaths;
+    const domain = data[Length - 1].deaths + 0.2 * data[Length - 1].deaths;
     const xScale = d3
       .scaleBand()
-      .domain(data.map((dataPoint) => dataPoint.Country))
+      .domain(data.map((dataPoint) => dataPoint.country))
       .rangeRound([0, 600])
       .padding(0.1);
     const yScale = d3.scaleLinear().domain([0, domain]).range([600, 0]);
@@ -55,9 +55,9 @@ export class Graphs2Page implements OnInit {
       .selectAll('rect')
       .data(data)
       .join('rect')
-      .attr('x', (data) => xScale(data.Country))
-      .attr('y', (data) => yScale(data.TotalDeaths))
-      .attr('height', (data) => 600 - yScale(data.TotalDeaths))
+      .attr('x', (data) => xScale(data.country))
+      .attr('y', (data) => yScale(data.deaths))
+      .attr('height', (data) => 600 - yScale(data.deaths))
       .attr('width', xScale.bandwidth());
 
     svg
