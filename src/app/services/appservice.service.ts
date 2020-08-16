@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as d3 from 'd3';
-import { WeekDay } from '@angular/common';
-
-interface cases {
-  day: string;
-  nr: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -35,22 +29,22 @@ export class AppserviceService {
   }
 
   worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
-    const WorldCon = [];
-    const WorldDeaths = [];
+    const cases_ = [];
+    const deaths_ = [];
     let n1 = 0;
     let n2 = 0;
     for (const case_ in cases) {
       n1++;
-      WorldCon.push({ day: cases[case_], nr: n1.toString() });
+      cases_.push({ day: cases[case_], nr: n1.toString() });
     }
-    console.log('chart cases', WorldCon);
 
     for (const case_ in deaths) {
       n2++;
-      WorldDeaths.push({ day: deaths[case_], nr: n2.toString() });
+      deaths_.push({ day: deaths[case_], nr: n2.toString() });
     }
-    console.log('chart deaths', WorldDeaths);
-    console.log(window.innerWidth);
+    console.log('chart cases', cases_);
+    console.log('chart deaths', deaths_);
+
     let width = window.innerWidth;
     if (width > 800) {
       width = 800;
@@ -60,27 +54,25 @@ export class AppserviceService {
     if (ratio < 1.45) {
       ratio = 1.45;
     }
-    console.log('ratio ', ratio);
     const ratio2 = 4 - ratio;
-    // let height = (width/2) * ratio;
     let height = width / ratio2;
+
+    console.log(window.innerWidth);
     console.log('width ', width);
     console.log('height ', height);
+    console.log('ratio ', ratio);
 
-    const domain = WorldCon[WorldCon.length - 1].day + 0.1 * WorldCon[WorldCon.length - 1].day;
-    const domain2 =
-      WorldDeaths[WorldDeaths.length - 1].day + 0.1 * WorldDeaths[WorldDeaths.length - 1].day;
-
-    console.log('Final Data World ', WorldCon);
+    const domain = cases_[cases_.length - 1].day + 0.1 * cases_[cases_.length - 1].day;
+    const domain2 = deaths_[deaths_.length - 1].day + 0.1 * deaths_[deaths_.length - 1].day;
 
     const xScale = d3
       .scaleBand()
-      .domain(WorldCon.map((dataPoint) => dataPoint.nr))
+      .domain(cases_.map((dataPoint) => dataPoint.nr))
       .rangeRound([0, width + 15]);
     const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0]);
     const xScale2 = d3
       .scaleBand()
-      .domain(WorldDeaths.map((dataPoint) => dataPoint.nr))
+      .domain(deaths_.map((dataPoint) => dataPoint.nr))
       .rangeRound([0, width + 15]);
     const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0]);
 
@@ -106,8 +98,8 @@ export class AppserviceService {
 
     svg1 = d3.select(`${id1}`).attr('viewBox', [0, 0, width, height]);
     svg2 = d3.select(`${id2}`).attr('viewBox', [0, 0, width, height]);
-    svg1.attr('visibility', 'visible');
-    svg2.attr('visibility', 'visible');
+    svg1.attr('display', 'initial');
+    svg2.attr('display', 'initial');
 
     const gradient = svg1
       .append('svg:defs')
@@ -155,7 +147,7 @@ export class AppserviceService {
     svg1
       .append('path')
       .attr('class', 'area')
-      .datum(WorldCon)
+      .datum(cases_)
       .attr('fill', 'url(#' + `${g1}` + ')')
       .attr('d', area);
 
@@ -164,7 +156,7 @@ export class AppserviceService {
       .attr('text-anchor', 'start')
       .attr('dy', 20)
       .attr('dx', 60)
-      .attr('font-size', 14)
+      .attr('font-size', 16)
       .text('Confirmed cases in the last 30 days');
 
     svg2
@@ -172,13 +164,13 @@ export class AppserviceService {
       .attr('text-anchor', 'start')
       .attr('dy', 20)
       .attr('dx', 50)
-      .attr('font-size', 14)
+      .attr('font-size', 16)
       .text('Deaths in the last 30 days');
 
     svg2
       .append('path')
       .attr('class', 'area')
-      .datum(WorldDeaths)
+      .datum(deaths_)
       .attr('fill', 'url(#' + `${g2}` + ')')
       .attr('d', area2);
 

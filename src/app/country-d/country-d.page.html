@@ -5,8 +5,10 @@
     <ion-grid>
       <ion-row>
         <ion-item id="country">
-          <ion-col><img [(ngModel)]="cc" ngDefaultControl src="{{gurl}}{{cc}}.png" /></ion-col>
-          <ion-col><p [(ngModel)]="cn" ngDefaultControl>{{cn}}</p></ion-col>
+          <ion-col>
+            <img [(ngModel)]="ccode" ngDefaultControl src="{{gurl}}{{ccode}}.png" />
+          </ion-col>
+          <ion-col><p [(ngModel)]="country" ngDefaultControl>{{country}}</p></ion-col>
         </ion-item>
       </ion-row>
       <ion-card>

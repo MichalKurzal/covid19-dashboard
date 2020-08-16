@@ -11,18 +11,14 @@ import * as d3 from 'd3';
   styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-  cc: any;
-  cn: any;
+  ccode: any;
+  country: any;
   ncon: any;
   nd: any;
   nr: any;
   tc: any;
   tr: any;
   td: any;
-  slug: any;
-  dayone: any;
-  dayL: any;
-  dayoneAU: any;
   gurl;
   svg: any;
   svg2: any;
@@ -39,8 +35,8 @@ export class CountryDPage implements OnInit {
     this.route.queryParams.subscribe(async (params) => {
       const c = params.country;
       console.log(c);
-      this.cc = c.countryInfo.iso2;
-      this.cn = c.country;
+      this.ccode = c.countryInfo.iso2;
+      this.country = c.country;
       this.ncon = c.todayCases;
       this.nd = c.todayDeaths;
       this.nr = c.todayRecovered;
@@ -54,7 +50,7 @@ export class CountryDPage implements OnInit {
 
   getHistoricalData = () => {
     this.appservice
-      .HistoricalCountry(this.cc)
+      .HistoricalCountry(this.ccode)
       .then((data: any) => {
         console.log('HistorcalData', data);
         const timeline = data.timeline;
@@ -76,8 +72,8 @@ export class CountryDPage implements OnInit {
 
         this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0]);
         this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0]);
-        this.svg.attr('visibility', 'hidden');
-        this.svg2.attr('visibility', 'hidden');
+        this.svg.attr('display', 'none');
+        this.svg2.attr('display', 'none');
       });
   };
 }
