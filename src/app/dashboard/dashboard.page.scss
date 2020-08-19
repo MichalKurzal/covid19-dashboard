@@ -2,11 +2,6 @@ ion-header {
   margin: 0px;
   padding: 0px;
 }
-#title {
-  margin: 0px;
-  padding: 0px;
-}
-
 ion-toolbar {
   margin: 0px;
   padding: 0px;
@@ -15,17 +10,15 @@ ion-toolbar {
   justify-content: flex-start;
   --background: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
-
-p {
-  color: black;
-  font-size: 24px;
-  margin: 0px;
-  padding: 0px;
-}
 .header {
   --background: linear-gradient(to right, #b4e2d3, #84d1b8);
   --color: white;
 }
+#title {
+  margin: 0px;
+  padding: 0px;
+}
+
 ion-icon {
   float: right;
   font-size: 44px;
@@ -36,16 +29,6 @@ ion-icon {
   padding: 0px;
   color: black;
 }
-#content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  margin: 0px;
-  padding: 0px;
-  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
-}
-
 #svg3 {
   margin-left: 10px;
   margin-right: 10px;
@@ -60,25 +43,24 @@ ion-icon {
   margin-top: 0px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-
-#main {
+#content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
   margin: 0px;
   padding: 0px;
+  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
-
+#main {
+  padding: 0px;
+}
 ion-card {
   margin: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
-}
-ion-card-title {
-  color: black;
-  font-size: 28px;
-  text-align: center;
-  margin: 0px;
 }
 ion-card-subtitle {
   color: black;
@@ -86,6 +68,13 @@ ion-card-subtitle {
   font-size: 16px;
   margin: 0px;
   padding: 0px;
+}
+p {
+  color: black;
+  font-size: 24px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
 }
 
 ion-card-header {
@@ -190,13 +179,13 @@ ion-card-header {
   }
   p {
     color: black;
-    font-size: 20px;
+    font-size: 24px;
     margin: 0px;
     padding: 0px;
   }
   ion-card-subtitle {
     color: black;
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 @media only screen and (orientation: landscape) and (min-width: 1200px) and (min-height: 600px) and (max-width: 1900px) {

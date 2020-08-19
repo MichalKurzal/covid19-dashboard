@@ -55,7 +55,7 @@ export class AppserviceService {
       ratio = 1.45;
     }
     const ratio2 = 4 - ratio;
-    let height = width / ratio2;
+    const height = width / ratio2;
 
     console.log(window.innerWidth);
     console.log('width ', width);
