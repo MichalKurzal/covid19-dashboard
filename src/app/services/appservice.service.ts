@@ -29,19 +29,16 @@ export class AppserviceService {
   }
 
   worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
-    const cases_ = [];
-    const deaths_ = [];
-    let n1 = 0;
-    let n2 = 0;
-    for (const case_ in cases) {
-      n1++;
-      cases_.push({ day: cases[case_], nr: n1.toString() });
-    }
+    let cases_ = [];
+    let deaths_ = [];
 
-    for (const case_ in deaths) {
-      n2++;
-      deaths_.push({ day: deaths[case_], nr: n2.toString() });
-    }
+    cases_ = Object.values(cases)
+      .map((c, i) => [{ day: c, nr: i }])
+      .map((c) => c[0]);
+    deaths_ = Object.values(deaths)
+      .map((c, i) => [{ day: c, nr: i }])
+      .map((c) => c[0]);
+
     console.log('chart cases', cases_);
     console.log('chart deaths', deaths_);
 
