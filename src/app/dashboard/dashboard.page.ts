@@ -128,39 +128,32 @@ export class DashboardPage implements OnInit {
       .NewApiContinents()
       .then((res) => {
         const ContArray = [];
-        let TotalCases = [];
-        let NewCases = [];
-        let TotalDeaths = [];
-        let NewDeaths = [];
-        let TotalRecovered = [];
-        let NewRecovered = [];
+        let TotalCases_;
+        let NewCases_;
+        let TotalDeaths_;
+        let NewDeaths_;
+        let TotalRecovered_;
+        let NewRecovered_;
 
         for (const cases in res) {
           ContArray.push(res[cases]);
         }
         console.log('contarray ', ContArray);
 
-        TotalCases = ContArray.map((c) => c.cases);
-        NewCases = ContArray.map((c) => c.todayCases);
-        TotalDeaths = ContArray.map((c) => c.deaths);
-        NewDeaths = ContArray.map((c) => c.todayDeaths);
-        TotalRecovered = ContArray.map((c) => c.recovered);
-        NewRecovered = ContArray.map((c) => c.todayRecovered);
-
-        const SumCases = TotalCases.reduce((a, b) => a + b);
-        const SumNewCases = NewCases.reduce((a, b) => a + b);
-        const SumDeaths = TotalDeaths.reduce((a, b) => a + b);
-        const SumNewDeaths = NewDeaths.reduce((a, b) => a + b);
-        const SumTotalRecoverde = TotalRecovered.reduce((a, b) => a + b);
-        const SumNewRecovered = NewRecovered.reduce((a, b) => a + b);
+        TotalCases_ = ContArray.map((c) => c.cases).reduce((a, b) => a + b);
+        NewCases_ = ContArray.map((c) => c.todayCases).reduce((a, b) => a + b);
+        TotalDeaths_ = ContArray.map((c) => c.deaths).reduce((a, b) => a + b);
+        NewDeaths_ = ContArray.map((c) => c.todayDeaths).reduce((a, b) => a + b);
+        TotalRecovered_ = ContArray.map((c) => c.recovered).reduce((a, b) => a + b);
+        NewRecovered_ = ContArray.map((c) => c.todayRecovered).reduce((a, b) => a + b);
 
         this.DataCont = {
-          cases: SumCases,
-          newCases: SumNewCases,
-          NewDeaths: SumNewDeaths,
-          deaths: SumDeaths,
-          recovered: SumTotalRecoverde,
-          NewRecovered: SumNewRecovered,
+          cases: TotalCases_,
+          newCases: NewCases_,
+          NewDeaths: NewDeaths_,
+          deaths: TotalDeaths_,
+          recovered: TotalRecovered_,
+          NewRecovered: NewRecovered_,
         };
 
         console.log('DataCont', this.DataCont);
