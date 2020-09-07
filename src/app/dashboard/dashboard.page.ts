@@ -7,6 +7,15 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ng
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
+interface DataCont_ {
+  cases: number;
+  newCases: number;
+  NewDeaths: number;
+  deaths: number;
+  recovered: number;
+  NewRecovered: number;
+}
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -14,6 +23,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 })
 export class DashboardPage implements OnInit {
   public platform: any;
+  DataCont: DataCont_;
   data;
   TotalC;
   TotalD;
@@ -144,30 +154,19 @@ export class DashboardPage implements OnInit {
         const SumTotalRecoverde = TotalRecovered.reduce((a, b) => a + b);
         const SumNewRecovered = NewRecovered.reduce((a, b) => a + b);
 
-        console.log(
-          'Total Cases, New Cases, Total Deaths, New Deaths',
-          SumCases,
-          SumNewCases,
-          SumDeaths,
-          SumNewDeaths
-        );
-
-        const DataCont = {
-          cases: 0,
-          newCases: 0,
-          NewDeaths: 0,
-          deaths: 0,
-          recovered: 0,
-          NewRecovered: 0,
+        this.DataCont = {
+          cases: SumCases,
+          newCases: SumNewCases,
+          NewDeaths: SumNewDeaths,
+          deaths: SumDeaths,
+          recovered: SumTotalRecoverde,
+          NewRecovered: SumNewRecovered,
         };
-        DataCont.cases = SumCases;
-        DataCont.newCases = SumNewCases;
-        DataCont.NewDeaths = SumNewDeaths;
-        (DataCont.deaths = SumDeaths),
-          (DataCont.recovered = SumTotalRecoverde),
-          (DataCont.NewRecovered = SumNewRecovered),
-          this.setTotal(DataCont);
-        this.nativeStorage.setItem('DataContinents', DataCont).then(
+
+        console.log('DataCont', this.DataCont);
+
+        this.setTotal(this.DataCont);
+        this.nativeStorage.setItem('DataContinents', this.DataCont).then(
           () => console.log('stored Item'),
           (err) => console.error('Error stoting item', err)
         );

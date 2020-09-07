@@ -69,7 +69,7 @@ export class Graphs1Page implements OnInit {
       .selectAll('text')
       .attr('transform', 'translate(-15,15)rotate(-90)')
       .style('text-anchor', 'end')
-      .style('font-size', 24)
+      .style('font-size', 20)
       .style('fill', '#69a3b2');
 
     svg
