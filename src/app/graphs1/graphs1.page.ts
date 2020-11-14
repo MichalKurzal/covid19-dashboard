@@ -26,7 +26,7 @@ export class Graphs1Page implements OnInit {
     this.nativeStorage.getItem('DataCountries').then((res) => {
       dataL = res;
       for (const d of dataL) {
-        if (d.cases > 100000) {
+        if (d.cases > 1000000) {
           dataM.push(d);
         }
       }
