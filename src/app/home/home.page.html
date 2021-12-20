@@ -1,7 +1,10 @@
 <ion-content>
   <ion-list id="container">
     <ion-item *ngFor="let c of countries" (click)="goforward(c)">
-      <ion-img src="{{gurl}}{{c.countryInfo.iso2}}.png" style="height: 64px">
+      <ion-img
+        src="{{gurl}}{{c.countryInfo.iso2}}.png"
+        style="height: 64px; width: 140px"
+      >
       </ion-img>
       <p id="it">{{c.country}}</p>
       <ion-badge color="warning">{{c.cases}}</ion-badge>
