@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import * as d3 from 'd3';
-import { AppserviceService } from '../services/appservice.service';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import * as d3 from "d3";
+import { AppserviceService } from "../services/appservice.service";
+import { NativeStorage } from "@ionic-native/native-storage/ngx";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-graphs2',
-  templateUrl: './graphs2.page.html',
-  styleUrls: ['./graphs2.page.scss'],
+  selector: "app-graphs2",
+  templateUrl: "./graphs2.page.html",
+  styleUrls: ["./graphs2.page.scss"],
 })
 export class Graphs2Page implements OnInit {
   constructor(
@@ -22,17 +22,17 @@ export class Graphs2Page implements OnInit {
   getdata() {
     let dataL = [];
     const dataM = [];
-    this.nativeStorage.getItem('DataCountries').then((res) => {
+    this.nativeStorage.getItem("DataCountries").then((res) => {
       dataL = res;
       for (const d of dataL) {
-        if (d.deaths > 10000) {
+        if (d.deaths > 100000) {
           dataM.push(d);
         }
       }
 
       dataM.sort((a, b) => a.deaths - b.deaths);
-      console.log('dataL', dataL);
-      console.log('dataM', dataM);
+      console.log("dataL", dataL);
+      console.log("dataM", dataM);
       this.chart(dataM);
     });
   }
@@ -47,40 +47,40 @@ export class Graphs2Page implements OnInit {
     const yScale = d3.scaleLinear().domain([0, domain]).range([600, 0]);
     const y_axis = d3.axisRight().scale(yScale);
 
-    const svg = d3.select('#s2').attr('viewBox', [0, 0, 600, 900]);
+    const svg = d3.select("#s2").attr("viewBox", [0, 0, 600, 900]);
 
     svg
-      .append('g')
-      .attr('fill', '#D42424')
-      .selectAll('rect')
+      .append("g")
+      .attr("fill", "#D42424")
+      .selectAll("rect")
       .data(data)
-      .join('rect')
-      .attr('x', (data) => xScale(data.country))
-      .attr('y', (data) => yScale(data.deaths))
-      .attr('height', (data) => 600 - yScale(data.deaths))
-      .attr('width', xScale.bandwidth());
+      .join("rect")
+      .attr("x", (data) => xScale(data.country))
+      .attr("y", (data) => yScale(data.deaths))
+      .attr("height", (data) => 600 - yScale(data.deaths))
+      .attr("width", xScale.bandwidth());
 
     svg
-      .append('g')
-      .attr('transform', 'translate(0,600)') // This controls the vertical position of the Axis
+      .append("g")
+      .attr("transform", "translate(0,600)") // This controls the vertical position of the Axis
       .call(d3.axisBottom(xScale))
-      .selectAll('text')
-      .attr('transform', 'translate(-15,15)rotate(-90)')
-      .style('text-anchor', 'end')
-      .style('font-size', 24)
-      .style('fill', '#69a3b2');
+      .selectAll("text")
+      .attr("transform", "translate(-15,15)rotate(-90)")
+      .style("text-anchor", "end")
+      .style("font-size", 24)
+      .style("fill", "#69a3b2");
 
     svg
-      .append('g')
-      .attr('class', 'y axis')
-      .attr('transform', 'translate(0, 0)')
-      .style('font-size', 24)
+      .append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(0, 0)")
+      .style("font-size", 24)
       .call(y_axis);
   };
 
   goforward = () => {
-    this.router.navigateByUrl('tabs-nav/graphs1');
+    this.router.navigateByUrl("tabs-nav/graphs1");
 
-    console.log('goforward');
+    console.log("goforward");
   };
 }

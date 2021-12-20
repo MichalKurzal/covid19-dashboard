@@ -1,8 +1,13 @@
-ion-list{
+ion-list {
   overflow: scroll;
 }
-ion-badge{
+ion-badge {
   margin-left: 5px;
   margin-right: 5px;
   font-size: 10px;
+}
+ion-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
