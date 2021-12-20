@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { File } from "@ionic-native/file/ngx";
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
 import * as d3 from "d3";
 
 @Injectable({
@@ -8,7 +10,11 @@ import * as d3 from "d3";
 export class AppserviceService {
   Url2 = "https://corona.lmao.ninja/v2/";
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public fileTransfer: FileTransfer,
+    private file: File
+  ) {}
   NewApiContinents() {
     return this.http.get(`${this.Url2}continents?false&sort`).toPromise();
   }
@@ -25,6 +31,27 @@ export class AppserviceService {
       .get(`${this.Url2}historical/${country}?lastdays=30`)
       .toPromise();
   }
+
+  checkImages = (data) => {
+    console.log("check images", data);
+    data.map((code: any) =>
+      this.file
+        .checkFile(this.file.dataDirectory, code + ".png")
+        .then((res: any) => console.log("succsess", res))
+        .catch((err) => {
+          console.log("check error", err);
+          this.fileTransfer
+            .create()
+            .download(
+              `http://www.geognos.com/api/en/countries/flag/${code}.png`,
+              this.file.dataDirectory + `${code}` + ".png"
+            )
+            .catch((err) => {
+              console.log("error", err);
+            });
+        })
+    );
+  };
 
   worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
     let cases_ = [];

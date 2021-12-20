@@ -1,12 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AppserviceService } from "../services/appservice.service";
 import { NavController, LoadingController, Platform } from "@ionic/angular";
-import { Router, NavigationExtras } from "@angular/router";
-import { File } from "@ionic-native/file/ngx";
-import {
-  FileTransfer,
-  FileTransferObject,
-} from "@ionic-native/file-transfer/ngx";
+import { Router } from "@angular/router";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { ScreenOrientation } from "@ionic-native/screen-orientation/ngx";
 
@@ -23,6 +18,7 @@ interface DataCont_ {
   selector: "app-dashboard",
   templateUrl: "./dashboard.page.html",
   styleUrls: ["./dashboard.page.scss"],
+  providers: [AppserviceService],
 })
 export class DashboardPage implements OnInit {
   public platform: any;
@@ -40,9 +36,7 @@ export class DashboardPage implements OnInit {
 
   constructor(
     public appservice: AppserviceService,
-    public fileTransfer: FileTransfer,
     public nav: NavController,
-    private file: File,
     public router: Router,
     private nativeStorage: NativeStorage,
     public loading: LoadingController,
@@ -78,7 +72,7 @@ export class DashboardPage implements OnInit {
       .getItem("CountryCodes")
       .then((res) => {
         const data = res;
-        this.checkImages(data);
+        this.appservice.checkImages(data);
       })
       .catch((err) => {
         console.log("Error getCountrynames", err);
@@ -183,7 +177,7 @@ export class DashboardPage implements OnInit {
         () => console.log("stored CountryCodes"),
         (err) => console.error("Error stoting item", err)
       );
-      this.checkImages(this.codes);
+      this.appservice.checkImages(this.codes);
       this.nativeStorage
         .setItem("DataCountries", res)
         .then(
@@ -239,24 +233,6 @@ export class DashboardPage implements OnInit {
     this.TotalD = data.deaths;
     this.TotalR = data.recovered;
     this.NewR = data.NewRecovered;
-  };
-
-  checkImages = (data) => {
-    console.log("check images", data);
-    data.map((code: any) =>
-      this.file
-        .checkFile(this.file.dataDirectory, code + ".png")
-        .then((res: any) => console.log("succsess", res))
-        .catch((err) => {
-          console.log("check error", err);
-          this.fileTransfer
-            .create()
-            .download(
-              `http://www.geognos.com/api/en/countries/flag/${code}.png`,
-              this.file.dataDirectory + `${code}` + ".png"
-            );
-        })
-    );
   };
 
   goforward = () => {
