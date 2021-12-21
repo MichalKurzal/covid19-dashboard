@@ -17,6 +17,8 @@ ion-toolbar {
 #title {
   margin: 0px;
   padding: 0px;
+  color: black;
+  font-size: 24px;
 }
 
 ion-icon {
@@ -55,35 +57,7 @@ ion-icon {
 #main {
   padding: 0px;
 }
-ion-card {
-  margin: 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
-}
-ion-card-subtitle {
-  color: black;
-  text-align: center;
-  font-size: 16px;
-  margin: 0px;
-  padding: 0px;
-}
-p {
-  color: black;
-  font-size: 24px;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-}
 
-ion-card-header {
-  margin: 0px;
-  padding: 0px;
-}
-.D {
-  background-image: linear-gradient(to right, #de3d55, #e75c71);
-}
 @media only screen and (orientation: landscape) and (max-width: 700px) {
   #content {
     display: flex;
@@ -106,16 +80,6 @@ ion-card-header {
   div {
     top: 0px;
     right: 10px;
-  }
-  p {
-    color: black;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 12px;
   }
   #header {
     display: none;
@@ -140,16 +104,6 @@ ion-card-header {
     max-width: 230px;
   }
 
-  p {
-    color: black;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 12px;
-  }
   #header {
     display: none;
   }
@@ -177,16 +131,6 @@ ion-card-header {
   #main {
     flex: 1;
   }
-  p {
-    color: black;
-    font-size: 24px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 16px;
-  }
 }
 @media only screen and (orientation: landscape) and (min-width: 1200px) and (min-height: 600px) and (max-width: 1900px) {
   #content {
@@ -211,16 +155,6 @@ ion-card-header {
   #main {
     flex: 1;
   }
-
-  ion-card-subtitle {
-    font-size: 24px;
-  }
-  p {
-    color: black;
-    font-size: 28px;
-    margin: 0px;
-    padding: 0px;
-  }
 }
 @media only screen and (orientation: landscape) and (min-width: 1900px) {
   #svg1 {
@@ -234,46 +168,9 @@ ion-card-header {
     flex: 1;
   }
 }
-@media only screen and (min-width: 430px) and (max-width: 600px) {
-  p {
-    color: black;
-    font-size: 28px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 18px;
-  }
-}
-@media only screen and (min-width: 600px) and (orientation: portrait) {
-  p {
-    color: black;
-    font-size: 44px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 24px;
-  }
 
+@media only screen and (min-width: 600px) and (orientation: portrait) {
   div {
     margin: 0px;
-  }
-}
-@media only screen and (max-width: 370px) and (orientation: portrait) {
-  p {
-    font-size: 20px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 14px;
   }
 }
