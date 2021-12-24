@@ -1,33 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-item lines="none" class="header">
-      <p id="title">COVID-19 Dashboard</p>
-      <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
-    </ion-item>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-item lines="none" class="header">
+            <p id="title">COVID-19 Dashboard</p>
+            <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content id="content">
-  <svg id="svg3"></svg>
-  <svg id="svg4"></svg>
+    <svg id="svg3"></svg>
+    <svg id="svg4"></svg>
 
-  <div id="main">
-    <ion-refresher
-      slot="fixed"
-      pullFactor="0.5"
-      pullMin="100"
-      pullMax="200"
-      (ionRefresh)="doRefresh($event)"
-    >
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <app-detail-dash
-      [totalCases]="TotalC"
-      [totalDeaths]="TotalD"
-      [totalRecovered]="TotalR"
-      [newCases]="NewC"
-      [newDeaths]="NewD"
-      [newRecovered]="NewR"
-    ></app-detail-dash>
-  </div>
+    <div id="main">
+        <ion-refresher
+            slot="fixed"
+            pullFactor="0.5"
+            pullMin="100"
+            pullMax="200"
+            (ionRefresh)="doRefresh($event)"
+        >
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <app-detail-dash
+            [totalCases]="TotalC"
+            [totalDeaths]="TotalD"
+            [totalRecovered]="TotalR"
+            [newCases]="NewC"
+            [newDeaths]="NewD"
+            [newRecovered]="NewR"
+        ></app-detail-dash>
+    </div>
 </ion-content>
