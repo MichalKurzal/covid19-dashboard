@@ -22,12 +22,12 @@
             <ion-refresher-content></ion-refresher-content>
         </ion-refresher>
         <app-detail-dash
-            [totalCases]="TotalC"
-            [totalDeaths]="TotalD"
-            [totalRecovered]="TotalR"
-            [newCases]="NewC"
-            [newDeaths]="NewD"
-            [newRecovered]="NewR"
+            [totalCases]="dataCont.cases"
+            [totalDeaths]="dataCont.deaths"
+            [totalRecovered]="dataCont.recovered"
+            [newCases]="dataCont.newCases"
+            [newDeaths]="dataCont.NewDeaths"
+            [newRecovered]="dataCont.NewRecovered"
         ></app-detail-dash>
     </div>
 </ion-content>

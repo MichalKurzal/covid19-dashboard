@@ -23,15 +23,18 @@ interface DataCont_ {
 export class DashboardPage implements OnInit {
     public platform: any
     data
-    TotalC
-    TotalD
-    TotalR
-    NewC
-    NewD
-    NewR
     svg: any
     svg2: any
     codes
+
+    dataCont: DataCont_ = {
+        cases: 0,
+        newCases: 0,
+        NewDeaths: 0,
+        deaths: 0,
+        recovered: 0,
+        NewRecovered: 0,
+    }
 
     constructor(
         public appservice: AppserviceService,
@@ -103,34 +106,34 @@ export class DashboardPage implements OnInit {
                 for (const cases in res) {
                     ContArray.push(res[cases])
                 }
-                let dataCont = {} as DataCont_
 
-                dataCont.cases = ContArray.map((c) => c.cases).reduce(
+                this.dataCont.cases = ContArray.map((c) => c.cases).reduce(
                     (a, b) => a + b
                 )
-                dataCont.newCases = ContArray.map((c) => c.todayCases).reduce(
+                this.dataCont.newCases = ContArray.map(
+                    (c) => c.todayCases
+                ).reduce((a, b) => a + b)
+                this.dataCont.deaths = ContArray.map((c) => c.deaths).reduce(
                     (a, b) => a + b
                 )
-                dataCont.deaths = ContArray.map((c) => c.deaths).reduce(
-                    (a, b) => a + b
-                )
-                dataCont.NewDeaths = ContArray.map((c) => c.todayDeaths).reduce(
-                    (a, b) => a + b
-                )
-                dataCont.recovered = ContArray.map((c) => c.recovered).reduce(
-                    (a, b) => a + b
-                )
-                dataCont.NewRecovered = ContArray.map(
+                this.dataCont.NewDeaths = ContArray.map(
+                    (c) => c.todayDeaths
+                ).reduce((a, b) => a + b)
+                this.dataCont.recovered = ContArray.map(
+                    (c) => c.recovered
+                ).reduce((a, b) => a + b)
+                this.dataCont.NewRecovered = ContArray.map(
                     (c) => c.todayRecovered
                 ).reduce((a, b) => a + b)
 
-                console.log('DataCont', dataCont)
+                console.log('DataCont', this.dataCont)
 
-                this.setTotal(dataCont)
-                this.nativeStorage.setItem('DataContinents', dataCont).then(
-                    () => console.log('stored Item'),
-                    (err) => console.error('Error stoting item', err)
-                )
+                this.nativeStorage
+                    .setItem('DataContinents', this.dataCont)
+                    .then(
+                        () => console.log('stored Item'),
+                        (err) => console.error('Error stoting item', err)
+                    )
             })
             .catch((error) => {
                 console.log('catch error get Global', error)
@@ -203,12 +206,12 @@ export class DashboardPage implements OnInit {
 
     setTotal = (data) => {
         console.log(data)
-        this.TotalC = data.cases
-        this.NewC = data.newCases
-        this.NewD = data.NewDeaths
-        this.TotalD = data.deaths
-        this.TotalR = data.recovered
-        this.NewR = data.NewRecovered
+        this.dataCont.cases = data.cases
+        this.dataCont.newCases = data.newCases
+        this.dataCont.NewDeaths = data.NewDeaths
+        this.dataCont.deaths = data.deaths
+        this.dataCont.recovered = data.recovered
+        this.dataCont.NewRecovered = data.NewRecovered
     }
 
     goforward = () => {
