@@ -44,8 +44,22 @@ export class DashboardPage implements OnInit {
         private screenOrientation: ScreenOrientation
     ) {}
 
-    ngOnInit() {
-        Promise.all([this.loadContinents(), this.loadHistorical()])
+    async ngOnInit() {
+        console.log('ngAfterViewInit')
+        const loading = this.loading.create({
+            spinner: 'circles',
+            message: 'Loading Please Wait...',
+        })
+        ;(await loading).present().then(async () => {
+            Promise.all([
+                this.loadContinents(),
+                this.loadHistorical(),
+                this.loadCountriesData(),
+            ]).then(async () => (await loading).dismiss())
+        })
+    }
+
+    ngAfterViewInit() {
         if (window.innerWidth < 900) {
             try {
                 this.screenOrientation.lock(
@@ -54,19 +68,8 @@ export class DashboardPage implements OnInit {
             } catch (e) {
                 console.log(e)
             }
-
             console.log(navigator.userAgent)
         }
-    }
-    async ngAfterViewInit() {
-        console.log('ngAfterViewInit')
-        const loading = this.loading.create({
-            spinner: 'circles',
-            message: 'Loading Please Wait...',
-        })
-        ;(await loading).present().then(async () => {
-            this.loadCountriesData().then(async () => (await loading).dismiss())
-        })
     }
 
     loadHistorical = async () => {
