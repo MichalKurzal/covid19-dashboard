@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AppserviceService } from '../services/appservice.service'
-import { NavController, LoadingController, Platform } from '@ionic/angular'
+import { NavController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
@@ -21,7 +21,6 @@ interface DataCont_ {
     providers: [AppserviceService],
 })
 export class DashboardPage implements OnInit {
-    public platform: any
     data
     svg: any
     svg2: any
@@ -42,18 +41,20 @@ export class DashboardPage implements OnInit {
         public router: Router,
         private nativeStorage: NativeStorage,
         public loading: LoadingController,
-        private _platform: Platform,
         private screenOrientation: ScreenOrientation
-    ) {
-        this.platform = _platform
-    }
+    ) {}
 
     ngOnInit() {
         Promise.all([this.loadContinents(), this.loadHistorical()])
         if (window.innerWidth < 900) {
-            this.screenOrientation.lock(
-                this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY
-            )
+            try {
+                this.screenOrientation.lock(
+                    this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY
+                )
+            } catch (e) {
+                console.log(e)
+            }
+
             console.log(navigator.userAgent)
         }
     }
