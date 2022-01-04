@@ -2,10 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 import { NavController, Platform, NavParams } from '@ionic/angular'
 import { NavigationExtras } from '@angular/router'
 import { File } from '@ionic-native/file/ngx'
-import {
-    FileTransfer,
-    FileTransferObject,
-} from '@ionic-native/file-transfer/ngx'
+import { FileTransfer } from '@ionic-native/file-transfer/ngx'
 import { WebView } from '@ionic-native/ionic-webview/ngx'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
@@ -17,11 +14,10 @@ import { IonInfiniteScroll } from '@ionic/angular'
 })
 export class HomePage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll
-    data
-    global
     gurl
-    countries
-    code
+    countries: any = []
+    dataList: any = []
+    itemLimit: number = 20
 
     constructor(
         public nav: NavController,
@@ -39,7 +35,7 @@ export class HomePage implements OnInit {
             .then((res) => {
                 this.countries = res
                 this.countries.reverse()
-                console.log('countries', this.countries)
+                this.dataList = this.countries.slice(0, this.itemLimit)
             })
             .catch((error) => {
                 console.log('error', error)
@@ -55,13 +51,13 @@ export class HomePage implements OnInit {
         console.log('Detail Country Page')
         this.nav.navigateForward('tabs-nav/countryD', navigationExtras)
     }
+
     loadData(event) {
         console.log(event)
         setTimeout(() => {
-            console.log('Done')
+            this.itemLimit += 20
+            this.dataList = this.countries.slice(0, this.itemLimit)
             event.target.complete()
-            // App logic to determine if all data is loaded
-            // and disable the infinite scroll
         }, 500)
     }
 }

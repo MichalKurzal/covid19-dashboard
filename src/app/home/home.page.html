@@ -1,23 +1,23 @@
 <ion-content>
-  <ion-list id="container">
-    <ion-item *ngFor="let c of countries" (click)="goforward(c)">
-      <ion-img
-        src="{{gurl}}{{c.countryInfo.iso2}}.png"
-        style="height: 64px; width: 140px"
-      >
-      </ion-img>
-      <p id="it">{{c.country}}</p>
-      <ion-badge color="warning">{{c.cases}}</ion-badge>
-      <ion-badge color="danger">{{c.deaths}}</ion-badge>
-      <ion-badge color="success">{{c.recovered}}</ion-badge>
-    </ion-item>
-  </ion-list>
+    <ion-list id="container">
+        <ion-item *ngFor="let c of dataList" (click)="goforward(c)">
+            <ion-img
+                src="{{gurl}}{{c.countryInfo.iso2}}.png"
+                style="height: 64px; width: 140px"
+            >
+            </ion-img>
+            <p id="it">{{c.country}}</p>
+            <ion-badge color="warning">{{c.cases}}</ion-badge>
+            <ion-badge color="danger">{{c.deaths}}</ion-badge>
+            <ion-badge color="success">{{c.recovered}}</ion-badge>
+        </ion-item>
+    </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data..."
-    >
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data..."
+        >
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
