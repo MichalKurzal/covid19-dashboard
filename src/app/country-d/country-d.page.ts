@@ -5,6 +5,15 @@ import { WebView } from '@ionic-native/ionic-webview/ngx'
 import { File } from '@ionic-native/file/ngx'
 import * as d3 from 'd3'
 
+interface DataCont_ {
+    cases: number
+    newCases: number
+    NewDeaths: number
+    deaths: number
+    recovered: number
+    NewRecovered: number
+}
+
 @Component({
     selector: 'app-country-d',
     templateUrl: './country-d.page.html',
@@ -13,15 +22,18 @@ import * as d3 from 'd3'
 export class CountryDPage implements OnInit {
     ccode: any
     country: any
-    ncon: any
-    nd: any
-    nr: any
-    tc: any
-    tr: any
-    td: any
     gurl
     svg: any
     svg2: any
+
+    dataCont: DataCont_ = {
+        cases: 0,
+        newCases: 0,
+        NewDeaths: 0,
+        deaths: 0,
+        recovered: 0,
+        NewRecovered: 0,
+    }
 
     constructor(
         private route: ActivatedRoute,
@@ -37,12 +49,12 @@ export class CountryDPage implements OnInit {
             console.log(c)
             this.ccode = c.countryInfo.iso2
             this.country = c.country
-            this.ncon = c.todayCases
-            this.nd = c.todayDeaths
-            this.nr = c.todayRecovered
-            this.tc = c.cases
-            this.td = c.deaths
-            this.tr = c.recovered
+            this.dataCont.newCases = c.todayCases
+            this.dataCont.NewDeaths = c.todayDeaths
+            this.dataCont.NewRecovered = c.todayRecovered
+            this.dataCont.cases = c.cases
+            this.dataCont.deaths = c.deaths
+            this.dataCont.recovered = c.recovered
             this.getHistoricalData()
             return await c
         })
