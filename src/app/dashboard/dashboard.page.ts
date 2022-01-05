@@ -4,6 +4,8 @@ import { NavController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
+import codes from '../../assets/codes.json'
+
 
 interface DataCont_ {
     cases: number
@@ -24,7 +26,7 @@ export class DashboardPage implements OnInit {
     data
     svg: any
     svg2: any
-    codes
+   
 
     dataCont: DataCont_ = {
         cases: 0,
@@ -55,6 +57,7 @@ export class DashboardPage implements OnInit {
                 this.loadContinents(),
                 this.loadHistorical(),
                 this.loadCountriesData(),
+                this.appservice.checkImages(codes)
             ]).then(async () => (await loading).dismiss())
         })
     }
@@ -150,17 +153,10 @@ export class DashboardPage implements OnInit {
             console.log('Countries data', res)
 
             const result = []
-            this.codes = []
+       
             for (const code in res) {
                 result.push(res[code])
             }
-            this.codes = result.map((a) => a.countryInfo.iso2)
-            console.log('Codes', this.codes)
-            this.nativeStorage.setItem('CountryCodes', this.codes).then(
-                () => console.log('stored CountryCodes'),
-                (err) => console.error('Error stoting item', err)
-            )
-            this.appservice.checkImages(this.codes)
             this.nativeStorage
                 .setItem('DataCountries', res)
                 .then(

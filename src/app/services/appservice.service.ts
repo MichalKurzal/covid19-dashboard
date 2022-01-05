@@ -15,6 +15,7 @@ export class AppserviceService {
         public fileTransfer: FileTransfer,
         private file: File
     ) {}
+
     NewApiContinents() {
         return this.http.get(`${this.Url2}continents?false&sort`).toPromise()
     }
@@ -36,15 +37,15 @@ export class AppserviceService {
         console.log('check images', data)
         data.map((code: any) =>
             this.file
-                .checkFile(this.file.dataDirectory, code + '.png')
+                .checkFile(this.file.dataDirectory, `${code.alpha}.png`)
                 .then((res: any) => console.log('succsess', res))
                 .catch((err) => {
                     console.log('check error', err)
                     this.fileTransfer
                         .create()
                         .download(
-                            `http://www.geognos.com/api/en/countries/flag/${code}.png`,
-                            this.file.dataDirectory + `${code}` + '.png'
+                            `http://www.geognos.com/api/en/countries/flag/${code.alpha}.png`,
+                            this.file.dataDirectory + `${code.alpha}` + '.png'
                         )
                         .catch((err) => {
                             console.log('error', err)
