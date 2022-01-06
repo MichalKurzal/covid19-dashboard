@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { AppserviceService } from '../services/appservice.service'
-import { WebView } from '@ionic-native/ionic-webview/ngx'
 import * as d3 from 'd3'
 
 interface DataCont_ {
@@ -36,7 +35,6 @@ export class CountryDPage implements OnInit {
     constructor(
         private route: ActivatedRoute,
         public appservice: AppserviceService,
-        private webView: WebView,
    
     ) {}
 
