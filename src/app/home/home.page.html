@@ -1,12 +1,11 @@
 <ion-content>
     <ion-list id="container">
         <ion-item *ngFor="let c of dataList" (click)="goforward(c)">
-            <ion-img
-                src="{{gurl}}{{c.countryInfo.iso2}}.png"
-                style="height: 64px; width: 140px"
-            >
-            </ion-img>
-            <p id="it">{{c.country}}</p>
+            <img
+                src="../../assets/svg/{{c.countryInfo.iso2}}.svg"
+                style="height: 64px; width: 120px"
+            />
+            <ion-badge>{{c.country}}</ion-badge>
             <ion-badge color="warning">{{c.cases}}</ion-badge>
             <ion-badge color="danger">{{c.deaths}}</ion-badge>
             <ion-badge color="success">{{c.recovered}}</ion-badge>

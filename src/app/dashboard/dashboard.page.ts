@@ -4,7 +4,7 @@ import { NavController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
-import codes from '../../assets/codes.json'
+
 
 
 interface DataCont_ {
@@ -57,7 +57,6 @@ export class DashboardPage implements OnInit {
                 this.loadContinents(),
                 this.loadHistorical(),
                 this.loadCountriesData(),
-                this.appservice.checkImages(codes)
             ]).then(async () => (await loading).dismiss())
         })
     }

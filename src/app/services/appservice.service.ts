@@ -33,27 +33,6 @@ export class AppserviceService {
             .toPromise()
     }
 
-    checkImages = (data) => {
-        console.log('check images', data)
-        data.map((code: any) =>
-            this.file
-                .checkFile(this.file.dataDirectory, `${code.alpha}.png`)
-                .then((res: any) => console.log('succsess', res))
-                .catch((err) => {
-                    console.log('check error', err)
-                    this.fileTransfer
-                        .create()
-                        .download(
-                            `http://www.geognos.com/api/en/countries/flag/${code.alpha}.png`,
-                            this.file.dataDirectory + `${code.alpha}` + '.png'
-                        )
-                        .catch((err) => {
-                            console.log('error', err)
-                        })
-                })
-        )
-    }
-
     worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
         let cases_ = []
         let deaths_ = []

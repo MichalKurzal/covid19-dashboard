@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
                 this.countries = res
                 this.countries.reverse()
                 this.dataList = this.countries.slice(0, this.itemLimit)
+                console.log('dataList', this.dataList)
             })
             .catch((error) => {
                 console.log('error', error)
@@ -48,12 +49,10 @@ export class HomePage implements OnInit {
                 country: param,
             },
         }
-        console.log('Detail Country Page')
         this.nav.navigateForward('tabs-nav/countryD', navigationExtras)
     }
 
     loadData(event) {
-        console.log(event)
         setTimeout(() => {
             this.itemLimit += 20
             this.dataList = this.countries.slice(0, this.itemLimit)
