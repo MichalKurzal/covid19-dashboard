@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { AppserviceService } from '../services/appservice.service'
 import { WebView } from '@ionic-native/ionic-webview/ngx'
-import { File } from '@ionic-native/file/ngx'
 import * as d3 from 'd3'
 
 interface DataCont_ {
@@ -22,7 +21,6 @@ interface DataCont_ {
 export class CountryDPage implements OnInit {
     ccode: any
     country: any
-    gurl
     svg: any
     svg2: any
 
@@ -39,11 +37,10 @@ export class CountryDPage implements OnInit {
         private route: ActivatedRoute,
         public appservice: AppserviceService,
         private webView: WebView,
-        private file: File
+   
     ) {}
 
     ngOnInit() {
-        this.gurl = this.webView.convertFileSrc(this.file.dataDirectory)
         this.route.queryParams.subscribe(async (params) => {
             const c = params.country
             console.log(c)

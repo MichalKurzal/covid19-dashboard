@@ -3,6 +3,7 @@
         <ion-item *ngFor="let c of dataList" (click)="goforward(c)">
             <img
                 src="../../assets/svg/{{c.countryInfo.iso2}}.svg"
+                onerror="this.src='../../assets/shapes.svg'"
                 style="height: 64px; width: 120px"
             />
             <ion-badge>{{c.country}}</ion-badge>

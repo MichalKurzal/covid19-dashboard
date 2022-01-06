@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { File } from '@ionic-native/file/ngx'
-import { FileTransfer } from '@ionic-native/file-transfer/ngx'
 import * as d3 from 'd3'
 
 @Injectable({
@@ -11,9 +9,7 @@ export class AppserviceService {
     Url2 = 'https://corona.lmao.ninja/v2/'
 
     constructor(
-        private http: HttpClient,
-        public fileTransfer: FileTransfer,
-        private file: File
+        private http: HttpClient
     ) {}
 
     NewApiContinents() {
