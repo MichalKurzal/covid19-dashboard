@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { AppserviceService } from '../services/appservice.service'
+import { DataCont } from '../data-cont'
 import * as d3 from 'd3'
-
-interface DataCont_ {
-    cases: number
-    newCases: number
-    NewDeaths: number
-    deaths: number
-    recovered: number
-    NewRecovered: number
-}
 
 @Component({
     selector: 'app-country-d',
@@ -23,7 +15,7 @@ export class CountryDPage implements OnInit {
     svg: any
     svg2: any
 
-    dataCont: DataCont_ = {
+    dataCont: DataCont = {
         cases: 0,
         newCases: 0,
         NewDeaths: 0,
@@ -34,8 +26,7 @@ export class CountryDPage implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        public appservice: AppserviceService,
-   
+        public appservice: AppserviceService
     ) {}
 
     ngOnInit() {

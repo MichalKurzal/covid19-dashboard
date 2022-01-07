@@ -4,17 +4,7 @@ import { NavController, LoadingController } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
-
-
-
-interface DataCont_ {
-    cases: number
-    newCases: number
-    NewDeaths: number
-    deaths: number
-    recovered: number
-    NewRecovered: number
-}
+import { DataCont } from './../data-cont'
 
 @Component({
     selector: 'app-dashboard',
@@ -26,9 +16,8 @@ export class DashboardPage implements OnInit {
     data
     svg: any
     svg2: any
-   
 
-    dataCont: DataCont_ = {
+    dataCont: DataCont = {
         cases: 0,
         newCases: 0,
         NewDeaths: 0,
@@ -152,7 +141,7 @@ export class DashboardPage implements OnInit {
             console.log('Countries data', res)
 
             const result = []
-       
+
             for (const code in res) {
                 result.push(res[code])
             }
