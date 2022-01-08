@@ -127,7 +127,7 @@ export class DashboardPage implements OnInit {
                     .setItem('DataContinents', this.dataCont)
                     .then(
                         () => console.log('stored Item'),
-                        (err) => console.error('Error stoting item', err)
+                        (err) => console.error('Error storing item', err)
                     )
             })
             .catch((error) => {
@@ -137,29 +137,32 @@ export class DashboardPage implements OnInit {
     }
 
     loadCountriesData = async () => {
-        return await this.appservice.getCountriesData().then((res) => {
-            console.log('Countries data', res)
-
-            const result = []
-
-            for (const code in res) {
-                result.push(res[code])
-            }
-            this.nativeStorage
-                .setItem('DataCountries', res)
-                .then(
-                    () => console.log('stored Item'),
-                    (error) => console.error('Error stoting item', error)
-                )
-                .catch((error) => {
-                    console.log('error', error)
-                })
-        })
+        return await this.appservice
+            .getCountriesData()
+            .then((res) => {
+                console.log('Countries data', res)
+                const result = []
+                for (const code in res) {
+                    result.push(res[code])
+                }
+                this.nativeStorage
+                    .setItem('DataCountries', res)
+                    .then(
+                        () => console.log('stored Item'),
+                        (error) => console.error('Error stoting item', error)
+                    )
+                    .catch((error) => {
+                        console.log('error', error)
+                    })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     getDataCont = () => {
         this.nativeStorage
-            .getItem('DataGlobal')
+            .getItem('DataContinents')
             .then((res) => {
                 const data = res
                 console.log('get Data', data)
