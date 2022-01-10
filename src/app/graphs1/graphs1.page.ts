@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import * as d3 from 'd3'
-import { AppserviceService } from '../services/appservice.service'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
 
@@ -11,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class Graphs1Page implements OnInit {
     constructor(
-        public appservice: AppserviceService,
+
         private nativeStorage: NativeStorage,
         public router: Router
     ) {}
@@ -38,7 +37,6 @@ export class Graphs1Page implements OnInit {
         })
     }
     chart = (data) => {
-        const height = window.innerHeight - 100
         const Length = data.length
         const domain = data[Length - 1].cases + 0.2 * data[Length - 1].cases
         const xScale = d3

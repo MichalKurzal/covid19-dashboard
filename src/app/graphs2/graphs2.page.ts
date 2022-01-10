@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import * as d3 from 'd3'
-import { AppserviceService } from '../services/appservice.service'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
 
@@ -10,11 +9,7 @@ import { Router } from '@angular/router'
     styleUrls: ['./graphs2.page.scss'],
 })
 export class Graphs2Page implements OnInit {
-    constructor(
-        public appservice: AppserviceService,
-        private nativeStorage: NativeStorage,
-        public router: Router
-    ) {}
+    constructor(private nativeStorage: NativeStorage, public router: Router) {}
 
     ngOnInit() {
         this.getdata()

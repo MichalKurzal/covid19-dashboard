@@ -36,7 +36,6 @@ export class DashboardPage implements OnInit {
     ) {}
 
     async ngOnInit() {
-        console.log('ngAfterViewInit')
         const loading = this.loading.create({
             spinner: 'circles',
             message: 'Loading Please Wait...',
@@ -67,7 +66,6 @@ export class DashboardPage implements OnInit {
         return await this.appservice
             .HistoricalData()
             .then((data: any) => {
-                console.log('Historical ', data)
                 const cases = data.cases
                 const deaths = data.deaths
                 console.log('cases', cases)
@@ -140,11 +138,6 @@ export class DashboardPage implements OnInit {
         return await this.appservice
             .getCountriesData()
             .then((res) => {
-                console.log('Countries data', res)
-                const result = []
-                for (const code in res) {
-                    result.push(res[code])
-                }
                 this.nativeStorage
                     .setItem('DataCountries', res)
                     .then(
