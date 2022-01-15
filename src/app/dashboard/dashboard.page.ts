@@ -42,7 +42,7 @@ export class DashboardPage implements OnInit {
         })
         ;(await loading).present().then(async () => {
             Promise.all([
-                this.loadContinents(),
+                this.loadWorldwideData(),
                 this.loadHistorical(),
                 this.loadCountriesData(),
             ]).then(async () => (await loading).dismiss())
@@ -91,43 +91,25 @@ export class DashboardPage implements OnInit {
             })
     }
 
-    loadContinents = async () => {
+    loadWorldwideData = async () => {
         return await this.appservice
-            .NewApiContinents()
+            .WorldwideData()
             .then((res) => {
-                const ContArray = []
-                for (const cases in res) {
-                    ContArray.push(res[cases])
-                }
-
-                this.dataCont.cases = ContArray.map((c) => c.cases).reduce(
-                    (a, b) => a + b
-                )
-                this.dataCont.newCases = ContArray.map(
-                    (c) => c.todayCases
-                ).reduce((a, b) => a + b)
-                this.dataCont.deaths = ContArray.map((c) => c.deaths).reduce(
-                    (a, b) => a + b
-                )
-                this.dataCont.NewDeaths = ContArray.map(
-                    (c) => c.todayDeaths
-                ).reduce((a, b) => a + b)
-                this.dataCont.recovered = ContArray.map(
-                    (c) => c.recovered
-                ).reduce((a, b) => a + b)
-                this.dataCont.NewRecovered = ContArray.map(
-                    (c) => c.todayRecovered
-                ).reduce((a, b) => a + b)
-
-                console.log('DataCont', this.dataCont)
-
+                ;(this.dataCont.cases = res['cases']),
+                    (this.dataCont.newCases = res['todayCases']),
+                    (this.dataCont.deaths = res['deaths']),
+                    (this.dataCont.NewDeaths = res['todayDeaths']),
+                    (this.dataCont.recovered = res['recovered']),
+                    (this.dataCont.NewRecovered = res['todayRecovered'])
+            })
+            .then(() =>
                 this.nativeStorage
                     .setItem('DataContinents', this.dataCont)
                     .then(
                         () => console.log('stored Item'),
                         (err) => console.error('Error storing item', err)
                     )
-            })
+            )
             .catch((error) => {
                 console.log('catch error get Global', error)
                 this.getDataCont()
@@ -214,7 +196,7 @@ export class DashboardPage implements OnInit {
         Promise.all([
             this.loadHistorical(),
             this.loadCountriesData(),
-            this.loadContinents(),
+            this.loadWorldwideData(),
         ]).then(() => event.target.complete())
     }
 }

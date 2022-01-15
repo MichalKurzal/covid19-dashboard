@@ -6,14 +6,13 @@ import * as d3 from 'd3'
     providedIn: 'root',
 })
 export class AppserviceService {
+    url = 'https://disease.sh/v3/covid-19/all'
     Url2 = 'https://corona.lmao.ninja/v2/'
 
-    constructor(
-        private http: HttpClient
-    ) {}
+    constructor(private http: HttpClient) {}
 
-    NewApiContinents() {
-        return this.http.get(`${this.Url2}continents?false&sort`).toPromise()
+    WorldwideData() {
+        return this.http.get(this.url).toPromise()
     }
 
     HistoricalData() {
