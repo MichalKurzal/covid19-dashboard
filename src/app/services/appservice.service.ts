@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import * as d3 from 'd3'
 
 @Injectable({
@@ -9,22 +9,34 @@ export class AppserviceService {
     url = 'https://disease.sh/v3/covid-19/all'
     Url2 = 'https://corona.lmao.ninja/v2/'
 
+    headers = new HttpHeaders()
+        .set('Cache-Control', 'no-cache')
+        .set('Pragma', 'no-cache')
+
     constructor(private http: HttpClient) {}
 
     WorldwideData() {
-        return this.http.get(this.url).toPromise()
+        return this.http.get(this.url, { headers: this.headers }).toPromise()
     }
 
     HistoricalData() {
-        return this.http.get(`${this.Url2}historical/all`).toPromise()
+        return this.http
+            .get(`${this.Url2}historical/all`, { headers: this.headers })
+            .toPromise()
     }
 
     getCountriesData() {
-        return this.http.get(`${this.Url2}countries?sort=country`).toPromise()
+        return this.http
+            .get(`${this.Url2}countries?sort=country`, {
+                headers: this.headers,
+            })
+            .toPromise()
     }
     HistoricalCountry(country) {
         return this.http
-            .get(`${this.Url2}historical/${country}?lastdays=30`)
+            .get(`${this.Url2}historical/${country}?lastdays=30`, {
+                headers: this.headers,
+            })
             .toPromise()
     }
 
