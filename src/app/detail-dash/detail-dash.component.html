@@ -14,13 +14,13 @@
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <p>{{ newCases }}</p>
+                    <p>{{ newCases | number }}</p>
                 </ion-col>
                 <ion-col class="D">
-                    <p>{{ newDeaths }}</p>
+                    <p>{{ newDeaths | number }}</p>
                 </ion-col>
                 <ion-col>
-                    <p>{{ newRecovered }}</p>
+                    <p>{{ newRecovered | number }}</p>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -36,13 +36,13 @@
             </ion-row>
             <ion-row>
                 <ion-col class="c1" (click)="goforward()">
-                    <p>{{ totalCases }}</p>
+                    <p>{{ totalCases | number }}</p>
                 </ion-col>
                 <ion-col (click)="goforward2()" class="c2" class="D">
-                    <p>{{ totalDeaths }}</p>
+                    <p>{{ totalDeaths | number }}</p>
                 </ion-col>
                 <ion-col>
-                    <p>{{ totalRecovered }}</p>
+                    <p>{{ totalRecovered | number }}</p>
                 </ion-col>
             </ion-row>
         </ion-card-header>
