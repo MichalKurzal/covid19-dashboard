@@ -1,192 +1,192 @@
 ion-content {
-  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 #svg1 {
-  margin-top: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  margin-left: 5px;
-  margin-right: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #svg2 {
-  margin-top: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  margin-left: 5px;
-  margin-right: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #main2 {
-  padding-left: 10px;
-  padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #country {
-  --background: linear-gradient(to right, #b4e2d3, #84d1b8);
+    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
 img {
-  width: 64px;
-  float: left;
+    width: 64px;
+    float: left;
 }
 
 ion-card {
-  padding: 0px;
-  margin: 0px;
-  background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
+    padding: 0px;
+    margin: 0px;
+    background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
 p {
-  color: black;
-  font-size: 24px;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
+    color: black;
+    font-size: 24px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }
 ion-card-subtitle {
-  color: black;
-  font-size: 16px;
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
+    color: black;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }
 ion-card-header {
-  padding: 0px;
-  margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
 
 @media only screen and (min-width: 430px) and (max-width: 600px) {
-  p {
-    color: black;
-    font-size: 28px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 18px;
-  }
+    p {
+        color: black;
+        font-size: 28px;
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-card-subtitle {
+        color: black;
+        font-size: 18px;
+    }
 }
 @media only screen and (min-width: 600px) {
-  p {
-    color: black;
-    font-size: 46px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 24px;
-  }
+    p {
+        color: black;
+        font-size: 46px;
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-card-subtitle {
+        color: black;
+        font-size: 24px;
+    }
 }
 @media only screen and (orientation: landscape) and (min-width: 600px) and(max-width: 900px) {
-  ion-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin: 0px;
-    padding: 0px;
-  }
-  svg {
-    float: left;
-    height: 210px;
-    width: 200px;
-  }
-  p {
-    color: black;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 12px;
-  }
+    ion-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 0px;
+        padding: 0px;
+    }
+    svg {
+        float: left;
+        height: 210px;
+        width: 200px;
+    }
+    p {
+        color: black;
+        font-size: 20px;
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-card-subtitle {
+        color: black;
+        font-size: 12px;
+    }
 }
 @media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
-  ion-content {
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px;
-    padding: 0px;
-  }
-  #svg1 {
-    max-height: 400px;
-    max-width: 450px;
-    flex: 1;
-  }
-  #svg2 {
-    max-height: 400px;
-    max-width: 450px;
-    flex: 1;
-  }
+    ion-content {
+        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+    }
+    #svg1 {
+        max-height: 400px;
+        max-width: 450px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 400px;
+        max-width: 450px;
+        flex: 1;
+    }
 
-  #main2 {
-    flex: 1;
-  }
-  p {
-    color: black;
-    font-size: 24px;
-    margin: 0px;
-    padding: 0px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 16px;
-  }
+    #main2 {
+        flex: 1;
+    }
+    p {
+        color: black;
+        font-size: 24px;
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-card-subtitle {
+        color: black;
+        font-size: 16px;
+    }
 }
 @media only screen and (orientation: landscape) and (min-width: 1200px) and (max-width: 1900px) {
-  ion-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0px;
-    padding: 0px;
-  }
-  #svg1 {
-    max-height: 550px;
-    max-width: 600px;
-    flex: 1;
-  }
-  #svg2 {
-    max-height: 550px;
-    max-width: 600px;
-    flex: 1;
-  }
-  #main {
-    flex: 1;
-  }
-  ion-card-subtitle {
-    font-size: 24px;
-  }
-  p {
-    color: black;
-    font-size: 28px;
-    margin: 0px;
-    padding: 0px;
-  }
+    ion-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+    }
+    #svg1 {
+        max-height: 550px;
+        max-width: 600px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 550px;
+        max-width: 600px;
+        flex: 1;
+    }
+    #main {
+        flex: 1;
+    }
+    ion-card-subtitle {
+        font-size: 24px;
+    }
+    p {
+        color: black;
+        font-size: 28px;
+        margin: 0px;
+        padding: 0px;
+    }
 }
 @media only screen and (orientation: landscape) and (min-width: 1900px) {
-  #svg1 {
-    max-height: 650px;
-    max-width: 900px;
-    flex: 1;
-  }
-  #svg2 {
-    max-height: 650px;
-    max-width: 900px;
-    flex: 1;
-  }
+    #svg1 {
+        max-height: 650px;
+        max-width: 900px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 650px;
+        max-width: 900px;
+        flex: 1;
+    }
 }
 
 @media only screen and (max-width: 370px) and (orientation: portrait) {
-  p {
-    font-size: 20px;
-  }
-  ion-card-subtitle {
-    color: black;
-    font-size: 14px;
-  }
+    p {
+        font-size: 20px;
+    }
+    ion-card-subtitle {
+        color: black;
+        font-size: 14px;
+    }
 }

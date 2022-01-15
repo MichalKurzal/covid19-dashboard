@@ -16,7 +16,7 @@ export class DashboardPage implements OnInit {
     data
     svg: any
     svg2: any
-    today : Number
+    today: Number
 
     dataCont: DataCont = {
         cases: 0,
@@ -102,7 +102,7 @@ export class DashboardPage implements OnInit {
                     (this.dataCont.NewDeaths = res['todayDeaths']),
                     (this.dataCont.recovered = res['recovered']),
                     (this.dataCont.NewRecovered = res['todayRecovered'])
-                    this.today = Date.now();
+                this.today = Date.now()
             })
             .then(() =>
                 this.nativeStorage

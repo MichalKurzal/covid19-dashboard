@@ -9,11 +9,7 @@ import { Router } from '@angular/router'
     styleUrls: ['./graphs1.page.scss'],
 })
 export class Graphs1Page implements OnInit {
-    constructor(
-
-        private nativeStorage: NativeStorage,
-        public router: Router
-    ) {}
+    constructor(private nativeStorage: NativeStorage, public router: Router) {}
 
     ngOnInit() {
         this.getdata()
