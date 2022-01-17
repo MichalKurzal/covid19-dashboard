@@ -69,8 +69,6 @@ export class DashboardPage implements OnInit {
             .then((data: any) => {
                 const cases = data.cases
                 const deaths = data.deaths
-                console.log('cases', cases)
-                console.log('deaths', deaths)
                 this.nativeStorage.setItem('DataWorld', data).then(
                     () => console.log('stored Item Data World'),
                     (error) => console.error('Error stoting item', error)

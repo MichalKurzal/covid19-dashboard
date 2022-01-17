@@ -1,5 +1,4 @@
 ion-content {
-    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -21,9 +20,6 @@ ion-content {
     padding-left: 10px;
     padding-right: 10px;
 }
-#country {
-    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
-}
 img {
     width: 64px;
     float: left;
@@ -32,17 +28,14 @@ img {
 ion-card {
     padding: 0px;
     margin: 0px;
-    background-image: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
 p {
-    color: black;
     font-size: 24px;
     margin: 0px;
     padding: 0px;
     text-align: center;
 }
 ion-card-subtitle {
-    color: black;
     font-size: 16px;
     margin: 0px;
     padding: 0px;
@@ -55,25 +48,21 @@ ion-card-header {
 
 @media only screen and (min-width: 430px) and (max-width: 600px) {
     p {
-        color: black;
         font-size: 28px;
         margin: 0px;
         padding: 0px;
     }
     ion-card-subtitle {
-        color: black;
         font-size: 18px;
     }
 }
 @media only screen and (min-width: 600px) {
     p {
-        color: black;
         font-size: 46px;
         margin: 0px;
         padding: 0px;
     }
     ion-card-subtitle {
-        color: black;
         font-size: 24px;
     }
 }
@@ -91,13 +80,11 @@ ion-card-header {
         width: 200px;
     }
     p {
-        color: black;
         font-size: 20px;
         margin: 0px;
         padding: 0px;
     }
     ion-card-subtitle {
-        color: black;
         font-size: 12px;
     }
 }
@@ -126,13 +113,11 @@ ion-card-header {
         flex: 1;
     }
     p {
-        color: black;
         font-size: 24px;
         margin: 0px;
         padding: 0px;
     }
     ion-card-subtitle {
-        color: black;
         font-size: 16px;
     }
 }
@@ -162,7 +147,6 @@ ion-card-header {
         font-size: 24px;
     }
     p {
-        color: black;
         font-size: 28px;
         margin: 0px;
         padding: 0px;
@@ -186,7 +170,6 @@ ion-card-header {
         font-size: 20px;
     }
     ion-card-subtitle {
-        color: black;
         font-size: 14px;
     }
 }

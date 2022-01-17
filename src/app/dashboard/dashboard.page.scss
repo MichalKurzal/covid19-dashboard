@@ -8,16 +8,11 @@ ion-toolbar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
-.header {
-    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
-    --color: white;
-}
+
 #title {
     margin: 0px;
     padding: 0px;
-    color: black;
     font-size: 24px;
 }
 
@@ -29,7 +24,7 @@ ion-icon {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    color: black;
+    color:  #ffffff;
 }
 #svg3 {
     margin-left: 10px;
@@ -52,7 +47,6 @@ ion-icon {
     align-items: stretch;
     margin: 0px;
     padding: 0px;
-    --background: linear-gradient(to right, #b4e2d3, #84d1b8);
 }
 #main {
     padding: 0px;

@@ -113,53 +113,13 @@ export class AppserviceService {
         svg1.attr('display', 'initial')
         svg2.attr('display', 'initial')
 
-        const gradient = svg1
-            .append('svg:defs')
-            .append('svg:linearGradient')
-            .attr('id', `${g1}`)
-            .attr('x1', '0%')
-            .attr('y1', '0%')
-            .attr('x2', '100%')
-            .attr('y2', '0%')
-            .attr('spreadMethod', 'pad')
-        gradient
-            .append('svg:stop')
-            .attr('offset', '0%')
-            .attr('stop-color', '#3dc1f0')
-            .attr('stop-opacity', 0.6)
-        gradient
-            .append('svg:stop')
-            .attr('offset', '100%')
-            .attr('stop-color', '#2aa7d4')
-            .attr('stop-opacity', 0.6)
-
-        const gradient2 = svg2
-            .append('svg:defs')
-            .append('svg:linearGradient')
-            .attr('id', `${g2}`)
-            .attr('x1', '0%')
-            .attr('y1', '0%')
-            .attr('x2', '100%')
-            .attr('y2', '0%')
-            .attr('spreadMethod', 'pad')
-        gradient2
-            .append('svg:stop')
-            .attr('offset', '0%')
-            .attr('stop-color', '#d6233c')
-            .attr('stop-opacity', 0.8)
-        gradient2
-            .append('svg:stop')
-            .attr('offset', '100%')
-            .attr('stop-color', '#c71d3b')
-            .attr('stop-opacity', 0.8)
-
         svg1.select('.area').remove()
         svg2.select('.area').remove()
 
         svg1.append('path')
             .attr('class', 'area')
             .datum(cases_)
-            .attr('fill', 'url(#' + `${g1}` + ')')
+            .attr('fill', '#66add4')
             .attr('d', area)
 
         svg1.append('text')
@@ -167,19 +127,21 @@ export class AppserviceService {
             .attr('dy', 20)
             .attr('dx', 60)
             .attr('font-size', 16)
+            .style('fill', 'white')
             .text('Confirmed cases in the last 30 days')
 
         svg2.append('text')
             .attr('text-anchor', 'start')
-            .attr('dy', 20)
+            .attr('dy', 15)
             .attr('dx', 50)
             .attr('font-size', 16)
+            .style('fill', 'white')
             .text('Deaths in the last 30 days')
 
         svg2.append('path')
             .attr('class', 'area')
             .datum(deaths_)
-            .attr('fill', 'url(#' + `${g2}` + ')')
+            .attr('fill', '#d46679')
             .attr('d', area2)
 
         svg1.select('.y').remove()
