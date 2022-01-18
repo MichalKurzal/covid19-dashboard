@@ -127,7 +127,7 @@ export class AppserviceService {
             .attr('dy', 20)
             .attr('dx', 60)
             .attr('font-size', 16)
-            .style('fill', 'white')
+            .style('fill', '#3880ff')
             .text('Confirmed cases in the last 30 days')
 
         svg2.append('text')
@@ -135,7 +135,7 @@ export class AppserviceService {
             .attr('dy', 15)
             .attr('dx', 50)
             .attr('font-size', 16)
-            .style('fill', 'white')
+            .style('fill', '#3880ff')
             .text('Deaths in the last 30 days')
 
         svg2.append('path')

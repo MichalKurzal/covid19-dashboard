@@ -3,6 +3,8 @@
         <ion-item lines="none" class="header">
             <p id="title">COVID-19 Dashboard</p>
             <ion-icon (click)="goforward()" name="bar-chart-outline"></ion-icon>
+            <ion-toggle (ionChange)="onToggleColorTheme($event)"></ion-toggle>
+
         </ion-item>
     </ion-toolbar>
 </ion-header>
