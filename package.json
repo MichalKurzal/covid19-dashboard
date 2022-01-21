@@ -22,7 +22,6 @@
         "@angular/router": "~9.1.6",
         "@ionic-native/core": "^5.0.7",
         "@ionic-native/file": "^5.0.0",
-        "@ionic-native/file-transfer": "^5.0.0",
         "@ionic-native/ionic-webview": "^5.0.0",
         "@ionic-native/native-storage": "^5.27.0",
         "@ionic-native/network": "^5.0.0",
@@ -32,7 +31,6 @@
         "@ionic/angular": "^5.7.0",
         "cordova-android": "9.1.0",
         "cordova-plugin-file": "^6.0.2",
-        "cordova-plugin-file-transfer": "^1.7.1",
         "cordova-plugin-nativestorage": "^2.3.2",
         "cordova-plugin-screen-orientation": "^3.0.2",
         "d3": "^5.16.0",
@@ -89,7 +87,6 @@
             },
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-file-transfer": {},
             "cordova-plugin-nativestorage": {},
             "cordova-plugin-screen-orientation": {}
         },

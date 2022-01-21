@@ -10,13 +10,8 @@ import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http'
 import { File } from '@ionic-native/file/ngx'
-import {
-    FileTransfer,
-    FileTransferObject,
-} from '@ionic-native/file-transfer/ngx'
 import { WebView } from '@ionic-native/ionic-webview/ngx'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
-
 import { AboutPageModule } from './about/about.module'
 import { CountryDPageModule } from './country-d/country-d.module'
 import { DashboardPageModule } from './dashboard/dashboard.module'
@@ -35,8 +30,6 @@ import { DashboardPageModule } from './dashboard/dashboard.module'
     ],
     providers: [
         File,
-        FileTransfer,
-        FileTransferObject,
         StatusBar,
         NavParams,
         SplashScreen,
