@@ -8,6 +8,7 @@ import { IonInfiniteScroll } from '@ionic/angular'
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
+    providers: [NavParams, NativeStorage]
 })
 export class HomePage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll

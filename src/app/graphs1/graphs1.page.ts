@@ -7,6 +7,7 @@ import { Router } from '@angular/router'
     selector: 'app-graphs1',
     templateUrl: './graphs1.page.html',
     styleUrls: ['./graphs1.page.scss'],
+    providers: [NativeStorage]
 })
 export class Graphs1Page implements OnInit {
     constructor(private nativeStorage: NativeStorage, public router: Router) {}

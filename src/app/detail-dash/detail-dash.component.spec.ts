@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { IonicModule } from '@ionic/angular'
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DetailDashComponent } from './detail-dash.component'
 
@@ -10,7 +11,7 @@ describe('DetailDashComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DetailDashComponent],
-            imports: [IonicModule.forRoot()],
+            imports: [IonicModule.forRoot(),RouterTestingModule],
         }).compileComponents()
 
         fixture = TestBed.createComponent(DetailDashComponent)

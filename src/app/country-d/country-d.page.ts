@@ -32,16 +32,16 @@ export class CountryDPage implements OnInit {
     ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
             const countryData = params.country
-            this.countryCode = countryData.countryInfo.iso2
-            this.getHistoricalData(countryData.countryInfo.iso2)
+            this.countryCode = countryData?.countryInfo.iso2
+            this.getHistoricalData(countryData?.countryInfo.iso2)
 
-            this.country = countryData.country
-            this.dataCont.newCases = countryData.todayCases
-            this.dataCont.NewDeaths = countryData.todayDeaths
-            this.dataCont.NewRecovered = countryData.todayRecovered
-            this.dataCont.cases = countryData.cases
-            this.dataCont.deaths = countryData.deaths
-            this.dataCont.recovered = countryData.recovered
+            this.country = countryData?.country
+            this.dataCont.newCases = countryData?.todayCases
+            this.dataCont.NewDeaths = countryData?.todayDeaths
+            this.dataCont.NewRecovered = countryData?.todayRecovered
+            this.dataCont.cases = countryData?.cases
+            this.dataCont.deaths = countryData?.deaths
+            this.dataCont.recovered = countryData?.recovered
             return await countryData
         })
     }

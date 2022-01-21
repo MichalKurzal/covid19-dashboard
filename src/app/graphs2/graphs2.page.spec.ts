@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { IonicModule } from '@ionic/angular'
+import { RouterTestingModule } from '@angular/router/testing'
 
 import { Graphs2Page } from './graphs2.page'
 
@@ -10,7 +11,7 @@ describe('Graphs2Page', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [Graphs2Page],
-            imports: [IonicModule.forRoot()],
+            imports: [IonicModule.forRoot(), RouterTestingModule],
         }).compileComponents()
 
         fixture = TestBed.createComponent(Graphs2Page)
