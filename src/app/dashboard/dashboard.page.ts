@@ -10,7 +10,7 @@ import { DataCont } from './../data-cont'
     selector: 'app-dashboard',
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
-    providers: [AppserviceService],
+    providers: [AppserviceService, NativeStorage, ScreenOrientation],
 })
 export class DashboardPage implements OnInit {
     data

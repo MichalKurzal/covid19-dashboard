@@ -2,18 +2,25 @@ import { Component, OnInit } from '@angular/core'
 import * as d3 from 'd3'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
+import { Platform } from '@ionic/angular'
 
 @Component({
     selector: 'app-graphs1',
     templateUrl: './graphs1.page.html',
     styleUrls: ['./graphs1.page.scss'],
-    providers: [NativeStorage]
+    providers: [NativeStorage],
 })
 export class Graphs1Page implements OnInit {
-    constructor(private nativeStorage: NativeStorage, public router: Router) {}
+    constructor(
+        private nativeStorage: NativeStorage,
+        public router: Router,
+        public platform: Platform
+    ) {}
 
     ngOnInit() {
-        this.getdata()
+        if (this.platform.is('cordova')) {
+            this.getdata()
+        }
     }
 
     getdata() {
