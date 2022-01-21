@@ -88,9 +88,7 @@ export class DashboardPage implements OnInit {
                     this.svg,
                     this.svg2,
                     '#svg3',
-                    '#svg4',
-                    'g3',
-                    'g4'
+                    '#svg4'
                 )
             })
             .catch((error) => {
@@ -169,9 +167,7 @@ export class DashboardPage implements OnInit {
                     this.svg,
                     this.svg2,
                     '#svg3',
-                    '#svg4',
-                    'g3',
-                    'g4'
+                    '#svg4'
                 )
             })
             .catch((error) => {

@@ -58,9 +58,7 @@ export class CountryDPage implements OnInit {
                     this.svg,
                     this.svg2,
                     '#svg1',
-                    '#svg2',
-                    'g1',
-                    'g2'
+                    '#svg2'
                 )
             })
             .catch((error) => {

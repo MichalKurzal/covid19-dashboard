@@ -40,7 +40,7 @@ export class AppserviceService {
             .toPromise()
     }
 
-    worldchart = (cases, deaths, svg1, svg2, id1, id2, g1, g2) => {
+    worldchart = (cases, deaths, svg1, svg2, id1, id2) => {
         let cases_ = []
         let deaths_ = []
 
@@ -51,8 +51,7 @@ export class AppserviceService {
             .map((c, i) => [{ day: c, nr: i }])
             .map((c) => c[0])
 
-        console.log('chart cases', cases_)
-        console.log('chart deaths', deaths_)
+
 
         let width = window.innerWidth
         if (width > 800) {
