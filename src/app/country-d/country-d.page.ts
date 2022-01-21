@@ -10,8 +10,8 @@ import * as d3 from 'd3'
     styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-    ccode: any
     country: any
+    countryCode: any
     svg: any
     svg2: any
 
@@ -31,29 +31,27 @@ export class CountryDPage implements OnInit {
 
     ngOnInit() {
         this.route.queryParams.subscribe(async (params) => {
-            const c = params.country
-            console.log(c)
-            this.ccode = c.countryInfo.iso2
-            this.country = c.country
-            this.dataCont.newCases = c.todayCases
-            this.dataCont.NewDeaths = c.todayDeaths
-            this.dataCont.NewRecovered = c.todayRecovered
-            this.dataCont.cases = c.cases
-            this.dataCont.deaths = c.deaths
-            this.dataCont.recovered = c.recovered
-            this.getHistoricalData()
-            return await c
+            const countryData = params.country
+            this.countryCode = countryData.countryInfo.iso2
+            this.getHistoricalData(countryData.countryInfo.iso2)
+
+            this.country = countryData.country
+            this.dataCont.newCases = countryData.todayCases
+            this.dataCont.NewDeaths = countryData.todayDeaths
+            this.dataCont.NewRecovered = countryData.todayRecovered
+            this.dataCont.cases = countryData.cases
+            this.dataCont.deaths = countryData.deaths
+            this.dataCont.recovered = countryData.recovered
+            return await countryData
         })
     }
 
-    getHistoricalData = () => {
+    getHistoricalData = (code) => {
         this.appservice
-            .HistoricalCountry(this.ccode)
+            .HistoricalCountry(code)
             .then((data: any) => {
-                console.log('HistorcalData', data)
-                const timeline = data.timeline
-                const cases = timeline.cases
-                const deaths = timeline.deaths
+                const cases = data.timeline.cases
+                const deaths = data.timeline.deaths
                 this.appservice.worldchart(
                     cases,
                     deaths,
@@ -67,7 +65,6 @@ export class CountryDPage implements OnInit {
             })
             .catch((error) => {
                 console.log('Cannot get Data for this Country - Error', error)
-
                 this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
                 this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
                 this.svg.attr('display', 'none')
