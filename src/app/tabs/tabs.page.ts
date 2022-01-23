@@ -1,18 +1,10 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { Platform } from '@ionic/angular'
+import { Component } from '@angular/core'
 
 @Component({
     selector: 'app-tabs',
     templateUrl: './tabs.page.html',
     styleUrls: ['./tabs.page.scss'],
 })
-export class TabsPage implements OnInit {
-    public platform: any
-
-    constructor(private _platform: Platform) {
-        this.platform = _platform
-    }
-
-    ngOnInit() {}
+export class TabsPage {
+    constructor() {}
 }

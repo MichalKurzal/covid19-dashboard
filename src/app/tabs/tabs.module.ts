@@ -17,8 +17,8 @@ const routes: Routes = [
                     '../dashboard/dashboard.module#DashboardPageModule',
             },
             {
-                path: 'home',
-                loadChildren: '../home/home.module#HomePageModule',
+                path: 'countries',
+                loadChildren: '../countriesList/home.module#HomePageModule',
             },
             {
                 path: 'graphs1',

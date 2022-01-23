@@ -5,12 +5,12 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-countries',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
     providers: [NavParams, NativeStorage]
 })
-export class HomePage implements OnInit {
+export class CountriesList implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll
     countries: any = []
     dataList: any = []

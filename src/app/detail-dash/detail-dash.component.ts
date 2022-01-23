@@ -19,13 +19,9 @@ export class DetailDashComponent implements OnInit {
     ngOnInit() {}
     goforward = () => {
         this.router.navigateByUrl('tabs-nav/graphs1')
-
-        console.log('goforward')
     }
 
     goforward2 = () => {
         this.router.navigateByUrl('tabs-nav/graphs2')
-
-        console.log('goforward')
     }
 }
