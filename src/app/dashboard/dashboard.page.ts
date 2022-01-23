@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AppserviceService } from '../services/appservice.service'
-import { NavController, LoadingController } from '@ionic/angular'
+import { NavController, LoadingController, Platform } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
@@ -33,7 +33,8 @@ export class DashboardPage implements OnInit {
         public router: Router,
         private nativeStorage: NativeStorage,
         public loading: LoadingController,
-        private screenOrientation: ScreenOrientation
+        private screenOrientation: ScreenOrientation,
+        public platform: Platform
     ) {}
 
     async ngOnInit() {
@@ -78,10 +79,12 @@ export class DashboardPage implements OnInit {
             .then((data: any) => {
                 const cases = data.cases
                 const deaths = data.deaths
-                this.nativeStorage.setItem('DataWorld', data).then(
-                    () => console.log('stored Item Data World'),
-                    (error) => console.error('Error stoting item', error)
-                )
+                if (this.platform.is('cordova')) {
+                    this.nativeStorage.setItem('DataWorld', data).then(
+                        () => console.log('stored Item HistoricalData'),
+                        (error) => console.error('Error stoting item', error)
+                    )
+                }
                 this.appservice.worldchart(
                     cases,
                     deaths,
@@ -109,14 +112,15 @@ export class DashboardPage implements OnInit {
                     (this.dataCont.NewRecovered = res['todayRecovered'])
                 this.today = Date.now()
             })
-            .then(() =>
-                this.nativeStorage
-                    .setItem('DataContinents', this.dataCont)
-                    .then(
-                        () => console.log('stored Item'),
-                        (err) => console.error('Error storing item', err)
-                    )
-            )
+            .then(() => {
+                if (this.platform.is('cordova'))
+                    this.nativeStorage
+                        .setItem('DataContinents', this.dataCont)
+                        .then(
+                            () => console.log('stored Item WorldwideData'),
+                            (err) => console.error('Error storing item', err)
+                        )
+            })
             .catch((error) => {
                 console.log('catch error get Global', error)
                 this.getDataCont()
@@ -127,15 +131,17 @@ export class DashboardPage implements OnInit {
         return await this.appservice
             .getCountriesData()
             .then((res) => {
-                this.nativeStorage
-                    .setItem('DataCountries', res)
-                    .then(
-                        () => console.log('stored Item'),
-                        (error) => console.error('Error stoting item', error)
-                    )
-                    .catch((error) => {
-                        console.log('error', error)
-                    })
+                if (this.platform.is('cordova'))
+                    this.nativeStorage
+                        .setItem('DataCountries', res)
+                        .then(
+                            () => console.log('stored Item CountriesData'),
+                            (error) =>
+                                console.error('Error stoting item', error)
+                        )
+                        .catch((error) => {
+                            console.log('error', error)
+                        })
             })
             .catch((error) => {
                 console.log(error)
@@ -143,36 +149,38 @@ export class DashboardPage implements OnInit {
     }
 
     getDataCont = () => {
-        this.nativeStorage
-            .getItem('DataContinents')
-            .then((res) => {
-                const data = res
-                console.log('get Data', data)
-                this.setTotal(data)
-            })
-            .catch((error) => {
-                console.log('error', error)
-            })
+        if (this.platform.is('cordova'))
+            this.nativeStorage
+                .getItem('DataContinents')
+                .then((res) => {
+                    const data = res
+                    console.log('get Data', data)
+                    this.setTotal(data)
+                })
+                .catch((error) => {
+                    console.log('error', error)
+                })
     }
 
     getDataWorld = () => {
-        this.nativeStorage
-            .getItem('DataWorld')
-            .then((res) => {
-                const cases = res.cases
-                const deaths = res.deaths
-                this.appservice.worldchart(
-                    cases,
-                    deaths,
-                    this.svg,
-                    this.svg2,
-                    '#svg3',
-                    '#svg4'
-                )
-            })
-            .catch((error) => {
-                console.log('error ', error)
-            })
+        if (this.platform.is('cordova'))
+            this.nativeStorage
+                .getItem('DataWorld')
+                .then((res) => {
+                    const cases = res.cases
+                    const deaths = res.deaths
+                    this.appservice.worldchart(
+                        cases,
+                        deaths,
+                        this.svg,
+                        this.svg2,
+                        '#svg3',
+                        '#svg4'
+                    )
+                })
+                .catch((error) => {
+                    console.log('error ', error)
+                })
     }
 
     setTotal = (data) => {

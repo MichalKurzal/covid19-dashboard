@@ -5,19 +5,23 @@ import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { DashboardPage } from './dashboard.page'
 import { DetailDashComponent } from '../detail-dash/detail-dash.component'
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { By } from '@angular/platform-browser'
 
 describe('DashboardPage', () => {
     let component: DashboardPage
     let fixture: ComponentFixture<DashboardPage>
     let component2: DetailDashComponent
     let fixture2: ComponentFixture<DetailDashComponent>
+    let ele: DebugElement;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [DashboardPage],
             imports: [
+                CommonModule,
                 IonicModule.forRoot(),
                 RouterTestingModule,
                 HttpClientTestingModule,
@@ -27,6 +31,8 @@ describe('DashboardPage', () => {
         fixture = TestBed.createComponent(DashboardPage)
         component = fixture.componentInstance
         fixture.detectChanges()
+        ele = fixture.debugElement.query(By.css('p'));
+
 
         fixture2 = TestBed.createComponent(DetailDashComponent)
         component2 = fixture2.componentInstance
@@ -40,4 +46,12 @@ describe('DashboardPage', () => {
     it('should create', () => {
         expect(component2).toBeTruthy()
     })
+
+    it('should have expected <p> text', () => {
+        fixture.detectChanges();
+        const p = ele.nativeElement;
+        expect(p.innerText).toMatch(/COVID-19 Dashboard/i,
+          '<p> should say COVID-19 Dashboard');
+      });
+    
 })

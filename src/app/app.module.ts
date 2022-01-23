@@ -16,8 +16,8 @@ import { AboutPageModule } from './about/about.module'
 import { CountryDPageModule } from './countryDetail/country-d.module'
 import { DashboardPageModule } from './dashboard/dashboard.module'
 import { HomePageModule } from './countriesList/home.module'
-import { Graphs1PageModule } from './graphs1/graphs1.module'
-import { Graphs2PageModule } from './graphs2/graphs2.module'
+import { Graphs1PageModule } from './chart1/graphs1.module'
+import { Graphs2PageModule } from './chart2/graphs2.module'
 
 @NgModule({
     declarations: [AppComponent],

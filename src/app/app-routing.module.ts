@@ -9,12 +9,12 @@ const routes: Routes = [
     {
         path: 'graphs1',
         loadChildren: () =>
-            import('./graphs1/graphs1.module').then((m) => m.Graphs1PageModule),
+            import('./chart1/graphs1.module').then((m) => m.Graphs1PageModule),
     },
     {
         path: 'graphs2',
         loadChildren: () =>
-            import('./graphs2/graphs2.module').then((m) => m.Graphs2PageModule),
+            import('./chart2/graphs2.module').then((m) => m.Graphs2PageModule),
     },
     {
         path: 'country-d',
