@@ -31,7 +31,7 @@ const routes: Routes = [
             {
                 path: 'countryD',
                 loadChildren:
-                    '../country-d/country-d.module#CountryDPageModule',
+                    '../countryDetail/country-d.module#CountryDPageModule',
             },
             {
                 path: 'about',

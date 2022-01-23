@@ -185,17 +185,8 @@ export class DashboardPage implements OnInit {
         this.dataCont.NewRecovered = data.NewRecovered
     }
 
-    goforward = () => {
-        this.router.navigateByUrl('tabs-nav/graphs1')
-
-        console.log('goforward')
-    }
-
-    goforward2 = () => {
-        this.router.navigateByUrl('tabs-nav/graphs2')
-
-        console.log('goforward')
-    }
+    goforward = () => this.router.navigateByUrl('tabs-nav/graphs1')
+    goforward2 = () => this.router.navigateByUrl('tabs-nav/graphs2')
 
     doRefresh(event) {
         Promise.all([

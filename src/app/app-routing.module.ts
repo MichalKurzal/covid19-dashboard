@@ -19,7 +19,7 @@ const routes: Routes = [
     {
         path: 'country-d',
         loadChildren: () =>
-            import('./country-d/country-d.module').then(
+            import('./countryDetail/country-d.module').then(
                 (m) => m.CountryDPageModule
             ),
     },
