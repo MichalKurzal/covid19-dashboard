@@ -30,7 +30,9 @@ export class CountryDPage implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.route.queryParams.subscribe(async (params) => {
+        this.route.queryParams.subscribe((params) => {
+            this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
+            this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
             const countryData = params.country
             this.countryCode = countryData?.countryInfo.iso2
             this.getHistoricalData(countryData?.countryInfo.iso2)
@@ -42,7 +44,6 @@ export class CountryDPage implements OnInit {
             this.dataCont.cases = countryData?.cases
             this.dataCont.deaths = countryData?.deaths
             this.dataCont.recovered = countryData?.recovered
-            return await countryData
         })
     }
 
