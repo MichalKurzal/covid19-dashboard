@@ -6,7 +6,7 @@ import * as d3 from 'd3'
     providedIn: 'root',
 })
 export class AppserviceService {
-    url = 'https://disease.sh/v3/covid-19/all'
+    url = 'https://disease.sh/v3/'
     Url2 = 'https://corona.lmao.ninja/v2/'
 
     headers = new HttpHeaders()
@@ -16,12 +16,16 @@ export class AppserviceService {
     constructor(private http: HttpClient) {}
 
     WorldwideData() {
-        return this.http.get(this.url, { headers: this.headers }).toPromise()
+        return this.http
+            .get(`${this.url}covid-19/all`, { headers: this.headers })
+            .toPromise()
     }
 
     HistoricalData() {
         return this.http
-            .get(`${this.Url2}historical/all`, { headers: this.headers })
+            .get(`${this.url}covid-19/historical/all?lastdays=100`, {
+                headers: this.headers,
+            })
             .toPromise()
     }
 
@@ -34,7 +38,7 @@ export class AppserviceService {
     }
     HistoricalCountry(country) {
         return this.http
-            .get(`${this.Url2}historical/${country}?lastdays=30`, {
+            .get(`${this.Url2}historical/${country}?lastdays=100`, {
                 headers: this.headers,
             })
             .toPromise()
@@ -93,7 +97,7 @@ export class AppserviceService {
             .attr('dx', 60)
             .attr('font-size', 16)
             .style('fill', '#3880ff')
-            .text(`Confirmed ${text} in the last 30 days`)
+            .text(`Confirmed ${text} in the last 100 days`)
         svg.select('.y').remove()
 
         svg.append('g')
