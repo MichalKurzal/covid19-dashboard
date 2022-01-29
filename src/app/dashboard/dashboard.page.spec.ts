@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { IonicModule } from '@ionic/angular'
 import { RouterTestingModule } from '@angular/router/testing'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-
 import { DashboardPage } from './dashboard.page'
 import { DetailDashComponent } from '../detail-dash/detail-dash.component'
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core'

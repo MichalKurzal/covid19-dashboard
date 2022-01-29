@@ -41,18 +41,6 @@ export class AppserviceService {
     }
 
     worldchart = (cases, deaths, svg1, svg2, id1, id2) => {
-        let cases_ = []
-        let deaths_ = []
-
-        cases_ = Object.values(cases)
-            .map((c, i) => [{ day: c, nr: i }])
-            .map((c) => c[0])
-        deaths_ = Object.values(deaths)
-            .map((c, i) => [{ day: c, nr: i }])
-            .map((c) => c[0])
-
-
-
         let width = window.innerWidth
         if (width > 800) {
             width = 800
@@ -65,34 +53,21 @@ export class AppserviceService {
         const ratio2 = 4 - ratio
         const height = width / ratio2
 
-        console.log(window.innerWidth)
-        console.log('width ', width)
-        console.log('height ', height)
-        console.log('ratio ', ratio)
+        //first chart
 
+        let cases_ = []
+        cases_ = Object.values(cases)
+            .map((c, i) => [{ day: c, nr: i }])
+            .map((c) => c[0])
         const domain =
             cases_[cases_.length - 1].day + 0.1 * cases_[cases_.length - 1].day
-        const domain2 =
-            deaths_[deaths_.length - 1].day +
-            0.1 * deaths_[deaths_.length - 1].day
-
         const xScale = d3
             .scaleBand()
             .domain(cases_.map((dataPoint) => dataPoint.nr))
             .rangeRound([0, width + 15])
         const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0])
-        const xScale2 = d3
-            .scaleBand()
-            .domain(deaths_.map((dataPoint) => dataPoint.nr))
-            .rangeRound([0, width + 15])
-        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0])
-
         const yaxis = d3.axisRight().scale(yScale)
-        const yaxis2 = d3.axisRight().scale(yScale2)
-
         const curve = d3.curveLinear
-        const curve2 = d3.curveLinear
-
         const area = d3
             .area()
             .curve(curve)
@@ -100,21 +75,9 @@ export class AppserviceService {
             .y0(yScale(0))
             .y1((d) => yScale(d.day))
 
-        const area2 = d3
-            .area()
-            .curve(curve2)
-            .x((d) => xScale2(d.nr))
-            .y0(yScale(0))
-            .y1((d) => yScale2(d.day))
-
         svg1 = d3.select(`${id1}`).attr('viewBox', [0, 0, width, height])
-        svg2 = d3.select(`${id2}`).attr('viewBox', [0, 0, width, height])
         svg1.attr('display', 'initial')
-        svg2.attr('display', 'initial')
-
         svg1.select('.area').remove()
-        svg2.select('.area').remove()
-
         svg1.append('path')
             .attr('class', 'area')
             .datum(cases_)
@@ -128,6 +91,41 @@ export class AppserviceService {
             .attr('font-size', 16)
             .style('fill', '#3880ff')
             .text('Confirmed cases in the last 30 days')
+        svg1.select('.y').remove()
+
+        svg1.append('g')
+            .attr('class', 'y axis')
+            .attr('transform', 'translate(0, 0)')
+            .call(yaxis)
+
+        //second chart
+
+        let deaths_ = []
+        deaths_ = Object.values(deaths)
+            .map((c, i) => [{ day: c, nr: i }])
+            .map((c) => c[0])
+        const domain2 =
+            deaths_[deaths_.length - 1].day +
+            0.1 * deaths_[deaths_.length - 1].day
+        const xScale2 = d3
+            .scaleBand()
+            .domain(deaths_.map((dataPoint) => dataPoint.nr))
+            .rangeRound([0, width + 15])
+        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0])
+        const yaxis2 = d3.axisRight().scale(yScale2)
+        const curve2 = d3.curveLinear
+
+        const area2 = d3
+            .area()
+            .curve(curve2)
+            .x((d) => xScale2(d.nr))
+            .y0(yScale(0))
+            .y1((d) => yScale2(d.day))
+
+        svg2 = d3.select(`${id2}`).attr('viewBox', [0, 0, width, height])
+        svg2.attr('display', 'initial')
+
+        svg2.select('.area').remove()
 
         svg2.append('text')
             .attr('text-anchor', 'start')
@@ -142,13 +140,6 @@ export class AppserviceService {
             .datum(deaths_)
             .attr('fill', '#d46679')
             .attr('d', area2)
-
-        svg1.select('.y').remove()
-
-        svg1.append('g')
-            .attr('class', 'y axis')
-            .attr('transform', 'translate(0, 0)')
-            .call(yaxis)
 
         svg2.select('.y').remove()
 
