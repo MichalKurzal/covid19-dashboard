@@ -77,22 +77,28 @@ export class DashboardPage implements OnInit {
         return await this.appservice
             .HistoricalData()
             .then((data: any) => {
-                const cases = data.cases
-                const deaths = data.deaths
+                this.appservice.worldchart(
+                    data.cases,
+                    this.svg,
+                    '#svg3',
+                    'cases',
+                    '#66add4'
+                )
+
+                this.appservice.worldchart(
+                    data.deaths,
+                    this.svg2,
+                    '#svg4',
+                    'deaths',
+                    '#da7a88'
+                )
+
                 if (this.platform.is('cordova')) {
                     this.nativeStorage.setItem('DataWorld', data).then(
                         () => console.log('stored Item HistoricalData'),
                         (error) => console.error('Error stoting item', error)
                     )
                 }
-                this.appservice.worldchart(
-                    cases,
-                    deaths,
-                    this.svg,
-                    this.svg2,
-                    '#svg3',
-                    '#svg4'
-                )
             })
             .catch((error) => {
                 console.log('error ', error)
@@ -171,11 +177,18 @@ export class DashboardPage implements OnInit {
                     const deaths = res.deaths
                     this.appservice.worldchart(
                         cases,
-                        deaths,
                         this.svg,
-                        this.svg2,
                         '#svg3',
-                        '#svg4'
+                        'cases',
+                        '#66add4'
+                    )
+
+                    this.appservice.worldchart(
+                        deaths,
+                        this.svg2,
+                        '#svg4',
+                        'deaths',
+                        '#da7a88'
                     )
                 })
                 .catch((error) => {

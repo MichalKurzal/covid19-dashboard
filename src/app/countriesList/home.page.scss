@@ -11,3 +11,15 @@ ion-item {
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (min-width: 620px) and (orientation: portrait) {
+    ion-badge {
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width: 370px) and (orientation: portrait) {
+    ion-badge {
+        font-size: 8px;
+        margin: 2px;
+    }
+}

@@ -40,30 +40,33 @@ export class AppserviceService {
             .toPromise()
     }
 
-    worldchart = (cases, deaths, svg1, svg2, id1, id2) => {
+    setWidthAndHeight() {
         let width = window.innerWidth
+        const realheight = window.innerHeight
+        let ratio = realheight / width
         if (width > 800) {
             width = 800
         }
-        const realheight = window.innerHeight
-        let ratio = realheight / width
         if (ratio < 1.45) {
             ratio = 1.45
         }
         const ratio2 = 4 - ratio
         const height = width / ratio2
+        return { width, height }
+    }
 
-        //first chart
+    worldchart = (data, svg, id, text, color) => {
+        let { width, height } = this.setWidthAndHeight()
 
-        let cases_ = []
-        cases_ = Object.values(cases)
+        let data_ = []
+        data_ = Object.values(data)
             .map((c, i) => [{ day: c, nr: i }])
             .map((c) => c[0])
         const domain =
-            cases_[cases_.length - 1].day + 0.1 * cases_[cases_.length - 1].day
+            data_[data_.length - 1].day + 0.1 * data_[data_.length - 1].day
         const xScale = d3
             .scaleBand()
-            .domain(cases_.map((dataPoint) => dataPoint.nr))
+            .domain(data_.map((dataPoint) => dataPoint.nr))
             .rangeRound([0, width + 15])
         const yScale = d3.scaleLinear().domain([0, domain]).range([height, 0])
         const yaxis = d3.axisRight().scale(yScale)
@@ -75,77 +78,27 @@ export class AppserviceService {
             .y0(yScale(0))
             .y1((d) => yScale(d.day))
 
-        svg1 = d3.select(`${id1}`).attr('viewBox', [0, 0, width, height])
-        svg1.attr('display', 'initial')
-        svg1.select('.area').remove()
-        svg1.append('path')
+        svg = d3.select(`${id}`).attr('viewBox', [0, 0, width, height])
+        svg.attr('display', 'initial')
+        svg.select('.area').remove()
+        svg.append('path')
             .attr('class', 'area')
-            .datum(cases_)
-            .attr('fill', '#66add4')
+            .datum(data_)
+            .attr('fill', color)
             .attr('d', area)
 
-        svg1.append('text')
+        svg.append('text')
             .attr('text-anchor', 'start')
             .attr('dy', 20)
             .attr('dx', 60)
             .attr('font-size', 16)
             .style('fill', '#3880ff')
-            .text('Confirmed cases in the last 30 days')
-        svg1.select('.y').remove()
+            .text(`Confirmed ${text} in the last 30 days`)
+        svg.select('.y').remove()
 
-        svg1.append('g')
+        svg.append('g')
             .attr('class', 'y axis')
             .attr('transform', 'translate(0, 0)')
             .call(yaxis)
-
-        //second chart
-
-        let deaths_ = []
-        deaths_ = Object.values(deaths)
-            .map((c, i) => [{ day: c, nr: i }])
-            .map((c) => c[0])
-        const domain2 =
-            deaths_[deaths_.length - 1].day +
-            0.1 * deaths_[deaths_.length - 1].day
-        const xScale2 = d3
-            .scaleBand()
-            .domain(deaths_.map((dataPoint) => dataPoint.nr))
-            .rangeRound([0, width + 15])
-        const yScale2 = d3.scaleLinear().domain([0, domain2]).range([height, 0])
-        const yaxis2 = d3.axisRight().scale(yScale2)
-        const curve2 = d3.curveLinear
-
-        const area2 = d3
-            .area()
-            .curve(curve2)
-            .x((d) => xScale2(d.nr))
-            .y0(yScale(0))
-            .y1((d) => yScale2(d.day))
-
-        svg2 = d3.select(`${id2}`).attr('viewBox', [0, 0, width, height])
-        svg2.attr('display', 'initial')
-
-        svg2.select('.area').remove()
-
-        svg2.append('text')
-            .attr('text-anchor', 'start')
-            .attr('dy', 15)
-            .attr('dx', 50)
-            .attr('font-size', 16)
-            .style('fill', '#3880ff')
-            .text('Deaths in the last 30 days')
-
-        svg2.append('path')
-            .attr('class', 'area')
-            .datum(deaths_)
-            .attr('fill', '#d46679')
-            .attr('d', area2)
-
-        svg2.select('.y').remove()
-
-        svg2.append('g')
-            .attr('class', 'y axis')
-            .attr('transform', 'translate(0, 0)')
-            .call(yaxis2)
     }
 }

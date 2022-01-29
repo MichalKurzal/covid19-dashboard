@@ -30,7 +30,7 @@ ion-card {
     margin: 0px;
 }
 p {
-    font-size: 24px;
+    font-size: 16px;
     margin: 0px;
     padding: 0px;
     text-align: center;
@@ -46,24 +46,20 @@ ion-card-header {
     margin: 0px;
 }
 
-@media only screen and (min-width: 430px) and (max-width: 600px) {
+@media only screen and (min-width: 700px) and (orientation: portrait) {
     p {
-        font-size: 28px;
-        margin: 0px;
-        padding: 0px;
+        font-size: 30px;
     }
     ion-card-subtitle {
-        font-size: 18px;
+        font-size: 20px;
     }
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 370px) and (orientation: portrait) {
     p {
-        font-size: 46px;
-        margin: 0px;
-        padding: 0px;
+        font-size: 13px;
     }
     ion-card-subtitle {
-        font-size: 24px;
+        font-size: 14px;
     }
 }
 @media only screen and (orientation: landscape) and (min-width: 600px) and(max-width: 900px) {
@@ -81,8 +77,6 @@ ion-card-header {
     }
     p {
         font-size: 20px;
-        margin: 0px;
-        padding: 0px;
     }
     ion-card-subtitle {
         font-size: 12px;
@@ -114,8 +108,6 @@ ion-card-header {
     }
     p {
         font-size: 24px;
-        margin: 0px;
-        padding: 0px;
     }
     ion-card-subtitle {
         font-size: 16px;
@@ -148,8 +140,6 @@ ion-card-header {
     }
     p {
         font-size: 28px;
-        margin: 0px;
-        padding: 0px;
     }
 }
 @media only screen and (orientation: landscape) and (min-width: 1900px) {
@@ -162,14 +152,5 @@ ion-card-header {
         max-height: 650px;
         max-width: 900px;
         flex: 1;
-    }
-}
-
-@media only screen and (max-width: 370px) and (orientation: portrait) {
-    p {
-        font-size: 20px;
-    }
-    ion-card-subtitle {
-        font-size: 14px;
     }
 }

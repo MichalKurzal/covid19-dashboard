@@ -55,11 +55,17 @@ export class CountryDPage implements OnInit {
                 const deaths = data.timeline.deaths
                 this.appservice.worldchart(
                     cases,
-                    deaths,
                     this.svg,
-                    this.svg2,
                     '#svg1',
-                    '#svg2'
+                    'cases',
+                    '#66add4'
+                )
+                this.appservice.worldchart(
+                    deaths,
+                    this.svg2,
+                    '#svg2',
+                    'deaths',
+                    '#da7a88'
                 )
             })
             .catch((error) => {

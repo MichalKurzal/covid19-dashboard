@@ -24,7 +24,6 @@ ion-icon {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
-    //color:  #ffffff;
 }
 #svg3 {
     margin-left: 10px;
@@ -54,6 +53,12 @@ ion-icon {
 
 #date {
     margin-left: 10px;
+}
+
+@media only screen and (min-width: 620px) and (orientation: portrait) {
+    div {
+        margin: 0px;
+    }
 }
 
 @media only screen and (orientation: landscape) and (max-width: 700px) {
@@ -167,8 +172,4 @@ ion-icon {
     }
 }
 
-@media only screen and (min-width: 600px) and (orientation: portrait) {
-    div {
-        margin: 0px;
-    }
-}
+
