@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core'
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router'
+import { Graphs1Page } from './chart1/graphs1.page'
+import { Graphs2Page } from './chart2/graphs2.page'
 
 const routes: Routes = [
     {
@@ -8,13 +10,11 @@ const routes: Routes = [
     },
     {
         path: 'graphs1',
-        loadChildren: () =>
-            import('./chart1/graphs1.module').then((m) => m.Graphs1PageModule),
+        component: Graphs1Page,
     },
     {
         path: 'graphs2',
-        loadChildren: () =>
-            import('./chart2/graphs2.module').then((m) => m.Graphs2PageModule),
+        component: Graphs2Page,
     },
     {
         path: 'country-d',

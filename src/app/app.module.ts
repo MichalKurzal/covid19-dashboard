@@ -17,7 +17,7 @@ import { CountryDPageModule } from './countryDetail/country-d.module'
 import { DashboardPageModule } from './dashboard/dashboard.module'
 import { HomePageModule } from './countriesList/home.module'
 import { Graphs1PageModule } from './chart1/graphs1.module'
-import { Graphs2PageModule } from './chart2/graphs2.module'
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -32,7 +32,6 @@ import { Graphs2PageModule } from './chart2/graphs2.module'
         DashboardPageModule,
         HomePageModule,
         Graphs1PageModule,
-        Graphs2PageModule,
     ],
     providers: [
         File,

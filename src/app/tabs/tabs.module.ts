@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular'
 import { Routes, RouterModule } from '@angular/router'
 import { TabsPageRoutingModule } from './tabs-routing.module'
 import { TabsPage } from './tabs.page'
+import { Graphs1Page } from '../chart1/graphs1.page'
+import { Graphs2Page } from '../chart2/graphs2.page'
 
 const routes: Routes = [
     {
@@ -22,11 +24,11 @@ const routes: Routes = [
             },
             {
                 path: 'graphs1',
-                loadChildren: '../chart1/graphs1.module#Graphs1PageModule',
+                component: Graphs1Page,
             },
             {
                 path: 'graphs2',
-                loadChildren: '../chart2/graphs2.module#Graphs2PageModule',
+                component: Graphs2Page,
             },
             {
                 path: 'countryD',
