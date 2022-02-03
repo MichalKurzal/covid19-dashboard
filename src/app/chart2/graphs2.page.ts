@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import * as d3 from 'd3'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
 import { Platform } from '@ionic/angular'
+import { AppserviceService } from '../services/appservice.service'
 
 @Component({
     selector: 'app-graphs2',
@@ -13,6 +13,7 @@ import { Platform } from '@ionic/angular'
 export class Graphs2Page implements OnInit {
     constructor(
         private nativeStorage: NativeStorage,
+        public appService: AppserviceService,
         public router: Router,
         public platform: Platform
     ) {}
@@ -23,64 +24,19 @@ export class Graphs2Page implements OnInit {
         }
     }
     getdata() {
-        let dataL = []
-        const dataM = []
+        const data = []
         this.nativeStorage.getItem('DataCountries').then((res) => {
-            dataL = res
-            for (const d of dataL) {
+            for (const d of res) {
                 if (d.deaths > 100000) {
-                    dataM.push(d)
+                    data.push({ country: d.country, cases: d.deaths })
                 }
             }
-
-            dataM.sort((a, b) => a.deaths - b.deaths)
-            console.log('dataL', dataL)
-            console.log('dataM', dataM)
-            this.chart(dataM)
+            data.sort((a, b) => a.cases - b.cases)
+            this.appService.chart(data, '#s2')
         })
-    }
-    chart = (data) => {
-        const Length = data.length
-        const domain = data[Length - 1].deaths + 0.2 * data[Length - 1].deaths
-        const xScale = d3
-            .scaleBand()
-            .domain(data.map((dataPoint) => dataPoint.country))
-            .rangeRound([0, 600])
-            .padding(0.1)
-        const yScale = d3.scaleLinear().domain([0, domain]).range([600, 0])
-        const y_axis = d3.axisRight().scale(yScale)
-
-        const svg = d3.select('#s2').attr('viewBox', [0, 0, 600, 900])
-
-        svg.append('g')
-            .attr('fill', '#D42424')
-            .selectAll('rect')
-            .data(data)
-            .join('rect')
-            .attr('x', (data) => xScale(data.country))
-            .attr('y', (data) => yScale(data.deaths))
-            .attr('height', (data) => 600 - yScale(data.deaths))
-            .attr('width', xScale.bandwidth())
-
-        svg.append('g')
-            .attr('transform', 'translate(0,600)') // This controls the vertical position of the Axis
-            .call(d3.axisBottom(xScale))
-            .selectAll('text')
-            .attr('transform', 'translate(-15,15)rotate(-90)')
-            .style('text-anchor', 'end')
-            .style('font-size', 24)
-            .style('fill', '#69a3b2')
-
-        svg.append('g')
-            .attr('class', 'y axis')
-            .attr('transform', 'translate(0, 0)')
-            .style('font-size', 24)
-            .call(y_axis)
     }
 
     goforward = () => {
         this.router.navigateByUrl('tabs-nav/graphs1')
-
-        console.log('goforward')
     }
 }
