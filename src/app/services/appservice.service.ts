@@ -63,9 +63,14 @@ export class AppserviceService {
         const { width, height } = this.setWidthAndHeight()
         const data_ = Object.values(data)
             .filter((entry) => entry != null)
-            .filter((entry) => entry > 100000)
-            .map((c: number, i: number) => [{ day: c, nr: i }])
-            .map((c) => c[0])
+            .filter((entry) => entry != undefined)
+            .filter((entry) => entry > 1000)
+            .map((value: number, index: number) => {
+                let obj = { day: 0, nr: 0 }
+                obj.day = value
+                obj.nr = index
+                return obj
+            })
 
         const domain =
             data_[data_.length - 1].day + 0.1 * data_[data_.length - 1].day
