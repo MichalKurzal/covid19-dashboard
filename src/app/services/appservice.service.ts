@@ -61,10 +61,12 @@ export class AppserviceService {
 
     worldchart = (data, svg, id, text, color) => {
         const { width, height } = this.setWidthAndHeight()
-
         const data_ = Object.values(data)
+            .filter((entry) => entry != null)
+            .filter((entry) => entry > 100000)
             .map((c: number, i: number) => [{ day: c, nr: i }])
             .map((c) => c[0])
+
         const domain =
             data_[data_.length - 1].day + 0.1 * data_[data_.length - 1].day
         const xScale = d3
