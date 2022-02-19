@@ -1,15 +1,12 @@
-![Alt text](https://github.com/MichalKurzal/covid19-dashboard/blob/master/src/assets/covid19_git.jpg)
+![Alt text](https://github.com/MichalKurzal/covid19-dashboard/blob/master/src/assets/covid19Thumbs.jpg)
 # covid19-dashboard
 Covid-19 Data Dashboard Hybrid Android/iOS App  
 API: NovelCOVID API  
 https://github.com/disease-sh/API      
 ## To run this app:  
   
-1.Install Node.js, Ionic, Java SDK, Android SDK  
-2.Clone this Repoitory  
-3.In the Project Directory run: npm install  
-4.Finally: ionic cordova run android or ionic cordova emulate android  
-Browser is not supported  
+Both Android and iOS Vesrions are fully functional. You can perform an Ionic build on you own, or 
+download an APK.
   
 ## Download Android APK  
 You can safe install this app on your Android Phone  
