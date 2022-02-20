@@ -1,18 +1,14 @@
-ion-header {
+:host {
     margin: 0px;
     padding: 0px;
 }
 ion-toolbar {
-    margin: 0px;
-    padding: 0px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
 #title {
-    margin: 0px;
-    padding: 0px;
     font-size: 24px;
 }
 
@@ -44,21 +40,10 @@ ion-icon {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    margin: 0px;
-    padding: 0px;
-}
-#main {
-    padding: 0px;
 }
 
 #date {
     margin-left: 10px;
-}
-
-@media only screen and (min-width: 620px) and (orientation: portrait) {
-    div {
-        margin: 0px;
-    }
 }
 
 @media only screen and (orientation: landscape) and (max-width: 700px) {
@@ -67,8 +52,6 @@ ion-icon {
         flex-direction: row;
         justify-content: center;
         align-items: stretch;
-        margin: 0px;
-        padding: 0px;
     }
     #svg3 {
         float: left;
@@ -93,8 +76,6 @@ ion-icon {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        margin: 0px;
-        padding: 0px;
     }
     #svg3 {
         float: left;
@@ -117,8 +98,6 @@ ion-icon {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin: 0px;
-        padding: 0px;
     }
     #svg3 {
         max-height: 400px;
@@ -142,8 +121,6 @@ ion-icon {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0px;
-        padding: 0px;
     }
     #svg3 {
         max-height: 530px;

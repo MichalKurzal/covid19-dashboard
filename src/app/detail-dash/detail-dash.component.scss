@@ -1,25 +1,23 @@
-ion-card-header {
-    margin: 0px;
+ion-grid {
     padding: 0px;
 }
-
 ion-card {
-    margin: 0px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-p {
-    font-size: 16px;
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
+ion-card-header {
+    padding: 5px;
 }
 ion-card-subtitle {
     text-align: center;
     font-size: 16px;
-    margin: 0px;
     padding: 0px;
+}
+p {
+    font-size: 16px;
+    padding: 2px;
+    margin: 0px;
+    text-align: center;
 }
 
 @media only screen and (max-width: 370px) and (orientation: portrait) {
