@@ -51,18 +51,18 @@ ion-card-header {
         font-size: 14px;
     }
 }
-@media only screen and (orientation: landscape) and (min-width: 600px) and(max-width: 900px) {
+@media only screen and (orientation: landscape)and (max-width: 1000px) {
     ion-content {
         display: flex;
         flex-direction: row;
+        align-items: center;
         justify-content: flex-start;
         margin: 0px;
         padding: 0px;
     }
     svg {
-        float: left;
-        height: 210px;
-        width: 200px;
+       
+        width: 250px;
     }
     p {
         font-size: 20px;
@@ -70,38 +70,32 @@ ion-card-header {
     ion-card-subtitle {
         font-size: 12px;
     }
+    ion-grid{
+        position: inherit;
+    }
 }
-@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+@media only screen and (orientation: landscape) and (min-width: 1000px)  {
     ion-content {
         flex-wrap: wrap;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin: 0px;
         padding: 0px;
     }
+    svg{
+        width: 480px;
+    }
 
-    p {
-        font-size: 24px;
-    }
-    ion-card-subtitle {
-        font-size: 16px;
-    }
-}
-@media only screen and (orientation: landscape) and (min-width: 1200px) and (max-width: 1900px) {
-    ion-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 0px;
-        padding: 0px;
-    }
-    ion-card-subtitle {
-        font-size: 24px;
-    }
     p {
         font-size: 28px;
     }
+    ion-card-subtitle {
+        font-size: 20px;
+    }
+    ion-grid{
+        position: inherit;
+    }
 }
+
