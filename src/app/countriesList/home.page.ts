@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
-import { NavController,  NavParams } from '@ionic/angular'
+import { NavController, NavParams } from '@ionic/angular'
 import { NavigationExtras } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
@@ -8,7 +8,7 @@ import { IonInfiniteScroll } from '@ionic/angular'
     selector: 'app-countries',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
-    providers: [NavParams, NativeStorage]
+    providers: [NavParams, NativeStorage],
 })
 export class CountriesList implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll

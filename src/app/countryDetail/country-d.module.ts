@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { IonicModule } from '@ionic/angular'
@@ -6,6 +7,7 @@ import { CountryDPage } from './country-d.page'
 
 @NgModule({
     imports: [
+        CommonModule,
         FormsModule,
         IonicModule,
         CountryDPageRoutingModule,
