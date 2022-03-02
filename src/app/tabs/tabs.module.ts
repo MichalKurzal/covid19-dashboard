@@ -7,6 +7,10 @@ import { TabsPageRoutingModule } from './tabs-routing.module'
 import { TabsPage } from './tabs.page'
 import { Graphs1Page } from '../chart1/graphs1.page'
 import { Graphs2Page } from '../chart2/graphs2.page'
+import { DashboardPage } from '../dashboard/dashboard.page'
+import { CountriesList } from '../countriesList/home.page'
+import { CountryDPage } from '../countryDetail/country-d.page'
+import { AboutPage } from '../about/about.page'
 
 const routes: Routes = [
     {
@@ -15,12 +19,11 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                loadChildren:
-                    '../dashboard/dashboard.module#DashboardPageModule',
+                component: DashboardPage,
             },
             {
                 path: 'countries',
-                loadChildren: '../countriesList/home.module#HomePageModule',
+                component: CountriesList,
             },
             {
                 path: 'graphs1',
@@ -32,12 +35,11 @@ const routes: Routes = [
             },
             {
                 path: 'countryD',
-                loadChildren:
-                    '../countryDetail/country-d.module#CountryDPageModule',
+                component: CountryDPage,
             },
             {
                 path: 'about',
-                loadChildren: '../about/about.module#AboutPageModule',
+                component: AboutPage,
             },
         ],
     },
