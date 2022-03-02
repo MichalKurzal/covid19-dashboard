@@ -34,9 +34,9 @@ export class CountryDPage implements OnInit {
             this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
             this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
             const countryData = params.country
+
             this.countryCode = countryData?.countryInfo.iso2
             this.getHistoricalData(countryData?.countryInfo.iso2)
-
             this.country = countryData?.country
             this.dataCont.newCases = countryData?.todayCases
             this.dataCont.NewDeaths = countryData?.todayDeaths
