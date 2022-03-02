@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { AppserviceService } from '../services/appservice.service'
 import { DataCont } from '../data-cont'
-import * as d3 from 'd3'
 
 @Component({
     selector: 'app-country-d',
@@ -12,8 +11,8 @@ import * as d3 from 'd3'
 export class CountryDPage implements OnInit {
     country: any
     countryCode: any
-    svg: any
-    svg2: any
+    cases: {}
+    deaths: any
 
     dataCont: DataCont = {
         cases: 0,
@@ -31,10 +30,7 @@ export class CountryDPage implements OnInit {
 
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
-            this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
-            this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
             const countryData = params.country
-
             this.countryCode = countryData?.countryInfo.iso2
             this.getHistoricalData(countryData?.countryInfo.iso2)
             this.country = countryData?.country
@@ -51,29 +47,13 @@ export class CountryDPage implements OnInit {
         this.appservice
             .HistoricalCountry(code)
             .then((data: any) => {
-                const cases = data.timeline.cases
-                const deaths = data.timeline.deaths
-                this.appservice.worldchart(
-                    cases,
-                    this.svg,
-                    '#svg1',
-                    'cases',
-                    '#66add4'
-                )
-                this.appservice.worldchart(
-                    deaths,
-                    this.svg2,
-                    '#svg2',
-                    'deaths',
-                    '#da7a88'
-                )
+                this.cases = data.timeline.cases
+                this.deaths = data.timeline.deaths
             })
             .catch((error) => {
                 console.log('Cannot get Data for this Country - Error', error)
-                this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
-                this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
-                this.svg.attr('display', 'none')
-                this.svg2.attr('display', 'none')
+                this.cases = null,
+                this.deaths = null
             })
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { NavController, NavParams } from '@ionic/angular'
-import { NavigationExtras } from '@angular/router'
+import { NavigationExtras, Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
 
@@ -18,6 +18,7 @@ export class CountriesList implements OnInit {
 
     constructor(
         public nav: NavController,
+        private router: Router,
         public navParams: NavParams,
         private nativeStorage: NativeStorage
     ) {}
