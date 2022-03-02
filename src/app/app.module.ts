@@ -15,9 +15,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { AboutPageModule } from './about/about.module'
 import { CountryDPageModule } from './countryDetail/country-d.module'
 import { DashboardPageModule } from './dashboard/dashboard.module'
-import { HomePageModule } from './countriesList/home.module'
+import { CountriesListModule } from './countriesList/home.module'
 import { Graphs1PageModule } from './chart1/graphs1.module'
-
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,7 +29,7 @@ import { Graphs1PageModule } from './chart1/graphs1.module'
         AboutPageModule,
         CountryDPageModule,
         DashboardPageModule,
-        HomePageModule,
+        CountriesListModule,
         Graphs1PageModule,
     ],
     providers: [
