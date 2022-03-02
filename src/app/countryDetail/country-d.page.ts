@@ -9,10 +9,10 @@ import { DataCont } from '../data-cont'
     styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-    country: any
-    countryCode: any
+    country: string
+    countryCode: string
     cases: {}
-    deaths: any
+    deaths: {}
 
     dataCont: DataCont = {
         cases: 0,
@@ -30,6 +30,8 @@ export class CountryDPage implements OnInit {
 
     ngOnInit() {
         this.route.queryParams.subscribe((params) => {
+            this.cases = null
+            this.deaths = null
             const countryData = params.country
             this.countryCode = countryData?.countryInfo.iso2
             this.getHistoricalData(countryData?.countryInfo.iso2)
@@ -52,8 +54,7 @@ export class CountryDPage implements OnInit {
             })
             .catch((error) => {
                 console.log('Cannot get Data for this Country - Error', error)
-                this.cases = null,
-                this.deaths = null
+                ;(this.cases = null), (this.deaths = null)
             })
     }
 }

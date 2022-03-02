@@ -52,5 +52,5 @@ describe('DashboardPage', () => {
         expect(p.innerText).toMatch(/COVID-19 Dashboard/i,
           '<p> should say COVID-19 Dashboard');
       });
-    
+
 })

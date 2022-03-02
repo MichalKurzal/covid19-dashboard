@@ -12,7 +12,7 @@ describe('CountryDPage', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [CountryDPage],
-            imports: [IonicModule.forRoot(),RouterTestingModule, HttpClientTestingModule],
+            imports: [IonicModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
         }).compileComponents()
 
         fixture = TestBed.createComponent(CountryDPage)

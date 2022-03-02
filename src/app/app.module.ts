@@ -17,7 +17,7 @@ import { CountryDPageModule } from './countryDetail/country-d.module'
 import { DashboardPageModule } from './dashboard/dashboard.module'
 import { CountriesListModule } from './countriesList/home.module'
 import { Graphs1PageModule } from './chart1/graphs1.module'
-//import { TabsPageRoutingModule } from './tabs/tabs-routing.module'
+// import { TabsPageRoutingModule } from './tabs/tabs-routing.module'
 
 @NgModule({
     declarations: [AppComponent],

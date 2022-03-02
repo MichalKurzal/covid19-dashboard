@@ -11,7 +11,7 @@ describe('DetailDashComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DetailDashComponent],
-            imports: [IonicModule.forRoot(),RouterTestingModule],
+            imports: [IonicModule.forRoot(), RouterTestingModule],
         }).compileComponents()
 
         fixture = TestBed.createComponent(DetailDashComponent)

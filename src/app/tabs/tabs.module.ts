@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { IonicModule } from '@ionic/angular'
 import { Routes, RouterModule } from '@angular/router'
-//import { TabsPageRoutingModule } from './tabs-routing.module'
 import { TabsPage } from './tabs.page'
 import { Graphs1Page } from '../chart1/graphs1.page'
 import { Graphs2Page } from '../chart2/graphs2.page'
 import { DashboardPage } from '../dashboard/dashboard.page'
-import { CountriesList } from '../countriesList/home.page'
+import { CountriesListPage } from '../countriesList/home.page'
 import { CountryDPage } from '../countryDetail/country-d.page'
 import { AboutPage } from '../about/about.page'
 
@@ -23,7 +22,7 @@ const routes: Routes = [
             },
             {
                 path: 'countries',
-                component: CountriesList,
+                component: CountriesListPage,
                 pathMatch: 'full',
             },
             {
@@ -58,7 +57,6 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        //TabsPageRoutingModule,
         RouterModule.forChild(routes),
     ],
     declarations: [TabsPage],

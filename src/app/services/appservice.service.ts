@@ -66,7 +66,7 @@ export class AppserviceService {
             .filter((entry) => entry != undefined)
             .filter((entry) => entry > 1000)
             .map((value: number, index: number) => {
-                let obj = { day: 0, nr: 0 }
+                const obj = { day: 0, nr: 0 }
                 obj.day = value
                 obj.nr = index
                 return obj

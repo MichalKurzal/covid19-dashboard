@@ -16,7 +16,7 @@ export class DashboardPage implements OnInit {
     data
     svg: any
     svg2: any
-    today: Number
+    today: number
 
     dataCont: DataCont = {
         cases: 0,
@@ -41,8 +41,8 @@ export class DashboardPage implements OnInit {
         const loading = this.loading.create({
             spinner: 'circles',
             message: 'Loading Please Wait...',
-        })
-        ;(await loading).present().then(async () => {
+        });
+        (await loading).present().then(async () => {
             Promise.all([
                 this.loadWorldwideData(),
                 this.loadHistorical(),
@@ -119,13 +119,14 @@ export class DashboardPage implements OnInit {
                 this.today = Date.now()
             })
             .then(() => {
-                if (this.platform.is('cordova'))
+                if (this.platform.is('cordova')) {
                     this.nativeStorage
                         .setItem('DataContinents', this.dataCont)
                         .then(
                             () => console.log('stored Item WorldwideData'),
                             (err) => console.error('Error storing item', err)
                         )
+                }
             })
             .catch((error) => {
                 console.log('catch error get Global', error)
@@ -137,7 +138,7 @@ export class DashboardPage implements OnInit {
         return await this.appservice
             .getCountriesData()
             .then((res) => {
-                if (this.platform.is('cordova'))
+                if (this.platform.is('cordova')) {
                     this.nativeStorage
                         .setItem('DataCountries', res)
                         .then(
@@ -148,6 +149,7 @@ export class DashboardPage implements OnInit {
                         .catch((error) => {
                             console.log('error', error)
                         })
+                }
             })
             .catch((error) => {
                 console.log(error)
@@ -155,7 +157,7 @@ export class DashboardPage implements OnInit {
     }
 
     getDataCont = () => {
-        if (this.platform.is('cordova'))
+        if (this.platform.is('cordova')) {
             this.nativeStorage
                 .getItem('DataContinents')
                 .then((res) => {
@@ -166,10 +168,11 @@ export class DashboardPage implements OnInit {
                 .catch((error) => {
                     console.log('error', error)
                 })
+        }
     }
 
     getDataWorld = () => {
-        if (this.platform.is('cordova'))
+        if (this.platform.is('cordova')) {
             this.nativeStorage
                 .getItem('DataWorld')
                 .then((res) => {
@@ -194,6 +197,7 @@ export class DashboardPage implements OnInit {
                 .catch((error) => {
                     console.log('error ', error)
                 })
+        }
     }
 
     setTotal = (data) => {

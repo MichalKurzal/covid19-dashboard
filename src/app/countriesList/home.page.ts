@@ -10,15 +10,14 @@ import { IonInfiniteScroll } from '@ionic/angular'
     styleUrls: ['home.page.scss'],
     providers: [NavParams, NativeStorage],
 })
-export class CountriesList implements OnInit {
+export class CountriesListPage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll
     countries: any = []
     dataList: any = []
-    itemLimit: number = 20
+    itemLimit = 20
 
     constructor(
         public nav: NavController,
-        private router: Router,
         public navParams: NavParams,
         private nativeStorage: NativeStorage
     ) {}

@@ -13,7 +13,7 @@ export class CountryDetailChartsComponent implements OnInit {
     @Input()
     set cases(cases: {}) {
         this.svg = d3.select('#svg1').attr('viewBox', [0, 0, 0, 0])
-        if (cases !== null && cases !== undefined)
+        if (cases !== null && cases !== undefined) {
             this.appservice.worldchart(
                 cases,
                 this.svg,
@@ -21,12 +21,13 @@ export class CountryDetailChartsComponent implements OnInit {
                 'cases',
                 '#66add4'
             )
-        else this.svg.attr('display', 'none')
+        }
+        else { this.svg.attr('display', 'none') }
     }
     @Input()
     set deaths(deaths: {}) {
         this.svg2 = d3.select('#svg2').attr('viewBox', [0, 0, 0, 0])
-        if (deaths !== null && deaths !== undefined)
+        if (deaths !== null && deaths !== undefined) {
             this.appservice.worldchart(
                 deaths,
                 this.svg2,
@@ -34,7 +35,8 @@ export class CountryDetailChartsComponent implements OnInit {
                 'deaths',
                 '#da7a88'
             )
-        else this.svg2.attr('display', 'none')
+        }
+        else { this.svg2.attr('display', 'none') }
     }
     constructor(public appservice: AppserviceService) {}
 
