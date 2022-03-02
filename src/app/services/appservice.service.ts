@@ -61,11 +61,12 @@ export class AppserviceService {
 
     worldchart = (data, svg, id, text, color) => {
         const { width, height } = this.setWidthAndHeight()
+        let temp = 0;
         const data_ = Object.values(data)
-            .filter((entry) => entry != null)
             .filter((entry) => entry != undefined)
-            .filter((entry) => entry > 1000)
+            .filter((entry) => entry >= temp)
             .map((value: number, index: number) => {
+                temp= value
                 const obj = { day: 0, nr: 0 }
                 obj.day = value
                 obj.nr = index
