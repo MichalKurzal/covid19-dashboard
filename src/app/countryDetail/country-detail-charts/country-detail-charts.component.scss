@@ -1,0 +1,49 @@
+#svg1 {
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#svg2 {
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+@media only screen and (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+    #svg1 {
+        max-height: 400px;
+        max-width: 450px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 400px;
+        max-width: 450px;
+        flex: 1;
+    }
+}
+@media only screen and (orientation: landscape) and (min-width: 1200px) and (max-width: 1900px) {
+    #svg1 {
+        max-height: 550px;
+        max-width: 600px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 550px;
+        max-width: 600px;
+        flex: 1;
+    }
+}
+@media only screen and (orientation: landscape) and (min-width: 1900px) {
+    #svg1 {
+        max-height: 650px;
+        max-width: 900px;
+        flex: 1;
+    }
+    #svg2 {
+        max-height: 650px;
+        max-width: 900px;
+        flex: 1;
+    }
+}
+

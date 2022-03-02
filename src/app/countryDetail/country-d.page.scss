@@ -4,19 +4,6 @@ ion-content {
     justify-content: flex-start;
     align-items: center;
 }
-#svg1 {
-    margin-top: 10px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    margin-left: 5px;
-    margin-right: 5px;
-}
-#svg2 {
-    margin-top: 10px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 ion-grid {
     position: absolute;
     bottom: 10px;
@@ -94,16 +81,6 @@ ion-card-header {
         margin: 0px;
         padding: 0px;
     }
-    #svg1 {
-        max-height: 400px;
-        max-width: 450px;
-        flex: 1;
-    }
-    #svg2 {
-        max-height: 400px;
-        max-width: 450px;
-        flex: 1;
-    }
 
     p {
         font-size: 24px;
@@ -121,33 +98,10 @@ ion-card-header {
         margin: 0px;
         padding: 0px;
     }
-    #svg1 {
-        max-height: 550px;
-        max-width: 600px;
-        flex: 1;
-    }
-    #svg2 {
-        max-height: 550px;
-        max-width: 600px;
-        flex: 1;
-    }
-
     ion-card-subtitle {
         font-size: 24px;
     }
     p {
         font-size: 28px;
-    }
-}
-@media only screen and (orientation: landscape) and (min-width: 1900px) {
-    #svg1 {
-        max-height: 650px;
-        max-width: 900px;
-        flex: 1;
-    }
-    #svg2 {
-        max-height: 650px;
-        max-width: 900px;
-        flex: 1;
     }
 }
