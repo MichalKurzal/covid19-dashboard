@@ -61,12 +61,12 @@ export class AppserviceService {
 
     worldchart = (data, svg, id, text, color) => {
         const { width, height } = this.setWidthAndHeight()
-        let temp = 0;
+        let temp = 0
         const data_ = Object.values(data)
             .filter((entry) => entry != undefined)
             .filter((entry) => entry >= temp)
             .map((value: number, index: number) => {
-                temp= value
+                temp = value
                 const obj = { day: 0, nr: 0 }
                 obj.day = value
                 obj.nr = index
@@ -114,6 +114,12 @@ export class AppserviceService {
     }
 
     chart = (data, id) => {
+        const height = window.innerHeight
+        const width = window.innerWidth
+        const ratio = height / width - 0.5
+        const chartRatio = ratio < 1 ? 2 : ratio
+        const chartHeight = height / chartRatio
+        
         const Length = data.length
         const domain = data[Length - 1].cases + 0.2 * data[Length - 1].cases
         const xScale = d3
@@ -121,10 +127,13 @@ export class AppserviceService {
             .domain(data.map((dataPoint) => dataPoint.country))
             .rangeRound([0, 600])
             .padding(0.1)
-        const yScale = d3.scaleLinear().domain([0, domain]).range([600, 0])
+        const yScale = d3
+            .scaleLinear()
+            .domain([0, domain])
+            .range([chartHeight, 0])
         const y_axis = d3.axisRight().scale(yScale)
 
-        const svg = d3.select(id).attr('viewBox', [0, 0, 600, 900])
+        const svg = d3.select(id).attr('viewBox', [0, 0, 600, height + 60])
 
         svg.append('g')
             .attr('fill', '#D42424')
@@ -133,11 +142,11 @@ export class AppserviceService {
             .join('rect')
             .attr('x', (data) => xScale(data.country))
             .attr('y', (data) => yScale(data.cases))
-            .attr('height', (data) => 600 - yScale(data.cases))
+            .attr('height', (data) => chartHeight - yScale(data.cases))
             .attr('width', xScale.bandwidth())
 
         svg.append('g')
-            .attr('transform', 'translate(0,600)') // This controls the vertical position of the Axis
+            .attr('transform', `translate(0,${chartHeight})`) // This controls the vertical position of the Axis
             .call(d3.axisBottom(xScale))
             .selectAll('text')
             .attr('transform', 'translate(-15,15)rotate(-90)')
