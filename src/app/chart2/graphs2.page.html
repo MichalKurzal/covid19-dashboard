@@ -1,12 +1,11 @@
 <ion-header>
     <ion-toolbar>
-        <ion-item>
-            <ion-icon
-                (click)="goforward()"
-                name="arrow-back-circle-outline"
-            ></ion-icon>
-            <p>Countries with more than 100 000 deaths</p>
-        </ion-item>
+        <ion-buttons slot="primary">
+            <ion-button (click)="goforward()">
+                <ion-icon name="arrow-back-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Countries with more than 100 000 deaths</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
