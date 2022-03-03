@@ -14,6 +14,7 @@ export class CountriesListPage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll
     countries: any = []
     dataList: any = []
+    templist: any = []
     itemLimit = 20
 
     constructor(
@@ -28,11 +29,18 @@ export class CountriesListPage implements OnInit {
                 this.countries = res
                 this.countries.reverse()
                 this.dataList = this.countries.slice(0, this.itemLimit)
-                console.log('dataList', this.dataList)
             })
             .catch((error) => {
                 console.log('error', error)
             })
+    }
+
+    onInput(e) {
+        this.templist = this.countries.filter((country) =>
+            country.country.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+
+        this.dataList = this.templist.slice(0, this.itemLimit)
     }
 
     goforward = (param) => {
@@ -47,7 +55,10 @@ export class CountriesListPage implements OnInit {
     loadData(event) {
         setTimeout(() => {
             this.itemLimit += 20
-            this.dataList = this.countries.slice(0, this.itemLimit)
+            if (this.templist.length > 0)
+                this.dataList = this.templist.slice(0, this.itemLimit)
+            else this.dataList = this.countries.slice(0, this.itemLimit)
+
             event.target.complete()
         }, 500)
     }

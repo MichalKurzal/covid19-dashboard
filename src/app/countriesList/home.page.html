@@ -1,3 +1,9 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
     <ion-list id="container">
         <ion-item *ngFor="let c of dataList" (click)="goforward(c)">
