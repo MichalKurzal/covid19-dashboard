@@ -2,11 +2,14 @@
     margin: 0px;
     padding: 0px;
 }
-.header {
-    display: flex;
-    justify-content: space-between;
-}
 
+ion-toolbar {
+    --padding-bottom: 0px;
+    --padding-top: 0px;
+}
+ion-button {
+    height: 50px !important;
+}
 #title {
     font-size: 24px;
 }
@@ -45,7 +48,7 @@ ion-icon {
     margin-left: 10px;
 }
 
-@media only screen and (orientation: landscape)and (min-width: 1000px)  {
+@media only screen and (orientation: landscape) and (min-width: 1000px) {
     #content {
         display: flex;
         flex-wrap: wrap;
@@ -58,13 +61,12 @@ ion-icon {
     #svg4 {
         width: 480px;
     }
-  #main{
-      width: 100%;
-  }
-   
+    #main {
+        width: 100%;
+    }
 }
 
-@media only screen and (orientation: landscape)and (max-width: 1000px)  {
+@media only screen and (orientation: landscape) and (max-width: 1000px) {
     #content {
         display: flex;
         flex-wrap: wrap;
@@ -77,8 +79,7 @@ ion-icon {
     #svg4 {
         width: 240px;
     }
-  #main{
-      width: 100%;
-  }
-   
+    #main {
+        width: 100%;
+    }
 }

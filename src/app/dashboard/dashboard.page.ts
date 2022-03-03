@@ -17,6 +17,7 @@ export class DashboardPage implements OnInit {
     svg: any
     svg2: any
     today: number
+    icon: string = 'sunny-outline'
 
     dataCont: DataCont = {
         cases: 0,
@@ -41,8 +42,8 @@ export class DashboardPage implements OnInit {
         const loading = this.loading.create({
             spinner: 'circles',
             message: 'Loading Please Wait...',
-        });
-        (await loading).present().then(async () => {
+        })
+        ;(await loading).present().then(async () => {
             Promise.all([
                 this.loadWorldwideData(),
                 this.loadHistorical(),
@@ -64,12 +65,15 @@ export class DashboardPage implements OnInit {
         }
     }
 
-    onToggleColorTheme(event) {
-        console.log(event.detail.checked)
-        if (event.detail.checked) {
+
+    changeTheme() {
+        const theme = document.body.getAttribute('color-theme')
+        if (theme === 'dark') {
             document.body.setAttribute('color-theme', 'light')
+            this.icon = 'moon-outline'
         } else {
             document.body.setAttribute('color-theme', 'dark')
+            this.icon = 'sunny-outline'
         }
     }
 
