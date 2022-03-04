@@ -1,14 +1,16 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="primary">
+        <ion-buttons slot="start">
             <ion-button (click)="goforward()">
                 <ion-icon name="bar-chart-outline"></ion-icon>
-            </ion-button>
+            </ion-button>  
+        </ion-buttons>
+        <ion-buttons slot="end">
             <ion-button (click)="changeTheme()">
                 <ion-icon name="{{icon}}"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title id="title">COVID-19 Dashboard</ion-title>
+        <ion-title>COVID-19 Dashboard</ion-title>
     </ion-toolbar>
 </ion-header>
 
