@@ -37,6 +37,6 @@ export class Graphs2Page implements OnInit {
     }
 
     goforward = () => {
-        this.router.navigateByUrl('tabs-nav/graphs1')
+        this.router.navigateByUrl('tabs-nav/graphs')
     }
 }

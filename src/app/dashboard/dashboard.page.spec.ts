@@ -46,11 +46,5 @@ describe('DashboardPage', () => {
         expect(component2).toBeTruthy()
     })
 
-    it('should have expected <p> text', () => {
-        fixture.detectChanges();
-        const p = ele.nativeElement;
-        expect(p.innerText).toMatch(/COVID-19 Dashboard/i,
-          '<p> should say COVID-19 Dashboard');
-      });
 
 })

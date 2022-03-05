@@ -4,12 +4,7 @@ import { FormsModule } from '@angular/forms'
 import { IonicModule } from '@ionic/angular'
 import { Routes, RouterModule } from '@angular/router'
 import { TabsPage } from './tabs.page'
-import { Graphs1Page } from '../chart1/graphs1.page'
-import { Graphs2Page } from '../chart2/graphs2.page'
-import { DashboardPage } from '../dashboard/dashboard.page'
-import { CountriesListPage } from '../countriesList/home.page'
-import { CountryDPage } from '../countryDetail/country-d.page'
-import { AboutPage } from '../about/about.page'
+
 
 const routes: Routes = [
     {
@@ -18,20 +13,25 @@ const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                component: DashboardPage,
+                loadChildren: () =>
+                    import('../dashboard/dashboard.module').then(
+                        (m) => m.DashboardPageModule
+                    ),
             },
             {
                 path: 'countries',
-                component: CountriesListPage,
+                loadChildren: () =>
+                    import('../countriesList/home.module').then(
+                        (m) => m.CountriesListModule
+                    ),
                 pathMatch: 'full',
             },
             {
-                path: 'graphs1',
-                component: Graphs1Page,
-            },
-            {
-                path: 'graphs2',
-                component: Graphs2Page,
+                path: 'graphs',
+                loadChildren:() =>
+                import('../chart1/graphs1.module').then(
+                    (m)=>m.Graphs1PageModule
+                )
             },
             {
                 path: 'countryD',
@@ -43,7 +43,10 @@ const routes: Routes = [
             },
             {
                 path: 'about',
-                component: AboutPage,
+                loadChildren: () =>
+                    import('../about/about.module').then(
+                        (m) => m.AboutPageModule
+                    ),
             },
         ],
     },

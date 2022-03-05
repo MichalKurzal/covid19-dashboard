@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router'
     templateUrl: './detail-dash.component.html',
     styleUrls: ['./detail-dash.component.scss'],
 })
-export class DetailDashComponent implements OnInit {
+export class DetailDashComponent {
     @Input() totalCases
     @Input() totalDeaths
     @Input() totalRecovered
@@ -16,12 +16,6 @@ export class DetailDashComponent implements OnInit {
 
     constructor(public router: Router) {}
 
-    ngOnInit() {}
-    goforward = () => {
-        this.router.navigateByUrl('tabs-nav/graphs1')
-    }
-
-    goforward2 = () => {
-        this.router.navigateByUrl('tabs-nav/graphs2')
-    }
+    goforward = () => this.router.navigateByUrl('tabs-nav/graphs')
+    goforward2 = () => this.router.navigateByUrl('tabs-nav/graphs/2')
 }
