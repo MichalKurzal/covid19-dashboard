@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
 import { Platform } from '@ionic/angular'
-import { AppserviceService } from '../services/appservice.service'
+import { ChartService } from '../services/appservice.service'
 
 @Component({
     selector: 'app-graphs2',
@@ -13,7 +13,7 @@ import { AppserviceService } from '../services/appservice.service'
 export class Graphs2Page implements OnInit {
     constructor(
         private nativeStorage: NativeStorage,
-        public appService: AppserviceService,
+        public chartService: ChartService,
         public router: Router,
         public platform: Platform
     ) {}
@@ -32,7 +32,7 @@ export class Graphs2Page implements OnInit {
                 }
             }
             data.sort((a, b) => a.cases - b.cases)
-            this.appService.chart(data, '#s2')
+            this.chartService.chart(data, '#s2')
         })
     }
 

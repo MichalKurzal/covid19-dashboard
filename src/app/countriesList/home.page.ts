@@ -39,7 +39,6 @@ export class CountriesListPage implements OnInit {
         this.templist = this.countries.filter((country) =>
             country.country.toLowerCase().includes(e.target.value.toLowerCase())
         )
-
         this.dataList = this.templist.slice(0, this.itemLimit)
     }
 

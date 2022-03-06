@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { AppserviceService } from '../services/appservice.service'
+import { HttpService } from '../services/http.service'
 import { DataCont } from '../data-cont'
 
 @Component({
@@ -25,7 +25,7 @@ export class CountryDPage implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        public appservice: AppserviceService
+        public httpService: HttpService
     ) {}
 
     ngOnInit() {
@@ -46,7 +46,7 @@ export class CountryDPage implements OnInit {
     }
 
     getHistoricalData = (code) => {
-        this.appservice
+        this.httpService
             .HistoricalCountry(code)
             .then((data: any) => {
                 this.cases = data.timeline.cases

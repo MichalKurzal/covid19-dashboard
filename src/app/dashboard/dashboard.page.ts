@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { AppserviceService } from '../services/appservice.service'
+import { ChartService } from '../services/appservice.service'
+import { HttpService } from '../services/http.service'
 import { NavController, LoadingController, Platform } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
@@ -10,10 +11,9 @@ import { DataCont } from './../data-cont'
     selector: 'app-dashboard',
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
-    providers: [AppserviceService, NativeStorage, ScreenOrientation],
+    providers: [ChartService, NativeStorage, ScreenOrientation],
 })
 export class DashboardPage implements OnInit {
-    data
     svg: any
     svg2: any
     today: number
@@ -29,7 +29,8 @@ export class DashboardPage implements OnInit {
     }
 
     constructor(
-        public appservice: AppserviceService,
+        public chartservice: ChartService,
+        public httpService: HttpService,
         public nav: NavController,
         public router: Router,
         private nativeStorage: NativeStorage,
@@ -78,10 +79,10 @@ export class DashboardPage implements OnInit {
     }
 
     loadHistorical = async () => {
-        return await this.appservice
+        return await this.httpService
             .HistoricalData()
             .then((data: any) => {
-                this.appservice.worldchart(
+                this.chartservice.worldchart(
                     data.cases,
                     this.svg,
                     '#svg3',
@@ -89,7 +90,7 @@ export class DashboardPage implements OnInit {
                     '#66add4'
                 )
 
-                this.appservice.worldchart(
+                this.chartservice.worldchart(
                     data.deaths,
                     this.svg2,
                     '#svg4',
@@ -111,7 +112,7 @@ export class DashboardPage implements OnInit {
     }
 
     loadWorldwideData = async () => {
-        return await this.appservice
+        return await this.httpService
             .WorldwideData()
             .then((res) => {
                 ;(this.dataCont.cases = res['cases']),
@@ -139,7 +140,7 @@ export class DashboardPage implements OnInit {
     }
 
     loadCountriesData = async () => {
-        return await this.appservice
+        return await this.httpService
             .getCountriesData()
             .then((res) => {
                 if (this.platform.is('cordova')) {
@@ -165,9 +166,7 @@ export class DashboardPage implements OnInit {
             this.nativeStorage
                 .getItem('DataContinents')
                 .then((res) => {
-                    const data = res
-                    console.log('get Data', data)
-                    this.setTotal(data)
+                    this.setTotal(res)
                 })
                 .catch((error) => {
                     console.log('error', error)
@@ -182,7 +181,7 @@ export class DashboardPage implements OnInit {
                 .then((res) => {
                     const cases = res.cases
                     const deaths = res.deaths
-                    this.appservice.worldchart(
+                    this.chartservice.worldchart(
                         cases,
                         this.svg,
                         '#svg3',
@@ -190,7 +189,7 @@ export class DashboardPage implements OnInit {
                         '#66add4'
                     )
 
-                    this.appservice.worldchart(
+                    this.chartservice.worldchart(
                         deaths,
                         this.svg2,
                         '#svg4',
@@ -205,7 +204,6 @@ export class DashboardPage implements OnInit {
     }
 
     setTotal = (data) => {
-        console.log(data)
         this.dataCont.cases = data.cases
         this.dataCont.newCases = data.newCases
         this.dataCont.NewDeaths = data.NewDeaths
