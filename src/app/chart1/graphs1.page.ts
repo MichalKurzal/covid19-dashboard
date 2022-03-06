@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { Router } from '@angular/router'
 import { Platform } from '@ionic/angular'
-import { ChartService } from '../services/appservice.service'
+import { ChartService } from '../services/chart.service'
 
 @Component({
     selector: 'app-graphs1',

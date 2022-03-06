@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ChartService } from '../services/appservice.service'
+import { ChartService } from '../services/chart.service'
 import { HttpService } from '../services/http.service'
 import { NavController, LoadingController, Platform } from '@ionic/angular'
 import { Router } from '@angular/router'

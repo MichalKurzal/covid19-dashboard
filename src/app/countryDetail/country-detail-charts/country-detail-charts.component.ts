@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import * as d3 from 'd3'
-import { ChartService } from 'src/app/services/appservice.service'
+import { ChartService } from 'src/app/services/chart.service'
 
 @Component({
     selector: 'app-country-detail-charts',
