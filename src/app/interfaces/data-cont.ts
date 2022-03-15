@@ -1,10 +1,12 @@
 export interface DataCont {
     cases: number
-    newCases: number
-    NewDeaths: number
+    todayCases: number
+    todayDeaths: number
     deaths: number
     recovered: number
-    NewRecovered: number
+    todayRecovered: number
     country: string
-    countryCode: string
+    countryInfo: {
+        iso2: string
+    }
 }

@@ -5,7 +5,6 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
 import { country } from '../interfaces/country'
 
-
 @Component({
     selector: 'app-countries',
     templateUrl: 'home.page.html',
@@ -44,7 +43,7 @@ export class CountriesListPage implements OnInit {
         this.dataList = this.templist.slice(0, this.itemLimit)
     }
 
-    goforward = (param) => {
+    goforward = (param: country) => {
         const navigationExtras: NavigationExtras = {
             queryParams: {
                 country: param,

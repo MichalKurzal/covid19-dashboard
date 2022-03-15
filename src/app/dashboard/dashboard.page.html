@@ -32,9 +32,9 @@
             [totalCases]="dataCont.cases"
             [totalDeaths]="dataCont.deaths"
             [totalRecovered]="dataCont.recovered"
-            [newCases]="dataCont.newCases"
-            [newDeaths]="dataCont.NewDeaths"
-            [newRecovered]="dataCont.NewRecovered"
+            [newCases]="dataCont.todayCases"
+            [newDeaths]="dataCont.todayDeaths"
+            [newRecovered]="dataCont.todayRecovered"
         ></app-detail-dash>
     </div>
     <p id="date">Last Update: {{today | date: 'dd/MM/yyyy HH:mm'}} UTC±00:00</p>

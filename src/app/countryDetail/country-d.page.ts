@@ -14,13 +14,15 @@ export class CountryDPage implements OnInit {
 
     dataCont: DataCont = {
         cases: 0,
-        newCases: 0,
-        NewDeaths: 0,
+        todayCases: 0,
+        todayDeaths: 0,
         deaths: 0,
         recovered: 0,
-        NewRecovered: 0,
+        todayRecovered: 0,
         country: '',
-        countryCode: '',
+        countryInfo: {
+            iso2: '',
+        },
     }
 
     constructor(
@@ -32,16 +34,8 @@ export class CountryDPage implements OnInit {
         this.route.queryParams.subscribe((params) => {
             this.cases = null
             this.deaths = null
-            const countryData = params.country
-            this.getHistoricalData(countryData?.countryInfo.iso2)
-            this.dataCont.countryCode = countryData?.countryInfo.iso2
-            this.dataCont.country = countryData?.country
-            this.dataCont.newCases = countryData?.todayCases
-            this.dataCont.NewDeaths = countryData?.todayDeaths
-            this.dataCont.NewRecovered = countryData?.todayRecovered
-            this.dataCont.cases = countryData?.cases
-            this.dataCont.deaths = countryData?.deaths
-            this.dataCont.recovered = countryData?.recovered
+            this.dataCont = params.country
+            this.getHistoricalData(this.dataCont.countryInfo.iso2)
         })
     }
 

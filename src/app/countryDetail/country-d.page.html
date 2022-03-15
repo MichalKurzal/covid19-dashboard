@@ -7,7 +7,7 @@
             <ion-item id="country">
                 <ion-col>
                     <img
-                        src="../../assets/svg/{{dataCont.countryCode}}.svg"
+                        src="../../assets/svg/{{dataCont?.countryInfo.iso2}}.svg"
                         style="height: 64px; width: 120px"
                     />
                 </ion-col>
@@ -29,13 +29,13 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <p>{{dataCont.newCases | number}}</p>
+                        <p>{{dataCont.todayCases | number}}</p>
                     </ion-col>
                     <ion-col>
-                        <p>{{dataCont.NewDeaths | number}}</p>
+                        <p>{{dataCont.todayDeaths | number}}</p>
                     </ion-col>
                     <ion-col>
-                        <p>{{dataCont.NewRecovered | number}}</p>
+                        <p>{{dataCont.todayRecovered | number}}</p>
                     </ion-col>
                 </ion-row>
                 <ion-row>

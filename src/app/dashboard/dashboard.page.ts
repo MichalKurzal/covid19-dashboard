@@ -21,13 +21,15 @@ export class DashboardPage implements OnInit {
 
     dataCont: DataCont = {
         cases: 0,
-        newCases: 0,
-        NewDeaths: 0,
+        todayCases: 0,
+        todayDeaths: 0,
         deaths: 0,
         recovered: 0,
-        NewRecovered: 0,
+        todayRecovered: 0,
         country: '',
-        countryCode: '',
+        countryInfo: {
+            iso2: '',
+        },
     }
 
     constructor(
@@ -117,11 +119,11 @@ export class DashboardPage implements OnInit {
             .WorldwideData()
             .then((res) => {
                 ;(this.dataCont.cases = res['cases']),
-                    (this.dataCont.newCases = res['todayCases']),
+                    (this.dataCont.todayCases = res['todayCases']),
                     (this.dataCont.deaths = res['deaths']),
-                    (this.dataCont.NewDeaths = res['todayDeaths']),
+                    (this.dataCont.todayDeaths = res['todayDeaths']),
                     (this.dataCont.recovered = res['recovered']),
-                    (this.dataCont.NewRecovered = res['todayRecovered'])
+                    (this.dataCont.todayRecovered = res['todayRecovered'])
                 this.today = Date.now()
             })
             .then(() => {
@@ -206,11 +208,11 @@ export class DashboardPage implements OnInit {
 
     setTotal = (data) => {
         this.dataCont.cases = data.cases
-        this.dataCont.newCases = data.newCases
-        this.dataCont.NewDeaths = data.NewDeaths
+        this.dataCont.todayCases = data.newCases
+        this.dataCont.todayDeaths = data.NewDeaths
         this.dataCont.deaths = data.deaths
         this.dataCont.recovered = data.recovered
-        this.dataCont.NewRecovered = data.NewRecovered
+        this.dataCont.todayRecovered = data.NewRecovered
     }
 
     goforward = () => this.router.navigateByUrl('tabs-nav/graphs')
