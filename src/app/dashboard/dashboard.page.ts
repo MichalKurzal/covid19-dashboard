@@ -117,13 +117,8 @@ export class DashboardPage implements OnInit {
     loadWorldwideData = async () => {
         return await this.httpService
             .WorldwideData()
-            .then((res) => {
-                ;(this.dataCont.cases = res['cases']),
-                    (this.dataCont.todayCases = res['todayCases']),
-                    (this.dataCont.deaths = res['deaths']),
-                    (this.dataCont.todayDeaths = res['todayDeaths']),
-                    (this.dataCont.recovered = res['recovered']),
-                    (this.dataCont.todayRecovered = res['todayRecovered'])
+            .then((res: DataCont) => {
+                this.dataCont = res
                 this.today = Date.now()
             })
             .then(() => {
@@ -207,12 +202,7 @@ export class DashboardPage implements OnInit {
     }
 
     setTotal = (data) => {
-        this.dataCont.cases = data.cases
-        this.dataCont.todayCases = data.newCases
-        this.dataCont.todayDeaths = data.NewDeaths
-        this.dataCont.deaths = data.deaths
-        this.dataCont.recovered = data.recovered
-        this.dataCont.todayRecovered = data.NewRecovered
+        this.dataCont = data
     }
 
     goforward = () => this.router.navigateByUrl('tabs-nav/graphs')
