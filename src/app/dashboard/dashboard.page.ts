@@ -26,6 +26,8 @@ export class DashboardPage implements OnInit {
         deaths: 0,
         recovered: 0,
         NewRecovered: 0,
+        country: '',
+        countryCode: '',
     }
 
     constructor(
@@ -65,7 +67,6 @@ export class DashboardPage implements OnInit {
             console.log(navigator.userAgent)
         }
     }
-
 
     changeTheme() {
         const theme = document.body.getAttribute('color-theme')

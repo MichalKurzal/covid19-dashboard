@@ -5,4 +5,6 @@ export interface DataCont {
     deaths: number
     recovered: number
     NewRecovered: number
+    country: string
+    countryCode: string
 }

@@ -9,8 +9,6 @@ import { DataCont } from '../interfaces/data-cont'
     styleUrls: ['./country-d.page.scss'],
 })
 export class CountryDPage implements OnInit {
-    country: string
-    countryCode: string
     cases: {}
     deaths: {}
 
@@ -21,6 +19,8 @@ export class CountryDPage implements OnInit {
         deaths: 0,
         recovered: 0,
         NewRecovered: 0,
+        country: '',
+        countryCode: '',
     }
 
     constructor(
@@ -33,9 +33,9 @@ export class CountryDPage implements OnInit {
             this.cases = null
             this.deaths = null
             const countryData = params.country
-            this.countryCode = countryData?.countryInfo.iso2
             this.getHistoricalData(countryData?.countryInfo.iso2)
-            this.country = countryData?.country
+            this.dataCont.countryCode = countryData?.countryInfo.iso2
+            this.dataCont.country = countryData?.country
             this.dataCont.newCases = countryData?.todayCases
             this.dataCont.NewDeaths = countryData?.todayDeaths
             this.dataCont.NewRecovered = countryData?.todayRecovered
