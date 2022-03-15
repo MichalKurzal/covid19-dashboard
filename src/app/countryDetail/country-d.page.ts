@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { HttpService } from '../services/http.service'
-import { DataCont } from '../interfaces/data-cont'
+import { country } from '../interfaces/country'
 
 @Component({
     selector: 'app-country-d',
@@ -12,7 +12,7 @@ export class CountryDPage implements OnInit {
     cases: {}
     deaths: {}
 
-    dataCont: DataCont = {
+    dataCont: country = {
         cases: 0,
         todayCases: 0,
         todayDeaths: 0,

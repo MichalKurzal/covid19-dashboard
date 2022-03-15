@@ -1,9 +1,13 @@
 export interface country {
-    country: string
     cases: number
     deaths: number
     recovered: number
-    countrInfo: {
+    todayCases: number
+    todayDeaths: number
+    todayRecovered: number
+    country: string
+    countryInfo: {
         iso2: string
     }
 }
+

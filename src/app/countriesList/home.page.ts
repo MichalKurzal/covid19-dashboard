@@ -49,7 +49,6 @@ export class CountriesListPage implements OnInit {
                 country: param,
             },
         }
-        console.log(navigationExtras)
         this.nav.navigateForward('tabs-nav/countryD', navigationExtras)
     }
 

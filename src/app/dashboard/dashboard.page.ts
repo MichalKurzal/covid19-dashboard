@@ -5,7 +5,7 @@ import { NavController, LoadingController, Platform } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
-import { DataCont } from '../interfaces/data-cont'
+import { Dashboard } from '../interfaces/data-cont'
 
 @Component({
     selector: 'app-dashboard',
@@ -19,17 +19,13 @@ export class DashboardPage implements OnInit {
     today: number
     icon: string = 'sunny-outline'
 
-    dataCont: DataCont = {
+    dataCont: Dashboard = {
         cases: 0,
         todayCases: 0,
         todayDeaths: 0,
         deaths: 0,
         recovered: 0,
         todayRecovered: 0,
-        country: '',
-        countryInfo: {
-            iso2: '',
-        },
     }
 
     constructor(
@@ -117,7 +113,7 @@ export class DashboardPage implements OnInit {
     loadWorldwideData = async () => {
         return await this.httpService
             .WorldwideData()
-            .then((res: DataCont) => {
+            .then((res: Dashboard) => {
                 this.dataCont = res
                 this.today = Date.now()
             })
@@ -163,8 +159,8 @@ export class DashboardPage implements OnInit {
         if (this.platform.is('cordova')) {
             this.nativeStorage
                 .getItem('DataContinents')
-                .then((res) => {
-                    this.setTotal(res)
+                .then((res: Dashboard) => {
+                    this.dataCont = res
                 })
                 .catch((error) => {
                     console.log('error', error)
@@ -199,10 +195,6 @@ export class DashboardPage implements OnInit {
                     console.log('error ', error)
                 })
         }
-    }
-
-    setTotal = (data) => {
-        this.dataCont = data
     }
 
     goforward = () => this.router.navigateByUrl('tabs-nav/graphs')
