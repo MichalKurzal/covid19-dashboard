@@ -13,9 +13,9 @@
                 style="height: 64px; width: 120px"
             />
             <ion-badge>{{c.country}}</ion-badge>
-            <ion-badge color="warning">{{c.cases}}</ion-badge>
-            <ion-badge color="danger">{{c.deaths}}</ion-badge>
-            <ion-badge color="success">{{c.recovered}}</ion-badge>
+            <ion-badge color="warning">{{c.cases | number}}</ion-badge>
+            <ion-badge color="danger">{{c.deaths | number}}</ion-badge>
+            <ion-badge color="success">{{c.recovered | number}}</ion-badge>
         </ion-item>
     </ion-list>
 

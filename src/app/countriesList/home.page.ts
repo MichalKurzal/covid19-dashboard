@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { NavController, NavParams } from '@ionic/angular'
-import { NavigationExtras, Router } from '@angular/router'
+import { NavigationExtras } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { IonInfiniteScroll } from '@ionic/angular'
+import { country } from '../interfaces/country'
+
 
 @Component({
     selector: 'app-countries',
@@ -12,9 +14,9 @@ import { IonInfiniteScroll } from '@ionic/angular'
 })
 export class CountriesListPage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll
-    countries: any = []
-    dataList: any = []
-    templist: any = []
+    countries: country[] = []
+    dataList: country[] = []
+    templist: country[] = []
     itemLimit = 20
 
     constructor(

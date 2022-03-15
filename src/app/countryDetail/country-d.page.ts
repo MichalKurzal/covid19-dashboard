@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { HttpService } from '../services/http.service'
-import { DataCont } from '../data-cont'
+import { DataCont } from '../interfaces/data-cont'
 
 @Component({
     selector: 'app-country-d',

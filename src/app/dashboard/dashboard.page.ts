@@ -5,7 +5,7 @@ import { NavController, LoadingController, Platform } from '@ionic/angular'
 import { Router } from '@angular/router'
 import { NativeStorage } from '@ionic-native/native-storage/ngx'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
-import { DataCont } from './../data-cont'
+import { DataCont } from '../interfaces/data-cont'
 
 @Component({
     selector: 'app-dashboard',
