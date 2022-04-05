@@ -36,6 +36,6 @@
             [newDeaths]="dataCont.todayDeaths"
             [newRecovered]="dataCont.todayRecovered"
         ></app-detail-dash>
+        <p id="date">Last Update: {{today | date: 'dd/MM/yyyy HH:mm'}} UTC±00:00</p>
     </div>
-    <p id="date">Last Update: {{today | date: 'dd/MM/yyyy HH:mm'}} UTC±00:00</p>
 </ion-content>

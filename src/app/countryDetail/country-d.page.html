@@ -10,65 +10,67 @@
             <ion-spinner name="dots"></ion-spinner>
         </div>
     </ng-template>
-    <ion-grid>
-        <ion-row>
-            <ion-item id="country">
-                <ion-col>
-                    <img
-                        src="../../assets/svg/{{dataCont?.countryInfo.iso2}}.svg"
-                        style="height: 64px; width: 120px"
-                    />
-                </ion-col>
-                <ion-col><p>{{dataCont.country}}</p></ion-col>
-            </ion-item>
-        </ion-row>
-        <ion-card>
-            <ion-card-header>
-                <ion-row>
-                    <ion-col>
-                        <ion-card-subtitle> New Confirmed </ion-card-subtitle>
-                    </ion-col>
-                    <ion-col>
-                        <ion-card-subtitle> New Deaths </ion-card-subtitle>
-                    </ion-col>
-                    <ion-col>
-                        <ion-card-subtitle> New Recovered </ion-card-subtitle>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <p>{{dataCont.todayCases | number}}</p>
-                    </ion-col>
-                    <ion-col>
-                        <p>{{dataCont.todayDeaths | number}}</p>
-                    </ion-col>
-                    <ion-col>
-                        <p>{{dataCont.todayRecovered | number}}</p>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-card-subtitle> Total Confirmed </ion-card-subtitle>
-                    </ion-col>
-                    <ion-col>
-                        <ion-card-subtitle> Total Deaths </ion-card-subtitle>
-                    </ion-col>
-                    <ion-col>
-                        <ion-card-subtitle> Total Recovered </ion-card-subtitle>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <p>{{dataCont.cases | number}}</p>
-                    </ion-col>
-                    <ion-col>
-                        <p>{{dataCont.deaths | number}}</p>
-                    </ion-col>
-                    <ion-col>
-                        <p>{{dataCont.recovered | number}}</p>
-                    </ion-col>
-                </ion-row>
-            </ion-card-header>
-        </ion-card>
-    </ion-grid>
+
 </ion-content>
+
+<ion-grid>
+    <ion-row>
+        <ion-item id="country">
+            <ion-col>
+                <img
+                    src="../../assets/svg/{{dataCont?.countryInfo.iso2}}.svg"
+                    style="height: 64px; width: 120px"
+                />
+            </ion-col>
+            <ion-col><p>{{dataCont.country}}</p></ion-col>
+        </ion-item>
+    </ion-row>
+    <ion-card>
+        <ion-card-header>
+            <ion-row>
+                <ion-col>
+                    <ion-card-subtitle> New Confirmed </ion-card-subtitle>
+                </ion-col>
+                <ion-col>
+                    <ion-card-subtitle> New Deaths </ion-card-subtitle>
+                </ion-col>
+                <ion-col>
+                    <ion-card-subtitle> New Recovered </ion-card-subtitle>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <p>{{dataCont.todayCases | number}}</p>
+                </ion-col>
+                <ion-col>
+                    <p>{{dataCont.todayDeaths | number}}</p>
+                </ion-col>
+                <ion-col>
+                    <p>{{dataCont.todayRecovered | number}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-card-subtitle> Total Confirmed </ion-card-subtitle>
+                </ion-col>
+                <ion-col>
+                    <ion-card-subtitle> Total Deaths </ion-card-subtitle>
+                </ion-col>
+                <ion-col>
+                    <ion-card-subtitle> Total Recovered </ion-card-subtitle>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <p>{{dataCont.cases | number}}</p>
+                </ion-col>
+                <ion-col>
+                    <p>{{dataCont.deaths | number}}</p>
+                </ion-col>
+                <ion-col>
+                    <p>{{dataCont.recovered | number}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+    </ion-card>
+</ion-grid>

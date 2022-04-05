@@ -31,6 +31,12 @@ ion-card-header {
     align-items: center;
 }
 
+ion-grid {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 @media only screen and (min-width: 700px) and (orientation: portrait) {
     p {
         font-size: 30px;
