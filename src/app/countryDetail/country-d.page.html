@@ -1,7 +1,15 @@
 <ion-content>
-    <app-country-detail-charts [cases]="cases" [deaths]="deaths">
+    <app-country-detail-charts
+        [cases]="cases"
+        [deaths]="deaths"
+        *ngIf="cases !== null; else message"
+    >
     </app-country-detail-charts>
-
+    <ng-template #message>
+        <div class="spinner">
+            <ion-spinner name="dots"></ion-spinner>
+        </div>
+    </ng-template>
     <ion-grid>
         <ion-row>
             <ion-item id="country">
