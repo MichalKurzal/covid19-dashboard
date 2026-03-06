@@ -27,7 +27,7 @@ export class HttpService {
 
     HistoricalData() {
         return this.http
-            .get(`${this.url}covid-19/historical/all?lastdays=100`, {
+            .get(`${this.url}covid-19/historical/all?lastdays=700`, {
                 headers: this.headers,
             })
             .toPromise()
@@ -42,7 +42,7 @@ export class HttpService {
     }
     HistoricalCountry(country) {
         return this.http
-            .get(`${this.url}covid-19/historical/${country}?lastdays=100`, {
+            .get(`${this.url}covid-19/historical/${country}?lastdays=700`, {
                 headers: this.headers,
             })
             .toPromise()

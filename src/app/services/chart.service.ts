@@ -67,7 +67,7 @@ export class ChartService {
             .attr('dx', 60)
             .attr('font-size', 16)
             .style('fill', '#3880ff')
-            .text(`All Confirmed ${text}`)
+            .text(`All Confirmed ${text} from 2021 to today`)
         svg.select('.y').remove()
 
         svg.append('g')
