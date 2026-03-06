@@ -1,3 +1,18 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-row>
+        <ion-item id="country">
+            <ion-col>
+                <img
+                    src="../../assets/svg/{{dataCont?.countryInfo.iso2}}.svg"
+                    style="height: 64px; width: 120px"
+                />
+            </ion-col>
+            <ion-col><p>{{dataCont.country}}</p></ion-col>
+        </ion-item>
+    </ion-row>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
     <app-country-detail-charts
         [cases]="cases"
@@ -14,17 +29,6 @@
 </ion-content>
 
 <ion-grid>
-    <ion-row>
-        <ion-item id="country">
-            <ion-col>
-                <img
-                    src="../../assets/svg/{{dataCont?.countryInfo.iso2}}.svg"
-                    style="height: 64px; width: 120px"
-                />
-            </ion-col>
-            <ion-col><p>{{dataCont.country}}</p></ion-col>
-        </ion-item>
-    </ion-row>
     <ion-card>
         <ion-card-header>
             <ion-row>
