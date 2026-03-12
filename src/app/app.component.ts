@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Platform } from '@ionic/angular'
-import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +11,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx'
 export class AppComponent {
     constructor(
         private platform: Platform,
-        private splashScreen: SplashScreen,
         private statusBar: StatusBar
     ) {
         this.initializeApp()
@@ -22,7 +21,7 @@ export class AppComponent {
             this.statusBar.styleDefault()
             this.statusBar.overlaysWebView(false)
             document.body.setAttribute('color-theme', 'dark')
-            this.splashScreen.hide()
+            SplashScreen.hide()
         })
     }
 }
