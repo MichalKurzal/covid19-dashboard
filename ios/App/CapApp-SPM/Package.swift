@@ -11,15 +11,11 @@ let package = Package(
             targets: ["CapApp-SPM"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "8.1.0"),
+        .package(url: "https://github.com/ionic-team/capacitor-swift-pm.git", exact: "8.2.0"),
         .package(name: "CapacitorApp", path: "../../../node_modules/@capacitor/app"),
         .package(name: "CapacitorHaptics", path: "../../../node_modules/@capacitor/haptics"),
         .package(name: "CapacitorKeyboard", path: "../../../node_modules/@capacitor/keyboard"),
-        .package(name: "CapacitorStatusBar", path: "../../../node_modules/@capacitor/status-bar"),
-        .package(name: "CordovaPluginFile", path: "../../capacitor-cordova-ios-plugins/sources/CordovaPluginFile"),
-        .package(name: "CordovaPluginNativestorage", path: "../../capacitor-cordova-ios-plugins/sources/CordovaPluginNativestorage"),
-        .package(name: "CordovaPluginScreenOrientation", path: "../../capacitor-cordova-ios-plugins/sources/CordovaPluginScreenOrientation"),
-        .package(name: "CordovaPluginDevice", path: "../../capacitor-cordova-ios-plugins/sources/CordovaPluginDevice")
+        .package(name: "CapacitorStatusBar", path: "../../../node_modules/@capacitor/status-bar")
     ],
     targets: [
         .target(
@@ -30,11 +26,7 @@ let package = Package(
                 .product(name: "CapacitorApp", package: "CapacitorApp"),
                 .product(name: "CapacitorHaptics", package: "CapacitorHaptics"),
                 .product(name: "CapacitorKeyboard", package: "CapacitorKeyboard"),
-                .product(name: "CapacitorStatusBar", package: "CapacitorStatusBar"),
-                .product(name: "CordovaPluginFile", package: "CordovaPluginFile"),
-                .product(name: "CordovaPluginNativestorage", package: "CordovaPluginNativestorage"),
-                .product(name: "CordovaPluginScreenOrientation", package: "CordovaPluginScreenOrientation"),
-                .product(name: "CordovaPluginDevice", package: "CordovaPluginDevice")
+                .product(name: "CapacitorStatusBar", package: "CapacitorStatusBar")
             ]
         )
     ]

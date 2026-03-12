@@ -1,15 +1,14 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
-    "defaultProject": "app",
-    "newProjectRoot": "projects",
+    "cli": {
+        "defaultProject": "app"
+    },
     "projects": {
         "app": {
+            "projectType": "application",
             "root": "",
             "sourceRoot": "src",
-            "projectType": "application",
-            "prefix": "app",
-            "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -20,24 +19,11 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "src/assets",
-                                "output": "assets"
-                            },
-                            {
-                                "glob": "**/*.svg",
-                                "input": "node_modules/ionicons/dist/ionicons/svg",
-                                "output": "./svg"
-                            }
+                            "src/favicon.ico",
+                            "src/assets"
                         ],
                         "styles": [
-                            {
-                                "input": "src/theme/variables.scss"
-                            },
-                            {
-                                "input": "src/global.scss"
-                            }
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -74,7 +60,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "app:build"
+                        "buildTarget": "app:build"
                     },
                     "configurations": {
                         "production": {
@@ -172,10 +158,6 @@
                 }
             }
         }
-    },
-    "cli": {
-        "defaultCollection": "@ionic/angular-toolkit",
-        "analytics": false
     },
     "schematics": {
         "@ionic/angular-toolkit:component": {

@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header class="ion-align-items-center ion-justify-content-center">
     <ion-toolbar>
-        <ion-row>
+        <ion-row class="ion-justify-content-center">
         <ion-item id="country">
             <ion-col>
                 <img
@@ -8,7 +8,7 @@
                     style="height: 64px; width: 120px"
                 />
             </ion-col>
-            <ion-col><p>{{dataCont.country}}</p></ion-col>
+            <ion-col><p class="ion-text-center">{{dataCont.country}}</p></ion-col>
         </ion-item>
     </ion-row>
     </ion-toolbar>
@@ -28,18 +28,18 @@
 
 </ion-content>
 
-<ion-grid>
+<ion-grid class="ion-display-flex ion-justify-content-around ion-align-items-center">
     <ion-card>
         <ion-card-header>
             <ion-row>
                 <ion-col>
-                    <ion-card-subtitle> New Confirmed </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> New Confirmed </ion-card-subtitle>
                 </ion-col>
                 <ion-col>
-                    <ion-card-subtitle> New Deaths </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> New Deaths </ion-card-subtitle>
                 </ion-col>
                 <ion-col>
-                    <ion-card-subtitle> New Recovered </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> New Recovered </ion-card-subtitle>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -55,13 +55,13 @@
             </ion-row>
             <ion-row>
                 <ion-col>
-                    <ion-card-subtitle> Total Confirmed </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> Total Confirmed </ion-card-subtitle>
                 </ion-col>
                 <ion-col>
-                    <ion-card-subtitle> Total Deaths </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> Total Deaths </ion-card-subtitle>
                 </ion-col>
                 <ion-col>
-                    <ion-card-subtitle> Total Recovered </ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-lg"> Total Recovered </ion-card-subtitle>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -77,4 +77,4 @@
             </ion-row>
         </ion-card-header>
     </ion-card>
-</ion-grid>
+    </ion-grid>
